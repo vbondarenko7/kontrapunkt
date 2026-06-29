@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Долгий ужин — камерные вечера-разговоры в Москве</title>
-<meta name="description" content="Раз в месяц в Москве: двадцать человек за одним столом, ужин при свечах и одна большая тема. Не лекция — вечер." />
-<meta property="og:title" content="Долгий ужин — камерные вечера в Москве" />
-<meta property="og:description" content="Двадцать человек за одним столом, ужин при свечах и одна большая тема. Не лекция — вечер." />
+<title>Контрапункт — философ на сцене, живая мысль · Москва</title>
+<meta name="description" content="Резидент-философ выходит на сцену с одной идеей, бросает её в зал и докручивает чужую мысль вживую. Между номерами — музыка. Не лекция и не стендап." />
+<meta property="og:title" content="Контрапункт — философ на сцене · Москва" />
+<meta property="og:description" content="Один тезис, целый зал против. Мышление как зрелище. Раз в месяц в Москве." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #15110c;
-    --bg-2:      #1d1711;
-    --bg-3:      #241d14;
+    --bg:        #14110d;
+    --bg-2:      #1c1712;
+    --bg-3:      #241d15;
     --cream:     #efe7d8;
     --cream-2:   #ded3bf;
     --mute:      #9d8e78;
@@ -32,117 +32,52 @@
     background: var(--bg);
     color: var(--cream);
     font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    font-weight: 400; font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
-  ::selection { background: var(--accent); color: #15110c; }
+  ::selection { background: var(--accent); color: #14110d; }
   a { color: inherit; }
 
-  /* warm candlelight glow, fixed behind everything */
   body::before {
-    content: "";
-    position: fixed;
-    top: -20vh; left: 50%;
-    width: 120vw; height: 90vh;
-    transform: translateX(-50%);
-    background: radial-gradient(ellipse 50% 50% at 50% 40%, rgba(224,164,79,0.10), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    content: ""; position: fixed;
+    top: -20vh; left: 50%; width: 120vw; height: 90vh; transform: translateX(-50%);
+    background: radial-gradient(ellipse 50% 50% at 50% 38%, rgba(224,164,79,0.11), transparent 70%);
+    pointer-events: none; z-index: 0;
   }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
 
   /* ── Top bar ─────────────────────────────────────────── */
-  .topbar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    padding: 26px 0 22px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .topbar nav, .topbar .meta {
-    display: flex; gap: 26px;
-    font-size: 11px; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--cream-2);
-  }
+  .topbar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 26px 0 22px; border-bottom: 1px solid var(--rule); }
+  .topbar nav, .topbar .meta { display: flex; gap: 26px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-2); }
   .topbar .meta { justify-content: flex-end; color: var(--mute); }
   .topbar nav a { text-decoration: none; transition: color .25s; }
   .topbar nav a:hover { color: var(--accent); }
-  .masthead {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-weight: 600; font-size: 22px;
-    letter-spacing: 0.01em; font-style: italic;
-  }
+  .masthead { text-align: center; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 22px; letter-spacing: 0.01em; font-style: italic; }
   .masthead .dot { color: var(--accent); }
 
   /* ── Buttons ─────────────────────────────────────────── */
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: #15110c; background: var(--accent);
-    text-decoration: none;
-    padding: 16px 28px;
-    border: 1px solid var(--accent);
-    transition: background .3s, transform .3s, box-shadow .3s;
-  }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #14110d; background: var(--accent); text-decoration: none; padding: 16px 28px; border: 1px solid var(--accent); transition: background .3s, transform .3s, box-shadow .3s; }
   .btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(224,164,79,0.18); }
-  .btn.ghost {
-    color: var(--cream); background: transparent; border-color: var(--rule-2);
-  }
+  .btn.ghost { color: var(--cream); background: transparent; border-color: var(--rule-2); }
   .btn.ghost:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--cream); box-shadow: none; }
 
   /* ── Hero ────────────────────────────────────────────── */
   .hero { padding: 104px 0 84px; border-bottom: 1px solid var(--rule); }
-  .kicker {
-    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 34px;
-    display: flex; align-items: center; gap: 14px;
-  }
+  .kicker { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 34px; display: flex; align-items: center; gap: 14px; }
   .kicker::before { content: ""; width: 30px; height: 1px; background: var(--accent); }
-  h1.headline {
-    font-family: 'Playfair Display', serif;
-    font-weight: 500;
-    font-size: clamp(56px, 9vw, 132px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    margin: 0; max-width: 16ch;
-  }
+  h1.headline { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(56px, 9vw, 132px); line-height: 0.98; letter-spacing: -0.02em; margin: 0; max-width: 15ch; }
   h1.headline .it { font-style: italic; font-weight: 500; color: var(--accent); }
-  .standfirst {
-    font-family: 'Playfair Display', serif;
-    font-style: italic; font-weight: 400;
-    font-size: clamp(19px, 2.4vw, 26px);
-    line-height: 1.45; color: var(--cream-2);
-    max-width: 40ch; margin: 40px 0 0;
-  }
+  .standfirst { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(19px, 2.4vw, 26px); line-height: 1.45; color: var(--cream-2); max-width: 42ch; margin: 40px 0 0; }
   .hero-cta { margin-top: 44px; display: flex; gap: 16px; flex-wrap: wrap; }
-  .hero-foot {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
-    margin-top: 72px; padding-top: 30px; border-top: 1px solid var(--rule);
-  }
-  .hero-foot .label {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--mute); margin-bottom: 10px;
-  }
+  .hero-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 72px; padding-top: 30px; border-top: 1px solid var(--rule); }
+  .hero-foot .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; }
   .hero-foot .val { font-family: 'Playfair Display', serif; font-size: 21px; letter-spacing: -0.01em; }
 
   /* ── Section scaffolding ─────────────────────────────── */
-  .section-label {
-    font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--accent); display: flex; align-items: center; gap: 14px; margin-bottom: 30px;
-  }
+  .section-label { font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
   .section-label::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
-  .section-title {
-    font-family: 'Playfair Display', serif; font-weight: 500;
-    font-size: clamp(36px, 5vw, 64px); line-height: 1.04;
-    letter-spacing: -0.02em; margin: 0 0 56px; max-width: 18ch;
-  }
+  .section-title { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(36px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 56px; max-width: 18ch; }
   .section-title em { font-style: italic; color: var(--accent); font-weight: 500; }
 
   /* ── Manifesto ───────────────────────────────────────── */
@@ -150,58 +85,42 @@
   .manifesto .grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
   .manifesto .body p { font-size: 17px; line-height: 1.75; color: var(--cream-2); margin: 0 0 20px; }
   .manifesto .body p:last-child { margin-bottom: 0; }
-  .manifesto .body p.dropcap:first-letter {
-    font-family: 'Playfair Display', serif; font-size: 74px; float: left;
-    line-height: 0.8; padding: 8px 14px 0 0; color: var(--accent); font-weight: 600;
-  }
+  .manifesto .body p.dropcap:first-letter { font-family: 'Playfair Display', serif; font-size: 74px; float: left; line-height: 0.8; padding: 8px 14px 0 0; color: var(--accent); font-weight: 600; }
 
   /* ── Timeline ────────────────────────────────────────── */
   .timeline { padding: 100px 0; border-bottom: 1px solid var(--rule); }
+  .tl-note { font-family: 'Playfair Display', serif; font-style: italic; color: var(--mute); font-size: 17px; margin: 30px 0 0; }
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .step {
-    background: var(--bg-2); border: 1px solid var(--rule);
-    padding: 30px 26px; min-height: 230px;
-    display: flex; flex-direction: column; justify-content: space-between;
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background .35s;
-  }
+  .step { background: var(--bg-2); border: 1px solid var(--rule); padding: 30px 26px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background .35s; }
   .step:hover { transform: translateY(-5px); border-color: var(--accent); background: var(--bg-3); }
-  .step .time {
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
-  }
+  .step .time { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
   .step h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 25px; margin: 18px 0 12px; line-height: 1.1; }
   .step p { font-size: 14px; line-height: 1.6; color: var(--mute); margin: 0; }
 
   /* ── Not-this ────────────────────────────────────────── */
   .notthis { padding: 100px 0; border-bottom: 1px solid var(--rule); }
   .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .neg {
-    border: 1px solid var(--rule); padding: 34px 30px; background: linear-gradient(180deg, var(--bg-2), var(--bg));
-  }
+  .neg { border: 1px solid var(--rule); padding: 34px 30px; background: linear-gradient(180deg, var(--bg-2), var(--bg)); }
   .neg .x { font-family: 'Playfair Display', serif; font-style: italic; font-size: 30px; color: var(--accent); line-height: 1; }
   .neg h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 23px; margin: 18px 0 12px; }
   .neg p { font-size: 14.5px; line-height: 1.65; color: var(--mute); margin: 0; }
 
+  /* ── Repertoire ──────────────────────────────────────── */
+  .repertoire { padding: 100px 0; border-bottom: 1px solid var(--rule); }
+  .rep-table { border-top: 1px solid var(--rule-2); }
+  .rep-row { display: grid; grid-template-columns: 48px 1fr 1.7fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--rule); align-items: baseline; transition: background .3s; }
+  .rep-row:hover { background: linear-gradient(to right, var(--accent-soft) 0%, transparent 70%); }
+  .rep-row .rn { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: var(--accent); }
+  .rep-row .rterm { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 24px; letter-spacing: -0.01em; }
+  .rep-row .rdef { font-size: 14.5px; line-height: 1.55; color: var(--mute); }
+
   /* ── First evening feature ───────────────────────────── */
   .evening { padding: 110px 0; border-bottom: 1px solid var(--rule); }
-  .evening .frame {
-    border: 1px solid var(--rule-2); padding: clamp(36px, 6vw, 80px);
-    background:
-      radial-gradient(ellipse 70% 80% at 80% 0%, rgba(224,164,79,0.10), transparent 60%),
-      var(--bg-2);
-  }
-  .evening .theme {
-    font-family: 'Playfair Display', serif; font-weight: 500;
-    font-size: clamp(34px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.02em;
-    margin: 22px 0 28px; max-width: 20ch;
-  }
+  .evening .frame { border: 1px solid var(--rule-2); padding: clamp(36px, 6vw, 80px); background: radial-gradient(ellipse 70% 80% at 80% 0%, rgba(224,164,79,0.10), transparent 60%), var(--bg-2); }
+  .evening .theme { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(32px, 5vw, 56px); line-height: 1.06; letter-spacing: -0.02em; margin: 22px 0 28px; max-width: 22ch; }
   .evening .theme em { font-style: italic; color: var(--accent); }
-  .evening .desc {
-    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
-    font-size: clamp(18px, 2.2vw, 23px); line-height: 1.5; color: var(--cream-2); max-width: 46ch; margin: 0 0 36px;
-  }
-  .evening .by {
-    display: flex; gap: 40px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--rule);
-  }
+  .evening .desc { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.5; color: var(--cream-2); max-width: 48ch; margin: 0 0 36px; }
+  .evening .by { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--rule); }
   .evening .by .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 7px; }
   .evening .by .val { font-family: 'Playfair Display', serif; font-size: 19px; }
 
@@ -217,10 +136,7 @@
 
   /* ── CTA ─────────────────────────────────────────────── */
   .cta { padding: 128px 0 120px; text-align: center; }
-  .cta h2 {
-    font-family: 'Playfair Display', serif; font-weight: 500;
-    font-size: clamp(44px, 7vw, 88px); line-height: 1; letter-spacing: -0.025em; margin: 0;
-  }
+  .cta h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(40px, 6.5vw, 84px); line-height: 1; letter-spacing: -0.025em; margin: 0; }
   .cta h2 em { font-style: italic; color: var(--accent); }
   .cta .sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2.4vw, 24px); color: var(--cream-2); margin: 26px 0 44px; }
 
@@ -232,25 +148,21 @@
   .foot-grid .col h4 { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); margin: 0 0 14px; font-weight: 500; }
   .foot-grid .col a, .foot-grid .col span { display: block; text-decoration: none; font-size: 13.5px; padding: 4px 0; color: var(--cream-2); transition: color .2s; }
   .foot-grid .col a:hover { color: var(--accent); }
-  .colophon {
-    margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--rule);
-    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
-  }
+  .colophon { margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 900px) {
     .wrap { padding: 0 28px; }
-    .topbar { grid-template-columns: 1fr auto; }
-    .topbar nav { display: none; }
-    .topbar .meta { display: none; }
     .topbar { grid-template-columns: 1fr; justify-items: center; }
+    .topbar nav, .topbar .meta { display: none; }
     .hero-foot { grid-template-columns: 1fr; gap: 22px; }
     .manifesto .grid { grid-template-columns: 1fr; gap: 32px; }
     .steps { grid-template-columns: repeat(2, 1fr); }
     .cards3 { grid-template-columns: 1fr; }
     .specs { grid-template-columns: repeat(2, 1fr); }
     .spec { padding-right: 20px; }
+    .rep-row { grid-template-columns: 32px 1fr; gap: 8px 16px; }
+    .rep-row .rdef { grid-column: 2; }
     .evening .by { gap: 28px; }
     .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
     .foot-grid .brand { grid-column: 1 / -1; }
@@ -260,7 +172,6 @@
     .hero { padding: 64px 0 56px; }
     .steps { grid-template-columns: 1fr; }
     .specs { grid-template-columns: 1fr; }
-    .hero-cta { gap: 12px; }
     .btn { width: 100%; justify-content: center; }
   }
 </style>
@@ -271,31 +182,31 @@
 
   <header class="topbar">
     <nav>
-      <a href="#kak">Как проходит</a>
-      <a href="#vecher">Тема</a>
+      <a href="#kak">Как устроен</a>
+      <a href="#temy">Репертуар</a>
       <a href="#detali">Детали</a>
     </nav>
-    <div class="masthead">Долгий ужин<span class="dot">.</span></div>
+    <div class="masthead">Контрапункт<span class="dot">.</span></div>
     <div class="meta">
       <span>Москва</span>
-      <span>раз в месяц</span>
+      <span>философ на сцене</span>
       <span>с сентября</span>
     </div>
   </header>
 
   <!-- ── Hero ──────────────────────────────────────────── -->
   <section class="hero">
-    <div class="kicker">Камерные вечера-разговоры · Москва</div>
-    <h1 class="headline">Длинный стол.<br/><span class="it">Долгий</span> разговор.</h1>
-    <p class="standfirst">Двадцать человек за одним столом, ужин при свечах и одна большая тема, в которой участвуют все. Это не лекция — это вечер, который не хочется заканчивать.</p>
+    <div class="kicker">Философ на сцене · живая мысль · Москва</div>
+    <h1 class="headline">Один тезис.<br/>Целый зал <span class="it">против.</span></h1>
+    <p class="standfirst">Резидент-философ выходит на сцену с одной идеей, бросает её в зал и вытаскивает спорщиков к микрофону. Задача — не переспорить, а докрутить чужую мысль до места, где она сама себя опровергает. Между номерами — музыка. Это не лекция и не стендап. Это мышление как зрелище.</p>
     <div class="hero-cta">
       <a class="btn" href="#bron">Забронировать место →</a>
-      <a class="btn ghost" href="#kak">Как проходит вечер</a>
+      <a class="btn ghost" href="#kak">Как устроен вечер</a>
     </div>
     <div class="hero-foot">
-      <div><div class="label">Где</div><div class="val">Москва, центр</div></div>
-      <div><div class="label">Формат</div><div class="val">Ужин + разговор, ~3 часа</div></div>
-      <div><div class="label">Мест</div><div class="val">Двадцать, не больше</div></div>
+      <div><div class="label">Где</div><div class="val">Москва, клуб со сценой</div></div>
+      <div><div class="label">Формат</div><div class="val">3–4 номера + спарринг, ~2 часа</div></div>
+      <div><div class="label">Мест</div><div class="val">Тридцать, близко к сцене</div></div>
     </div>
   </section>
 
@@ -304,50 +215,39 @@
     <div class="grid">
       <div>
         <div class="section-label">Что это</div>
-        <h2 class="section-title" style="margin-bottom:0;">Не послушать.<br/><em>Побыть среди своих.</em></h2>
+        <h2 class="section-title" style="margin-bottom:0;">Не лекция.<br/>Не стендап.<br/><em>Мышление вслух.</em></h2>
       </div>
       <div class="body">
-        <p class="dropcap">Тёплая комната в центре Москвы. Двадцать приборов, свечи, негромкая музыка. Вы садитесь за общий стол — и через десять минут уже не помните, что пришли сюда одни.</p>
-        <p>Каждый вечер — одна большая тема: книга, идея, вопрос, на который нет короткого ответа. Её ведёт хозяин вечера и приглашённый гость. Но это разговор, а не сцена, на которую вы смотрите со стороны. Между переменами блюд говорят все.</p>
-        <p>Вы уходите сытым, с гудящей головой и, чаще всего, с парой человек, которых хочется увидеть снова. Это и есть смысл — не лекция, а среда.</p>
+        <p class="dropcap">На лекции лектор знает ответ заранее. На стендапе важно, чтобы было смешно. Здесь — ни то, ни другое. Один человек думает вслух, при свидетелях, и не знает заранее, куда выведет.</p>
+        <p>Каждый номер — десять-пятнадцать минут на одну идею: свобода, вина, скука, смерть автора. Дальше тезис уходит в зал. Кто-то возражает — и оказывается у микрофона. Моя работа не переспорить вас, а докрутить вашу мысль до точки, где она либо рушится, либо вдруг становится сильнее, чем вы думали.</p>
+        <p>Люди приходят не на жанр. На конкретную голову, которая рискует думать вживую.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── Timeline ──────────────────────────────────────── -->
+  <!-- ── How it works ──────────────────────────────────── -->
   <section class="timeline" id="kak">
-    <div class="section-label">Как проходит</div>
-    <h2 class="section-title">Один вечер, <em>четыре главы.</em></h2>
+    <div class="section-label">Как устроен вечер</div>
+    <h2 class="section-title">Номер, вызов, <em>спарринг, музыка.</em></h2>
     <div class="steps">
       <article class="step">
-        <div class="time">19:30 · Сбор</div>
-        <div>
-          <h3>Аперитив</h3>
-          <p>Бокал и знакомство. Никаких бейджей — просто садимся за один стол.</p>
-        </div>
+        <div class="time">01 · Номер</div>
+        <div><h3>Одна идея</h3><p>Десять минут на один тезис. Без слайдов и без бумажки.</p></div>
       </article>
       <article class="step">
-        <div class="time">20:00 · Ужин</div>
-        <div>
-          <h3>Четыре перемены</h3>
-          <p>Сет-меню от шефа. Еда — часть разговора, а не пауза в нём.</p>
-        </div>
+        <div class="time">02 · Вызов</div>
+        <div><h3>Зал заводится</h3><p>Тезис, на который трудно промолчать. Я провоцирую возражение.</p></div>
       </article>
       <article class="step">
-        <div class="time">21:00 · Тема</div>
-        <div>
-          <h3>Большая мысль</h3>
-          <p>Хозяин и гость задают тон. Дальше говорят все, кто за столом.</p>
-        </div>
+        <div class="time">03 · Спарринг</div>
+        <div><h3>К микрофону</h3><p>Возражающий выходит. Я докручиваю его мысль вживую, а не свою заготовку.</p></div>
       </article>
       <article class="step">
-        <div class="time">22:30 · Финал</div>
-        <div>
-          <h3>Послевкусие</h3>
-          <p>Кофе, вино и разговоры, которые длятся дольше программы.</p>
-        </div>
+        <div class="time">04 · Музыка</div>
+        <div><h3>Пунктуация</h3><p>Минута-полторы осесть — и следующий номер.</p></div>
       </article>
     </div>
+    <p class="tl-note">За вечер — три-четыре таких круга. Программа собирается под зал и под настроение.</p>
   </section>
 
   <!-- ── Not this ──────────────────────────────────────── -->
@@ -357,19 +257,33 @@
     <div class="cards3">
       <article class="neg">
         <div class="x">Не лекция</div>
-        <h3>Вы не в зале на сто человек.</h3>
-        <p>Здесь нет «спикера» и «слушателей». Есть стол, за которым у каждого есть голос.</p>
+        <h3>Я не знаю ответ заранее.</h3>
+        <p>Если бы знал — было бы скучно нам обоим. Здесь думают при вас, а не пересказывают готовое.</p>
       </article>
       <article class="neg">
-        <div class="x">Не нетворкинг</div>
-        <h3>Никто не раздаёт визитки.</h3>
-        <p>Связи возникают сами — потому что вечер настоящий, а не повод обменяться контактами.</p>
+        <div class="x">Не стендап</div>
+        <h3>Цель не рассмешить.</h3>
+        <p>Иногда смешно — но это побочный эффект, а не задача. Шутка тут служит мысли, не наоборот.</p>
       </article>
       <article class="neg">
-        <div class="x">Не подписка</div>
-        <h3>Вы платите за конкретный вечер.</h3>
-        <p>Понравилось — приходите на следующий. Не понравилось — мы расстаёмся друзьями.</p>
+        <div class="x">Не дебаты</div>
+        <h3>Я не пришёл победить.</h3>
+        <p>Я пришёл докрутить вашу мысль дальше, чем вы успели. Иногда она от этого рушится. Иногда — крепнет.</p>
       </article>
+    </div>
+  </section>
+
+  <!-- ── Repertoire ────────────────────────────────────── -->
+  <section class="repertoire" id="temy">
+    <div class="section-label">Репертуар</div>
+    <h2 class="section-title">Темы, из которых <em>собирается вечер.</em></h2>
+    <div class="rep-table">
+      <div class="rep-row"><div class="rn">i.</div><div class="rterm">Свобода</div><div class="rdef">То, чего мы боимся сильнее несвободы.</div></div>
+      <div class="rep-row"><div class="rn">ii.</div><div class="rterm">Вина</div><div class="rdef">Единственное чувство, которое мы выбираем себе сами.</div></div>
+      <div class="rep-row"><div class="rn">iii.</div><div class="rterm">Скука</div><div class="rdef">Роскошь, которую у нас тихо отняли.</div></div>
+      <div class="rep-row"><div class="rn">iv.</div><div class="rterm">Смерть автора</div><div class="rdef">Кто на самом деле говорит, когда говорите вы.</div></div>
+      <div class="rep-row"><div class="rn">v.</div><div class="rterm">Заговор</div><div class="rdef">Не теория, а ошибка интенциональности: почему нам везде мерещится чей-то умысел.</div></div>
+      <div class="rep-row"><div class="rn">vi.</div><div class="rterm">Время</div><div class="rdef">Почему его всегда «нет» — и кто его, собственно, забрал.</div></div>
     </div>
   </section>
 
@@ -377,11 +291,11 @@
   <section class="evening" id="vecher">
     <div class="frame">
       <div class="section-label">25 сентября · Вечер первый</div>
-      <h2 class="theme">Истории, которые мы <em>себе рассказываем.</em></h2>
-      <p class="desc">От древних мифов до версии, которую вы каждый день рассказываете себе про собственную жизнь. Почему человек не выживает без вымысла — и что меняется, когда это замечаешь.</p>
+      <h2 class="theme">Свобода: то, чего мы боимся <em>сильнее несвободы.</em></h2>
+      <p class="desc">С чего начнём. Один большой номер, открытый зал и первый спарринг. Если вам есть что возразить — приходите с возражением, оно вам понадобится.</p>
       <div class="by">
         <div><div class="label">Ведущий</div><div class="val">Вадим Бондаренко</div></div>
-        <div><div class="label">Гость</div><div class="val">объявим скоро</div></div>
+        <div><div class="label">Музыка</div><div class="val">живьём</div></div>
         <div><div class="label">Язык</div><div class="val">русский</div></div>
       </div>
     </div>
@@ -392,19 +306,19 @@
     <div class="section-label">Детали</div>
     <h2 class="section-title">Всё, что нужно <em>знать заранее.</em></h2>
     <div class="specs">
-      <div class="spec"><div class="label">Дата</div><div class="val">Чт, 25 сентября<span class="small">19:30, сбор гостей</span></div></div>
-      <div class="spec"><div class="label">Место</div><div class="val">Центр Москвы<span class="small">точный адрес — после брони</span></div></div>
-      <div class="spec"><div class="label">Мест</div><div class="val">20<span class="small">камерный формат</span></div></div>
-      <div class="spec"><div class="label">Цена</div><div class="val"><em>5 500 ₽</em><span class="small">ужин включён</span></div></div>
+      <div class="spec"><div class="label">Дата</div><div class="val">Чт, 25 сентября<span class="small">20:00, двери в 19:30</span></div></div>
+      <div class="spec"><div class="label">Место</div><div class="val">Центр Москвы<span class="small">клуб со сценой, адрес — после брони</span></div></div>
+      <div class="spec"><div class="label">Мест</div><div class="val">30<span class="small">близко к сцене</span></div></div>
+      <div class="spec"><div class="label">Цена</div><div class="val"><em>2 000 ₽</em><span class="small">бар — отдельно</span></div></div>
     </div>
     <p class="fineprint">Бронь — по предоплате. Полный возврат, если отменить за 7 дней до вечера.</p>
   </section>
 
   <!-- ── CTA ───────────────────────────────────────────── -->
   <section class="cta" id="bron">
-    <h2>Мест немного — <em>двадцать.</em></h2>
-    <p class="sub">Бронь закрывается, когда стол заполнен.</p>
-    <a class="btn" href="https://t.me/dolgiy_uzhin">Забронировать место →</a>
+    <h2>Приходите <em>с возражением.</em></h2>
+    <p class="sub">Мест немного — тридцать. Бронь закрывается, когда зал полон.</p>
+    <a class="btn" href="https://t.me/kontrapunkt_msk">Забронировать место →</a>
   </section>
 
 </div>
@@ -412,10 +326,10 @@
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div class="brand">Долгий ужин<span class="dot">.</span></div>
+      <div class="brand">Контрапункт<span class="dot">.</span></div>
       <div class="col">
         <h4>Связь</h4>
-        <a href="https://t.me/dolgiy_uzhin">Telegram</a>
+        <a href="https://t.me/kontrapunkt_msk">Telegram</a>
         <a href="#bron">Забронировать</a>
       </div>
       <div class="col">
@@ -425,14 +339,14 @@
       </div>
       <div class="col">
         <h4>Вечер</h4>
-        <a href="#kak">Как проходит</a>
-        <a href="#vecher">Тема</a>
+        <a href="#kak">Как устроен</a>
+        <a href="#temy">Репертуар</a>
         <a href="#detali">Детали</a>
       </div>
     </div>
     <div class="colophon">
-      <span>© 2026 · Долгий ужин · Москва</span>
-      <span>Камерные вечера-разговоры</span>
+      <span>© 2026 · Контрапункт · Москва</span>
+      <span>Философ на сцене · живая мысль</span>
     </div>
   </div>
 </footer>
