@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Первый экран — стиль «Чернолесье»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #17130F;   /* espresso black — тёмный фон */
+    --burgundy: #3D1015;   /* deep burgundy — основной тон */
+    --red:      #A32C2C;   /* brick red — акцент, CTA */
+    --ivory:    #F2EBDD;   /* светлый фон/пауза */
+    --brown:    #5C4022;   /* фактура */
+    --ink:      #221a14;   /* текст на светлом */
+    --mute-d:   #b8a998;   /* приглушённый на тёмном */
+    --mute-l:   #7a6d5f;   /* приглушённый на светлом */
+    --rule-d:   #3a2c22;
+    --rule-l:   #d9cfbd;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--black);
+    color: var(--ivory);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--red); color: var(--ivory); }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+  /* ── Топбар: подписи по углам, как в кейсе ── */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 0;
+    font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ivory);
+  }
+  .topbar .right { color: var(--mute-d); }
+
+  /* ── Тёмная кинематографичная секция: фото на весь экран ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--black);
+    overflow: hidden;
+  }
+  .hero .bg {
+    position: absolute; inset: 0;
+    will-change: transform;             /* параллакс при скролле (JS) */
+  }
+  .hero .bg img {
+    width: 100%; height: 118%;          /* запас снизу под параллакс-сдвиг */
+    object-fit: cover;
+    object-position: 62% 42%;           /* сцена уходит чуть правее центра */
+    filter: saturate(0.96) contrast(1.04);
+    animation: kenburns 26s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.06); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .bg img { animation: none; }
+  }
+  /* бордовая склейка с палитрой */
+  .hero .tint, .scene .tint {
+    position: absolute; inset: 0;
+    background: var(--burgundy);
+    mix-blend-mode: multiply;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .scene .tint { z-index: 5; }
+  .scene .grain { z-index: 6; }
+  /* затемнение: плита под текстом слева + низ + верх + виньетка */
+  .hero .scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg,  rgba(14,10,8,0.88) 0%, rgba(14,10,8,0.52) 40%, rgba(14,10,8,0.08) 70%, rgba(14,10,8,0.22) 100%),
+      linear-gradient(0deg,   rgba(14,10,8,0.85) 0%, rgba(14,10,8,0.0) 32%),
+      linear-gradient(180deg, rgba(14,10,8,0.65) 0%, rgba(14,10,8,0.0) 18%),
+      radial-gradient(ellipse 130% 95% at 55% 40%, transparent 58%, rgba(10,7,5,0.38) 100%);
+    pointer-events: none;
+  }
+  /* зерно — живая киноплёнка: дрожит случайными скачками */
+  .hero .grain, .scene .grain {
+    position: absolute; inset: -60%;    /* тайл больше экрана, чтобы скакать без краёв */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 220px 220px;       /* крупнее зерно — заметнее рябь */
+    opacity: 0.13;
+    mix-blend-mode: screen;             /* светлые искорки в тенях, как на плёнке */
+    pointer-events: none;
+    animation: filmgrain 0.9s steps(1) infinite;
+  }
+  @keyframes filmgrain {
+    0%    { transform: translate(0, 0); }
+    12.5% { transform: translate(-2.2%, 1.4%); }
+    25%   { transform: translate(1.6%, -2.6%); }
+    37.5% { transform: translate(-3.1%, -1.2%); }
+    50%   { transform: translate(2.4%, 2.1%); }
+    62.5% { transform: translate(-1.3%, 3.0%); }
+    75%   { transform: translate(3.0%, -1.7%); }
+    87.5% { transform: translate(-2.6%, -2.9%); }
+    100%  { transform: translate(0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .grain { animation: none; }
+  }
+  .hero .wrap { position: relative; z-index: 1; width: 100%; }
+  .hero .inner { padding-bottom: 76px; }
+
+  .chapter {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--mute-d); margin-bottom: 40px;
+  }
+  .chapter b { color: var(--red); font-weight: 600; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(46px, 6.8vw, 96px);
+    line-height: 1.02;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  h1 .amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 500;
+    text-transform: lowercase;
+    color: var(--red);
+    font-size: 0.82em;
+    padding: 0 0.06em;
+  }
+  .script-over {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 500;
+    font-size: clamp(24px, 3vw, 40px);
+    color: var(--red);
+    margin: 0 0 2px 4px;
+  }
+  .sub {
+    font-size: clamp(16.5px, 1.9vw, 20px); line-height: 1.6;
+    color: var(--mute-d); font-weight: 300;
+    max-width: 52ch; margin: 36px 0 0;
+  }
+  .sub b { color: var(--ivory); font-weight: 500; }
+
+  .facts {
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    margin: 38px 0 0;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ivory);
+  }
+  .facts .dot { color: var(--red); }
+
+  .cta-row { margin-top: 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ivory); background: var(--red);
+    text-decoration: none; padding: 19px 36px;
+    border-radius: 6px;
+    transition: background .3s, transform .3s, box-shadow .3s;
+  }
+  .btn:hover { background: #8f2424; transform: translateY(-2px); box-shadow: 0 14px 34px rgba(163,44,44,0.28); }
+  .cta-note { font-size: 13px; color: var(--mute-d); }
+
+  /* ── Сцена 02: композит философ + джаз-зал (один слой + текст справа) ── */
+  .scene {
+    position: relative;
+    background: var(--black);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .scene-stage {
+    position: relative;
+    width: 100%;
+    height: min(94svh, 56.25vw);
+    min-height: 520px;
+    overflow: hidden;
+  }
+  /* база и копия-сверху — тот же композит; копия замаскирована силуэтом статуи.
+     Одна и та же картинка → двоение невозможно. */
+  .scene__image,
+  .scene__statue-top {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    pointer-events: none; user-select: none; -webkit-user-drag: none;
+    filter: saturate(0.96) contrast(1.04);
+  }
+  .scene__image { z-index: 1; }
+  .scene__statue-top {
+    z-index: 3;
+    -webkit-mask-image: url(assets/scene02-mask.png);
+            mask-image: url(assets/scene02-mask.png);
+    -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  }
+  .scene .scrim {
+    position: absolute; inset: 0;
+    z-index: 4;
+    background:
+      linear-gradient(90deg, rgba(5,4,3,0.08) 0%, rgba(5,4,3,0.04) 42%, rgba(5,4,3,0.56) 100%),
+      linear-gradient(0deg,  rgba(5,4,3,0.56) 0%, rgba(5,4,3,0) 44%);
+    pointer-events: none;
+  }
+  /* текст (z:2) едет слева направо МЕЖДУ базой и статуёй-сверху —
+     ныряет за реальный силуэт статуи, финиш вплотную справа */
+  .scene .scene-copy {
+    position: absolute;
+    left: 52%;
+    top: 44%;
+    width: min(460px, 42%);
+    z-index: 2;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: translateY(-50%) translateX(-140vw);
+    will-change: transform, opacity;
+  }
+  .scene .scene-copy .chapter { margin: 0 0 18px; color: rgba(245,239,228,0.72); }
+  .scene-item { opacity: 1; }
+  .scene-h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(46px, 6.6vw, 100px);
+    line-height: 0.96;
+    letter-spacing: 0;
+    color: var(--ivory);
+    margin: 0;
+  }
+  .scene-h2 .accent { color: var(--red); }
+  .scene-rule {
+    width: 56px; height: 2px;
+    background: var(--red);
+    margin: 26px 0 22px;
+  }
+  .scene-sub {
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: rgba(245,239,228,0.82);
+    font-weight: 400;
+    margin: 0;
+    max-width: 34ch;
+  }
+
+  /* ── Светлый функциональный блок (как UI в кейсе) ── */
+  .light {
+    background: var(--ivory);
+    color: var(--ink);
+    padding: 84px 0 92px;
+  }
+  .light .head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+    margin-bottom: 48px;
+  }
+  .light h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.08; letter-spacing: -0.01em;
+    margin: 0; max-width: 22ch;
+  }
+  .light h2 em { font-style: normal; color: var(--red); }
+  .light .chapter-l {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--mute-l); white-space: nowrap;
+  }
+  .cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .card {
+    background: #fbf7ee;
+    border: 1px solid var(--rule-l);
+    border-radius: 10px;
+    padding: 28px 26px 30px;
+  }
+  .card .num {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600; font-size: 20px; line-height: 1.25;
+    margin: 0 0 10px; color: var(--ink);
+  }
+  .card p { font-size: 14.5px; line-height: 1.6; color: #55483a; margin: 0; }
+
+  .light .cta-strip {
+    margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--rule-l);
+    display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .light .cta-strip .line {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
+    font-size: clamp(20px, 2.4vw, 28px); color: var(--ink);
+  }
+  .light .cta-strip .line em { color: var(--red); font-style: italic; }
+
+  @media (max-width: 840px) {
+    .wrap { padding: 0 22px; }
+    .hero .inner { padding-bottom: 52px; }
+    .hero .bg img { object-position: 56% 42%; }
+    .hero .scrim {
+      background:
+        linear-gradient(0deg, rgba(14,10,8,0.94) 0%, rgba(14,10,8,0.44) 55%, rgba(14,10,8,0.28) 100%),
+        linear-gradient(180deg, rgba(14,10,8,0.72) 0%, rgba(14,10,8,0.0) 22%);
+    }
+    .chapter { margin-bottom: 36px; }
+    .cards { grid-template-columns: 1fr; }
+    .light .head { flex-direction: column; gap: 10px; }
+    .btn { width: 100%; justify-content: center; }
+    .topbar { font-size: 10px; }
+    .scene__image { object-position: 30% center; }
+    .scene .scrim {
+      background:
+        linear-gradient(0deg, rgba(5,4,3,0.82) 0%, rgba(5,4,3,0.08) 58%),
+        linear-gradient(90deg, rgba(5,4,3,0.10) 0%, rgba(5,4,3,0) 100%);
+    }
+    /* на мобиле текст внизу, во всю ширину, статично */
+    .scene .scene-copy {
+      left: 6%;
+      right: 6%;
+      top: auto;
+      bottom: 7%;
+      width: auto;
+      opacity: 1;
+      transform: none;
+    }
+    .scene__statue-top { display: none; }
+    .scene-h2 { font-size: clamp(30px, 8vw, 48px); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── Тёмная секция: фото клуба на весь экран ── -->
+  <section class="hero">
+    <div class="bg">
+      <picture>
+        <source type="image/webp" srcset="assets/hero-jazz-club-800.webp 800w, assets/hero-jazz-club-1200.webp 1200w, assets/hero-jazz-club-1600.webp 1600w" sizes="100vw" />
+        <img src="assets/hero-jazz-club-1600.jpg" alt="Зал клуба: джаз-трио и ведущий на сцене, гости за столиками" />
+      </picture>
+    </div>
+    <div class="tint"></div>
+    <div class="scrim"></div>
+    <div class="grain"></div>
+    <div class="wrap">
+      <header class="topbar">
+        <div>[Название] — интеллектуальный клуб</div>
+        <div class="right">Москва / 2026</div>
+      </header>
+    </div>
+    <div class="wrap inner">
+      <div class="chapter"><b>01</b> / вечер первый</div>
+      <div class="script-over">живые встречи</div>
+      <h1>Музыка <span class="amp">и</span> философия</h1>
+      <p class="sub">Живые встречи в центре Москвы: <b>дискуссии на философские темы</b> — и <b>живая джазовая импровизация</b>.</p>
+      <div class="facts">
+        <span>Чт, 25 сентября</span><span class="dot">·</span>
+        <span>клуб в центре Москвы</span><span class="dot">·</span>
+        <span>30 столиков</span><span class="dot">·</span>
+        <span>2 000 ₽</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href="#">Забронировать столик →</a>
+        <span class="cta-note">Полный возврат за 7 дней до вечера</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Сцена 02: один композит + текст справа ── -->
+  <section class="scene" aria-label="Философская беседа и джаз">
+    <div class="scene-stage">
+      <img class="scene__image" src="assets/scene02.webp" alt="Античная мраморная фигура философа сидит за столом в джазовом клубе" width="1600" height="900" loading="eager" />
+      <div class="scene-copy">
+        <p class="chapter scene-item"><b>02</b> / суть вечера</p>
+        <h2 class="scene-h2 scene-item">Ведущий озвучивает <span class="accent">тему</span></h2>
+        <div class="scene-rule scene-item"></div>
+        <p class="scene-sub scene-item">После чего — интерактивная беседа со слушателями: каждый может высказаться или просто слушать.</p>
+      </div>
+      <img class="scene__statue-top" src="assets/scene02.webp" alt="" aria-hidden="true" width="1600" height="900" loading="eager" />
+      <div class="scrim"></div>
+    </div>
+  </section>
+
+  <!-- ── Светлый функциональный блок ── -->
+  <section class="light">
+    <div class="wrap">
+      <div class="head">
+        <h2>Всё, что нужно знать, — <em>в трёх пунктах</em></h2>
+        <div class="chapter-l">02 / детали</div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="num">01 / Столик</div>
+          <h3>Свой столик входит в билет</h3>
+          <p>Никто не стоит в проходе — мест ровно столько, сколько столиков.</p>
+        </div>
+        <div class="card">
+          <div class="num">02 / Формат</div>
+          <h3>Это не лекция</h3>
+          <p>Хочешь — говоришь, хочешь — просто слушаешь с бокалом.</p>
+        </div>
+        <div class="card">
+          <div class="num">03 / Возврат</div>
+          <h3>Передумали — вернём деньги</h3>
+          <p>Полностью и без вопросов, до 7 дней до вечера.</p>
+        </div>
+      </div>
+      <div class="cta-strip">
+        <div class="line">Занавес открывается <em>25 сентября</em></div>
+        <a class="btn" href="#">Забронировать столик →</a>
+      </div>
+    </div>
+  </section>
+
+<script>
+  // Параллакс: фото уезжает медленнее страницы, между картинкой и текстом — глубина
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // без анимации — просто показать текст на месте
+      var c = document.querySelector('.scene .scene-copy');
+      if (c) { c.style.opacity = 1; c.style.transform = 'translateY(-50%)'; }
+      return;
+    }
+    var bg = document.querySelector('.hero .bg');
+    var hero = document.querySelector('.hero');
+    if (!bg || !hero) return;
+    var scene = document.querySelector('.scene');
+    var sceneCopy = document.querySelector('.scene .scene-copy');
+    function onScroll() {
+      var isMobile = window.innerWidth < 840;
+      var y = window.scrollY;
+      var h = hero.offsetHeight || 1;
+      if (y <= h) {
+        bg.style.transform = 'translate3d(0,' + (y * 0.18).toFixed(1) + 'px,0)';
+      }
+      if (scene && sceneCopy) {
+        var r = scene.getBoundingClientRect();
+        var vh = window.innerHeight || 1;
+        var p = (vh - r.top) / (vh + r.height);
+        if (p > -0.1 && p < 1.1) {
+          if (isMobile) {
+            sceneCopy.style.transform = '';
+            sceneCopy.style.opacity = '';
+          } else {
+            // текст едет слева направо за силуэтом статуи, финиш к p≈0.45
+            var emerge = Math.min(1, Math.max(0, (p - 0.05) / 0.40));
+            var eased = emerge * emerge * (3 - 2 * emerge); // smoothstep
+            var tx = (1 - eased) * -(window.innerWidth * 1.25);
+            sceneCopy.style.transform = 'translateY(-50%) translateX(' + tx.toFixed(1) + 'px)';
+            sceneCopy.style.opacity = Math.min(1, emerge * 5).toFixed(3);
+          }
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
