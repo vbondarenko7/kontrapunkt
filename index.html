@@ -3,353 +3,483 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Контрапункт — тезис против зала. Вердикт выносите вы · Москва</title>
-<meta name="description" content="Философ выходит на сцену с одним тезисом. Зал голосует на входе, ломает тезис два часа и выносит вердикт в финале: выжил или пал. Лучшее возражение вечера получает имя и вход на следующий вечер." />
-<meta property="og:title" content="Контрапункт — тезис против зала · Москва" />
-<meta property="og:description" content="Один тезис, целый зал против. В финале — вердикт: выжил или пал. Счёт сезона ведётся." />
-<meta property="og:type" content="website" />
+<title>Первый экран — стиль «Чернолесье»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #14110d;
-    --bg-2:      #1c1712;
-    --bg-3:      #241d15;
-    --cream:     #efe7d8;
-    --cream-2:   #ded3bf;
-    --mute:      #9d8e78;
-    --rule:      rgba(239,231,216,0.12);
-    --rule-2:    rgba(239,231,216,0.28);
-    --accent:    #e0a44f;
-    --accent-deep:#c8832f;
-    --accent-soft:rgba(224,164,79,0.13);
+    --black:    #17130F;   /* espresso black — тёмный фон */
+    --burgundy: #3D1015;   /* deep burgundy — основной тон */
+    --red:      #A32C2C;   /* brick red — акцент, CTA */
+    --ivory:    #F2EBDD;   /* светлый фон/пауза */
+    --brown:    #5C4022;   /* фактура */
+    --ink:      #221a14;   /* текст на светлом */
+    --mute-d:   #b8a998;   /* приглушённый на тёмном */
+    --mute-l:   #7a6d5f;   /* приглушённый на светлом */
+    --rule-d:   #3a2c22;
+    --rule-l:   #d9cfbd;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   html, body { margin: 0; padding: 0; }
   body {
-    background: var(--bg);
-    color: var(--cream);
+    background: var(--black);
+    color: var(--ivory);
     font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 400; font-size: 16px; line-height: 1.6;
-    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: var(--accent); color: #14110d; }
-  a { color: inherit; }
+  ::selection { background: var(--red); color: var(--ivory); }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
 
-  body::before {
-    content: ""; position: fixed;
-    top: -20vh; left: 50%; width: 120vw; height: 90vh; transform: translateX(-50%);
-    background: radial-gradient(ellipse 50% 50% at 50% 38%, rgba(224,164,79,0.11), transparent 70%);
-    pointer-events: none; z-index: 0;
+  /* ── Топбар: подписи по углам, как в кейсе ── */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 26px 0;
+    font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ivory);
   }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+  .topbar .right { color: var(--mute-d); }
 
-  /* ── Top bar ─────────────────────────────────────────── */
-  .topbar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 26px 0 22px; border-bottom: 1px solid var(--rule); }
-  .topbar nav, .topbar .meta { display: flex; gap: 26px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-2); }
-  .topbar .meta { justify-content: flex-end; color: var(--mute); }
-  .topbar nav a { text-decoration: none; transition: color .25s; }
-  .topbar nav a:hover { color: var(--accent); }
-  .masthead { text-align: center; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 22px; letter-spacing: 0.01em; font-style: italic; }
-  .masthead .dot { color: var(--accent); }
-
-  /* ── Buttons ─────────────────────────────────────────── */
-  .btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #14110d; background: var(--accent); text-decoration: none; padding: 16px 28px; border: 1px solid var(--accent); transition: background .3s, transform .3s, box-shadow .3s; }
-  .btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(224,164,79,0.18); }
-  .btn.ghost { color: var(--cream); background: transparent; border-color: var(--rule-2); }
-  .btn.ghost:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--cream); box-shadow: none; }
-
-  /* ── Hero ────────────────────────────────────────────── */
-  .hero { padding: 104px 0 84px; border-bottom: 1px solid var(--rule); }
-  .kicker { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 34px; display: flex; align-items: center; gap: 14px; }
-  .kicker::before { content: ""; width: 30px; height: 1px; background: var(--accent); }
-  h1.headline { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(56px, 9vw, 132px); line-height: 0.98; letter-spacing: -0.02em; margin: 0; max-width: 15ch; }
-  h1.headline .it { font-style: italic; font-weight: 500; color: var(--accent); }
-  .standfirst { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(19px, 2.4vw, 26px); line-height: 1.45; color: var(--cream-2); max-width: 42ch; margin: 40px 0 0; }
-  .hero-cta { margin-top: 44px; display: flex; gap: 16px; flex-wrap: wrap; }
-  .hero-foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 72px; padding-top: 30px; border-top: 1px solid var(--rule); }
-  .hero-foot .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; }
-  .hero-foot .val { font-family: 'Playfair Display', serif; font-size: 21px; letter-spacing: -0.01em; }
-
-  /* ── Section scaffolding ─────────────────────────────── */
-  .section-label { font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
-  .section-label::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
-  .section-title { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(36px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 56px; max-width: 18ch; }
-  .section-title em { font-style: italic; color: var(--accent); font-weight: 500; }
-
-  /* ── Manifesto ───────────────────────────────────────── */
-  .manifesto { padding: 100px 0; border-bottom: 1px solid var(--rule); }
-  .manifesto .grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
-  .manifesto .body p { font-size: 17px; line-height: 1.75; color: var(--cream-2); margin: 0 0 20px; }
-  .manifesto .body p:last-child { margin-bottom: 0; }
-  .manifesto .body p.dropcap:first-letter { font-family: 'Playfair Display', serif; font-size: 74px; float: left; line-height: 0.8; padding: 8px 14px 0 0; color: var(--accent); font-weight: 600; }
-
-  /* ── Timeline ────────────────────────────────────────── */
-  .timeline { padding: 100px 0; border-bottom: 1px solid var(--rule); }
-  .tl-note { font-family: 'Playfair Display', serif; font-style: italic; color: var(--mute); font-size: 17px; margin: 30px 0 0; }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .step { background: var(--bg-2); border: 1px solid var(--rule); padding: 30px 26px; min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background .35s; }
-  .step:hover { transform: translateY(-5px); border-color: var(--accent); background: var(--bg-3); }
-  .step .time { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
-  .step h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 25px; margin: 18px 0 12px; line-height: 1.1; }
-  .step p { font-size: 14px; line-height: 1.6; color: var(--mute); margin: 0; }
-
-  /* ── Not-this ────────────────────────────────────────── */
-  .notthis { padding: 100px 0; border-bottom: 1px solid var(--rule); }
-  .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .neg { border: 1px solid var(--rule); padding: 34px 30px; background: linear-gradient(180deg, var(--bg-2), var(--bg)); }
-  .neg .x { font-family: 'Playfair Display', serif; font-style: italic; font-size: 30px; color: var(--accent); line-height: 1; }
-  .neg h3 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 23px; margin: 18px 0 12px; }
-  .neg p { font-size: 14.5px; line-height: 1.65; color: var(--mute); margin: 0; }
-
-  /* ── Repertoire ──────────────────────────────────────── */
-  .repertoire { padding: 100px 0; border-bottom: 1px solid var(--rule); }
-  .rep-table { border-top: 1px solid var(--rule-2); }
-  .rep-row { display: grid; grid-template-columns: 48px 1fr 1.7fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--rule); align-items: baseline; transition: background .3s; }
-  .rep-row:hover { background: linear-gradient(to right, var(--accent-soft) 0%, transparent 70%); }
-  .rep-row .rn { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: var(--accent); }
-  .rep-row .rterm { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 24px; letter-spacing: -0.01em; }
-  .rep-row .rdef { font-size: 14.5px; line-height: 1.55; color: var(--mute); }
-
-  /* ── First evening feature ───────────────────────────── */
-  .evening { padding: 110px 0; border-bottom: 1px solid var(--rule); }
-  .evening .frame { border: 1px solid var(--rule-2); padding: clamp(36px, 6vw, 80px); background: radial-gradient(ellipse 70% 80% at 80% 0%, rgba(224,164,79,0.10), transparent 60%), var(--bg-2); }
-  .evening .theme { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(32px, 5vw, 56px); line-height: 1.06; letter-spacing: -0.02em; margin: 22px 0 28px; max-width: 22ch; }
-  .evening .theme em { font-style: italic; color: var(--accent); }
-  .evening .desc { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.5; color: var(--cream-2); max-width: 48ch; margin: 0 0 36px; }
-  .evening .by { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--rule); }
-  .evening .by .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 7px; }
-  .evening .by .val { font-family: 'Playfair Display', serif; font-size: 19px; }
-
-  /* ── Details / price ─────────────────────────────────── */
-  .details { padding: 100px 0; border-bottom: 1px solid var(--rule); }
-  .specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule-2); }
-  .spec { padding: 30px 26px 30px 0; border-bottom: 1px solid var(--rule); }
-  .spec .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
-  .spec .val { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2; }
-  .spec .val .small { display: block; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--mute); margin-top: 6px; letter-spacing: 0; text-transform: none; }
-  .spec .val em { font-style: italic; color: var(--accent); }
-  .fineprint { margin-top: 26px; font-size: 13px; color: var(--mute); letter-spacing: 0.02em; }
-
-  /* ── CTA ─────────────────────────────────────────────── */
-  .cta { padding: 128px 0 120px; text-align: center; }
-  .cta h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(40px, 6.5vw, 84px); line-height: 1; letter-spacing: -0.025em; margin: 0; }
-  .cta h2 em { font-style: italic; color: var(--accent); }
-  .cta .sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2.4vw, 24px); color: var(--cream-2); margin: 26px 0 44px; }
-
-  /* ── Footer ──────────────────────────────────────────── */
-  footer { border-top: 1px solid var(--rule-2); padding: 56px 0 44px; }
-  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; align-items: start; }
-  .foot-grid .brand { font-family: 'Playfair Display', serif; font-style: italic; font-size: 34px; line-height: 1; }
-  .foot-grid .brand .dot { color: var(--accent); }
-  .foot-grid .col h4 { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); margin: 0 0 14px; font-weight: 500; }
-  .foot-grid .col a, .foot-grid .col span { display: block; text-decoration: none; font-size: 13.5px; padding: 4px 0; color: var(--cream-2); transition: color .2s; }
-  .foot-grid .col a:hover { color: var(--accent); }
-  .colophon { margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
-
-  /* ── Responsive ──────────────────────────────────────── */
-  @media (max-width: 900px) {
-    .wrap { padding: 0 28px; }
-    .topbar { grid-template-columns: 1fr; justify-items: center; }
-    .topbar nav, .topbar .meta { display: none; }
-    .hero-foot { grid-template-columns: 1fr; gap: 22px; }
-    .manifesto .grid { grid-template-columns: 1fr; gap: 32px; }
-    .steps { grid-template-columns: repeat(2, 1fr); }
-    .cards3 { grid-template-columns: 1fr; }
-    .specs { grid-template-columns: repeat(2, 1fr); }
-    .spec { padding-right: 20px; }
-    .rep-row { grid-template-columns: 32px 1fr; gap: 8px 16px; }
-    .rep-row .rdef { grid-column: 2; }
-    .evening .by { gap: 28px; }
-    .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
-    .foot-grid .brand { grid-column: 1 / -1; }
+  /* ── Тёмная кинематографичная секция: фото на весь экран ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--black);
+    overflow: hidden;
   }
-  @media (max-width: 560px) {
-    .wrap { padding: 0 20px; }
-    .hero { padding: 64px 0 56px; }
-    .steps { grid-template-columns: 1fr; }
-    .specs { grid-template-columns: 1fr; }
+  .hero .bg {
+    position: absolute; inset: 0;
+    will-change: transform;             /* параллакс при скролле (JS) */
+  }
+  .hero .bg img {
+    width: 100%; height: 118%;          /* запас снизу под параллакс-сдвиг */
+    object-fit: cover;
+    object-position: 62% 42%;           /* сцена уходит чуть правее центра */
+    filter: saturate(0.96) contrast(1.04);
+    animation: kenburns 26s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.06); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .bg img { animation: none; }
+  }
+  /* бордовая склейка с палитрой */
+  .hero .tint, .scene .tint {
+    position: absolute; inset: 0;
+    background: var(--burgundy);
+    mix-blend-mode: multiply;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  /* затемнение: плита под текстом слева + низ + верх + виньетка */
+  .hero .scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg,  rgba(14,10,8,0.88) 0%, rgba(14,10,8,0.52) 40%, rgba(14,10,8,0.08) 70%, rgba(14,10,8,0.22) 100%),
+      linear-gradient(0deg,   rgba(14,10,8,0.85) 0%, rgba(14,10,8,0.0) 32%),
+      linear-gradient(180deg, rgba(14,10,8,0.65) 0%, rgba(14,10,8,0.0) 18%),
+      radial-gradient(ellipse 130% 95% at 55% 40%, transparent 58%, rgba(10,7,5,0.38) 100%);
+    pointer-events: none;
+  }
+  /* зерно — живая киноплёнка: дрожит случайными скачками */
+  .hero .grain, .scene .grain {
+    position: absolute; inset: -60%;    /* тайл больше экрана, чтобы скакать без краёв */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 220px 220px;       /* крупнее зерно — заметнее рябь */
+    opacity: 0.13;
+    mix-blend-mode: screen;             /* светлые искорки в тенях, как на плёнке */
+    pointer-events: none;
+    animation: filmgrain 0.9s steps(1) infinite;
+  }
+  @keyframes filmgrain {
+    0%    { transform: translate(0, 0); }
+    12.5% { transform: translate(-2.2%, 1.4%); }
+    25%   { transform: translate(1.6%, -2.6%); }
+    37.5% { transform: translate(-3.1%, -1.2%); }
+    50%   { transform: translate(2.4%, 2.1%); }
+    62.5% { transform: translate(-1.3%, 3.0%); }
+    75%   { transform: translate(3.0%, -1.7%); }
+    87.5% { transform: translate(-2.6%, -2.9%); }
+    100%  { transform: translate(0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .grain { animation: none; }
+  }
+  .hero .wrap { position: relative; z-index: 1; width: 100%; }
+  .hero .inner { padding-bottom: 76px; }
+
+  .chapter {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--mute-d); margin-bottom: 40px;
+  }
+  .chapter b { color: var(--red); font-weight: 600; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(46px, 6.8vw, 96px);
+    line-height: 1.02;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  h1 .amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 500;
+    text-transform: lowercase;
+    color: var(--red);
+    font-size: 0.82em;
+    padding: 0 0.06em;
+  }
+  .script-over {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 500;
+    font-size: clamp(24px, 3vw, 40px);
+    color: var(--red);
+    margin: 0 0 2px 4px;
+  }
+  .sub {
+    font-size: clamp(16.5px, 1.9vw, 20px); line-height: 1.6;
+    color: var(--mute-d); font-weight: 300;
+    max-width: 52ch; margin: 36px 0 0;
+  }
+  .sub b { color: var(--ivory); font-weight: 500; }
+
+  .facts {
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    margin: 38px 0 0;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ivory);
+  }
+  .facts .dot { color: var(--red); }
+
+  .cta-row { margin-top: 40px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ivory); background: var(--red);
+    text-decoration: none; padding: 19px 36px;
+    border-radius: 6px;
+    transition: background .3s, transform .3s, box-shadow .3s;
+  }
+  .btn:hover { background: #8f2424; transform: translateY(-2px); box-shadow: 0 14px 34px rgba(163,44,44,0.28); }
+  .cta-note { font-size: 13px; color: var(--mute-d); }
+
+  /* ── Сцена: философ за столиком (3 плана) ── */
+  .scene {
+    position: relative;
+    background: var(--black);
+    overflow: hidden;
+  }
+  .scene-stage {
+    position: relative;
+    width: 100%;
+    height: min(94svh, 56.25vw);
+    min-height: 520px;
+    container-type: size;
+    overflow: hidden;
+  }
+  /* холст, жёстко пропорциональный кадру: кроет секцию как cover,
+     вся геометрия (статуя, кромка стола) прибита к нему — не едет на любых окнах */
+  .scene-canvas {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width:  max(100cqw, calc(100cqh * 1.77778));
+    height: max(100cqh, calc(100cqw / 1.77778));
+  }
+  .scene img.room {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    filter: saturate(0.96) contrast(1.04);
+  }
+  /* СЭНДВИЧ: низ — готовый композит (статуя уже за столом, кадр генератора),
+     середина — текст, верх — копия статуи (голова/плечи), под которую текст ныряет.
+     Верхняя копия лежит на своих же пикселях в композите — кривизна невозможна. */
+  .scene .statue-layer {
+    position: absolute;
+    left: 11.1%;
+    top: 13%;
+    height: 94.8%;
+    aspect-ratio: 900 / 987;
+    /* числа найдены автосовмещением по пикселям (NCC), не на глаз */
+    /* видна только верхняя часть — до линии стола, ниже прозрачно */
+    -webkit-mask-image: linear-gradient(180deg, #000 48%, transparent 60%);
+            mask-image: linear-gradient(180deg, #000 48%, transparent 60%);
+  }
+  .scene .statue-layer img {
+    width: 100%; height: 100%;
+    display: block;
+    filter: brightness(0.65);
+    /* яркость вычислена по пикселям композита — шва не видно */
+    -webkit-mask-image: linear-gradient(90deg, #000 90%, transparent 100%);
+            mask-image: linear-gradient(90deg, #000 90%, transparent 100%);
+  }
+  /* кромка стола: тот же кадр зала, обрезанный по дальнему краю стола —
+     ложится поверх статуи пиксель в пиксель */
+  .scene .scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(14,10,8,0.9) 0%, rgba(14,10,8,0.0) 16%),
+      linear-gradient(0deg,   rgba(14,10,8,0.75) 0%, rgba(14,10,8,0.0) 16%),
+      radial-gradient(ellipse 130% 100% at 50% 45%, transparent 60%, rgba(10,7,5,0.42) 100%);
+    pointer-events: none;
+  }
+  /* текст живёт МЕЖДУ залом и статуей: в DOM он до .statue-layer */
+  .scene .scene-copy {
+    position: absolute;
+    left: 54%;
+    top: 13%;
+    will-change: transform;
+    max-width: 40%;
+  }
+  .scene .scene-copy .chapter { margin-bottom: 26px; }
+
+  /* начальное состояние: каждый элемент спрятан за статуей — JS анимирует при скролле */
+  .scene-item {
+    opacity: 0;
+    transform: translateX(-260px);
+    will-change: transform, opacity;
+  }
+  .scene-h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(26px, 5.5vw, 84px);
+    line-height: 0.94;
+    letter-spacing: 0.018em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .scene-h2 .scene-item { display: block; }
+  .scene-rule {
+    width: 52px; height: 2px;
+    background: var(--red);
+    margin: 24px 0;
+  }
+  .scene-sub {
+    font-size: clamp(13px, 1.4vw, 17px);
+    line-height: 1.78;
+    color: var(--mute-d);
+    font-weight: 300;
+    margin: 0;
+    max-width: 30ch;
+  }
+
+  /* ── Светлый функциональный блок (как UI в кейсе) ── */
+  .light {
+    background: var(--ivory);
+    color: var(--ink);
+    padding: 84px 0 92px;
+  }
+  .light .head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+    margin-bottom: 48px;
+  }
+  .light h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.08; letter-spacing: -0.01em;
+    margin: 0; max-width: 22ch;
+  }
+  .light h2 em { font-style: normal; color: var(--red); }
+  .light .chapter-l {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--mute-l); white-space: nowrap;
+  }
+  .cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .card {
+    background: #fbf7ee;
+    border: 1px solid var(--rule-l);
+    border-radius: 10px;
+    padding: 28px 26px 30px;
+  }
+  .card .num {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600; font-size: 20px; line-height: 1.25;
+    margin: 0 0 10px; color: var(--ink);
+  }
+  .card p { font-size: 14.5px; line-height: 1.6; color: #55483a; margin: 0; }
+
+  .light .cta-strip {
+    margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--rule-l);
+    display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .light .cta-strip .line {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
+    font-size: clamp(20px, 2.4vw, 28px); color: var(--ink);
+  }
+  .light .cta-strip .line em { color: var(--red); font-style: italic; }
+
+  @media (max-width: 840px) {
+    .wrap { padding: 0 22px; }
+    .hero .inner { padding-bottom: 52px; }
+    .hero .bg img { object-position: 56% 42%; }
+    .hero .scrim {
+      background:
+        linear-gradient(0deg, rgba(14,10,8,0.94) 0%, rgba(14,10,8,0.44) 55%, rgba(14,10,8,0.28) 100%),
+        linear-gradient(180deg, rgba(14,10,8,0.72) 0%, rgba(14,10,8,0.0) 22%);
+    }
+    .chapter { margin-bottom: 36px; }
+    .cards { grid-template-columns: 1fr; }
+    .light .head { flex-direction: column; gap: 10px; }
     .btn { width: 100%; justify-content: center; }
+    .topbar { font-size: 10px; }
+    .scene .scene-copy { left: 8%; top: 60%; max-width: 84%; }
+    .scene-h2 { font-size: clamp(22px, 6vw, 42px); }
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-
-  <header class="topbar">
-    <nav>
-      <a href="#kak">Как устроен</a>
-      <a href="#temy">Репертуар</a>
-      <a href="#detali">Детали</a>
-    </nav>
-    <div class="masthead">Контрапункт<span class="dot">.</span></div>
-    <div class="meta">
-      <span>Москва</span>
-      <span>философ на сцене</span>
-      <span>с сентября</span>
-    </div>
-  </header>
-
-  <!-- ── Hero ──────────────────────────────────────────── -->
+  <!-- ── Тёмная секция: фото клуба на весь экран ── -->
   <section class="hero">
-    <div class="kicker">Философ на сцене · живая мысль · Москва</div>
-    <h1 class="headline">Один тезис.<br/>Целый зал <span class="it">против.</span></h1>
-    <p class="standfirst">Философ выходит на сцену с одним тезисом и защищает его перед залом. Вы голосуете на входе, возражаете с микрофона, а в финале выносите вердикт: тезис выжил — или пал. Если пал, я признаю это со сцены. Это не лекция и не стендап. Это мышление с исходом.</p>
-    <div class="hero-cta">
-      <a class="btn" href="#bron">Забронировать место →</a>
-      <a class="btn ghost" href="#kak">Как устроен вечер</a>
+    <div class="bg">
+      <picture>
+        <source type="image/webp" srcset="assets/hero-jazz-club-800.webp 800w, assets/hero-jazz-club-1200.webp 1200w, assets/hero-jazz-club-1600.webp 1600w" sizes="100vw" />
+        <img src="assets/hero-jazz-club-1600.jpg" alt="Зал клуба: джаз-трио и ведущий на сцене, гости за столиками" />
+      </picture>
     </div>
-    <div class="hero-foot">
-      <div><div class="label">Где</div><div class="val">Москва, клуб со сценой</div></div>
-      <div><div class="label">Формат</div><div class="val">Тезис → спарринг → вердикт, ~2 часа</div></div>
-      <div><div class="label">Мест</div><div class="val">Тридцать, у каждого — голос</div></div>
+    <div class="tint"></div>
+    <div class="scrim"></div>
+    <div class="grain"></div>
+    <div class="wrap">
+      <header class="topbar">
+        <div>[Название] — интеллектуальный клуб</div>
+        <div class="right">Москва / 2026</div>
+      </header>
     </div>
-  </section>
-
-  <!-- ── Manifesto ─────────────────────────────────────── -->
-  <section class="manifesto">
-    <div class="grid">
-      <div>
-        <div class="section-label">Что это</div>
-        <h2 class="section-title" style="margin-bottom:0;">Не лекция.<br/>Не стендап.<br/><em>Мышление вслух.</em></h2>
+    <div class="wrap inner">
+      <div class="chapter"><b>01</b> / вечер первый</div>
+      <div class="script-over">живые встречи</div>
+      <h1>Музыка <span class="amp">и</span> философия</h1>
+      <p class="sub">Живые встречи в центре Москвы: <b>дискуссии на философские темы</b> — и <b>живая джазовая импровизация</b>.</p>
+      <div class="facts">
+        <span>Чт, 25 сентября</span><span class="dot">·</span>
+        <span>клуб в центре Москвы</span><span class="dot">·</span>
+        <span>30 столиков</span><span class="dot">·</span>
+        <span>2 000 ₽</span>
       </div>
-      <div class="body">
-        <p class="dropcap">На лекции лектор знает ответ заранее. На стендапе важно, чтобы было смешно. Здесь — ни то, ни другое. Один человек ставит тезис на кон и защищает его при свидетелях, не зная заранее, чем кончится.</p>
-        <p>Тезис объявлен ещё на билете. На входе зал голосует: согласен или нет. Потом я его защищаю, вы его ломаете с микрофона — а моя работа не переспорить вас, а докрутить вашу мысль до точки, где она либо рушится, либо вдруг становится сильнее, чем вы думали. В финале — второе голосование. Вердикт: тезис выжил или пал.</p>
-        <p>Если пал — я скажу это со сцены, вслух. Счёт сезона ведётся: мысль против зала. Люди приходят не на жанр — на голову, которая рискует по-настоящему.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── How it works ──────────────────────────────────── -->
-  <section class="timeline" id="kak">
-    <div class="section-label">Как устроен вечер</div>
-    <h2 class="section-title">Ставка, защита, <em>спарринг, вердикт.</em></h2>
-    <div class="steps">
-      <article class="step">
-        <div class="time">01 · Ставка</div>
-        <div><h3>Голосование на входе</h3><p>Тезис вы знаете заранее. На входе голосуете: согласен или нет. Счёт фиксируется.</p></div>
-      </article>
-      <article class="step">
-        <div class="time">02 · Защита</div>
-        <div><h3>Номер</h3><p>Пятнадцать минут — самая сильная версия тезиса. Без слайдов и без бумажки.</p></div>
-      </article>
-      <article class="step">
-        <div class="time">03 · Спарринг</div>
-        <div><h3>Зал ломает тезис</h3><p>Возражающие выходят к микрофону. Я докручиваю чужую мысль вживую, а не свою заготовку. Между раундами — музыка.</p></div>
-      </article>
-      <article class="step">
-        <div class="time">04 · Вердикт</div>
-        <div><h3>Выжил или пал</h3><p>Второе голосование. Если тезис пал — я признаю это со сцены. Лучшее возражение получает имя и вход на следующий вечер.</p></div>
-      </article>
-    </div>
-    <p class="tl-note">Счёт сезона ведётся: мысль против зала. Каждый вечер добавляет строку в таблицу.</p>
-  </section>
-
-  <!-- ── Not this ──────────────────────────────────────── -->
-  <section class="notthis">
-    <div class="section-label">Чтобы не было путаницы</div>
-    <h2 class="section-title">Чем это <em>не является.</em></h2>
-    <div class="cards3">
-      <article class="neg">
-        <div class="x">Не лекция</div>
-        <h3>Я не знаю ответ заранее.</h3>
-        <p>Если бы знал — было бы скучно нам обоим. Здесь думают при вас, а не пересказывают готовое.</p>
-      </article>
-      <article class="neg">
-        <div class="x">Не стендап</div>
-        <h3>Цель не рассмешить.</h3>
-        <p>Иногда смешно — но это побочный эффект, а не задача. Шутка тут служит мысли, не наоборот.</p>
-      </article>
-      <article class="neg">
-        <div class="x">Не дебаты</div>
-        <h3>Побеждает не риторика.</h3>
-        <p>В дебатах выигрывает тот, кто ловчее говорит. Здесь вердикт выносит зал — и я могу честно проиграть. Это часть правил.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ── Repertoire ────────────────────────────────────── -->
-  <section class="repertoire" id="temy">
-    <div class="section-label">Репертуар</div>
-    <h2 class="section-title">Тезисы, которые выйдут <em>на сцену.</em></h2>
-    <div class="rep-table">
-      <div class="rep-row"><div class="rn">i.</div><div class="rterm">Свобода</div><div class="rdef">То, чего мы боимся сильнее несвободы.</div></div>
-      <div class="rep-row"><div class="rn">ii.</div><div class="rterm">Вина</div><div class="rdef">Единственное чувство, которое мы выбираем себе сами.</div></div>
-      <div class="rep-row"><div class="rn">iii.</div><div class="rterm">Скука</div><div class="rdef">Роскошь, которую у нас тихо отняли.</div></div>
-      <div class="rep-row"><div class="rn">iv.</div><div class="rterm">Смерть автора</div><div class="rdef">Кто на самом деле говорит, когда говорите вы.</div></div>
-      <div class="rep-row"><div class="rn">v.</div><div class="rterm">Заговор</div><div class="rdef">Не теория, а ошибка интенциональности: почему нам везде мерещится чей-то умысел.</div></div>
-      <div class="rep-row"><div class="rn">vi.</div><div class="rterm">Время</div><div class="rdef">Почему его всегда «нет» — и кто его, собственно, забрал.</div></div>
-    </div>
-  </section>
-
-  <!-- ── First evening ─────────────────────────────────── -->
-  <section class="evening" id="vecher">
-    <div class="frame">
-      <div class="section-label">25 сентября · Вечер первый · Тезис № 1</div>
-      <h2 class="theme">«Свобода — то, чего мы боимся <em>сильнее несвободы».</em></h2>
-      <p class="desc">Этот тезис выйдет против тридцати человек. Вы проголосуете на входе, попробуете сломать его с микрофона — и вынесете вердикт в финале. Если он падёт, я скажу это со сцены. Лучшее возражение вечера получит имя вслух и вход на следующий вечер.</p>
-      <div class="by">
-        <div><div class="label">Защищает</div><div class="val">Вадим Бондаренко</div></div>
-        <div><div class="label">Судит</div><div class="val">зал, 30 голосов</div></div>
-        <div><div class="label">Музыка</div><div class="val">живьём</div></div>
+      <div class="cta-row">
+        <a class="btn" href="#">Забронировать столик →</a>
+        <span class="cta-note">Полный возврат за 7 дней до вечера</span>
       </div>
     </div>
   </section>
 
-  <!-- ── Details ───────────────────────────────────────── -->
-  <section class="details" id="detali">
-    <div class="section-label">Детали</div>
-    <h2 class="section-title">Всё, что нужно <em>знать заранее.</em></h2>
-    <div class="specs">
-      <div class="spec"><div class="label">Дата</div><div class="val">Чт, 25 сентября<span class="small">20:00, двери в 19:30</span></div></div>
-      <div class="spec"><div class="label">Место</div><div class="val">Центр Москвы<span class="small">клуб со сценой, адрес — после брони</span></div></div>
-      <div class="spec"><div class="label">Мест</div><div class="val">30<span class="small">у каждого — голос в вердикте</span></div></div>
-      <div class="spec"><div class="label">Цена</div><div class="val"><em>2 000 ₽</em><span class="small">бар — отдельно</span></div></div>
+  <!-- ── Сцена: философ за столиком ── -->
+  <section class="scene">
+    <div class="scene-stage">
+      <div class="scene-canvas">
+        <picture>
+          <source type="image/webp" srcset="assets/scene-statue-800.webp 800w, assets/scene-statue-1600.webp 1600w" sizes="100vw" />
+          <img class="room" src="assets/scene-statue-1600.jpg" alt="Мраморная статуя философа за столиком клуба, за спиной играет джаз-трио" />
+        </picture>
+        <div class="scene-copy">
+          <div class="chapter scene-item"><b>02</b> / суть вечера</div>
+          <h2 class="scene-h2">
+            <span class="scene-item">Ведущий</span>
+            <span class="scene-item">озвучивает</span>
+            <span class="scene-item">тему</span>
+          </h2>
+          <div class="scene-rule scene-item"></div>
+          <p class="scene-sub scene-item">После чего — интерактивная беседа со слушателями: каждый может высказаться или просто слушать.</p>
+        </div>
+        <div class="statue-layer" aria-hidden="true">
+          <img src="assets/statue-900.webp" alt="" />
+        </div>
+      </div>
+      <div class="tint"></div>
+      <div class="scrim"></div>
+      <div class="grain"></div>
     </div>
-    <p class="fineprint">Бронь — по предоплате. Полный возврат, если отменить за 7 дней до вечера.</p>
   </section>
 
-  <!-- ── CTA ───────────────────────────────────────────── -->
-  <section class="cta" id="bron">
-    <h2>Приходите <em>с возражением.</em></h2>
-    <p class="sub">Лучшее получит имя вслух и вход на следующий вечер. Мест тридцать — бронь закрывается, когда зал полон.</p>
-    <a class="btn" href="https://t.me/kontrapunkt_msk">Забронировать место →</a>
+  <!-- ── Светлый функциональный блок ── -->
+  <section class="light">
+    <div class="wrap">
+      <div class="head">
+        <h2>Всё, что нужно знать, — <em>в трёх пунктах</em></h2>
+        <div class="chapter-l">02 / детали</div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="num">01 / Столик</div>
+          <h3>Свой столик входит в билет</h3>
+          <p>Никто не стоит в проходе — мест ровно столько, сколько столиков.</p>
+        </div>
+        <div class="card">
+          <div class="num">02 / Формат</div>
+          <h3>Это не лекция</h3>
+          <p>Хочешь — говоришь, хочешь — просто слушаешь с бокалом.</p>
+        </div>
+        <div class="card">
+          <div class="num">03 / Возврат</div>
+          <h3>Передумали — вернём деньги</h3>
+          <p>Полностью и без вопросов, до 7 дней до вечера.</p>
+        </div>
+      </div>
+      <div class="cta-strip">
+        <div class="line">Занавес открывается <em>25 сентября</em></div>
+        <a class="btn" href="#">Забронировать столик →</a>
+      </div>
+    </div>
   </section>
 
-</div>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="brand">Контрапункт<span class="dot">.</span></div>
-      <div class="col">
-        <h4>Связь</h4>
-        <a href="https://t.me/kontrapunkt_msk">Telegram</a>
-        <a href="#bron">Забронировать</a>
-      </div>
-      <div class="col">
-        <h4>Город</h4>
-        <span>Москва</span>
-        <span>раз в месяц</span>
-      </div>
-      <div class="col">
-        <h4>Вечер</h4>
-        <a href="#kak">Как устроен</a>
-        <a href="#temy">Репертуар</a>
-        <a href="#detali">Детали</a>
-      </div>
-    </div>
-    <div class="colophon">
-      <span>© 2026 · Контрапункт · Москва</span>
-      <span>Тезис против зала · вердикт выносите вы</span>
-    </div>
-  </div>
-</footer>
+<script>
+  // Параллакс: фото уезжает медленнее страницы, между картинкой и текстом — глубина
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var bg = document.querySelector('.hero .bg');
+    var hero = document.querySelector('.hero');
+    if (!bg || !hero) return;
+    var scene = document.querySelector('.scene');
+    var sceneCopy = document.querySelector('.scene .scene-copy');
+    var sceneItems = document.querySelectorAll('.scene-item');
+    function onScroll() {
+      var isMobile = window.innerWidth < 840;
+      var y = window.scrollY;
+      var h = hero.offsetHeight || 1;
+      if (y <= h) {
+        bg.style.transform = 'translate3d(0,' + (y * 0.18).toFixed(1) + 'px,0)';
+      }
+      if (scene && sceneCopy) {
+        var r = scene.getBoundingClientRect();
+        var vh = window.innerHeight || 1;
+        var p = (vh - r.top) / (vh + r.height);
+        if (p > -0.1 && p < 1.1) {
+          // вертикальный параллакс обёртки
+          sceneCopy.style.transform = 'translate3d(0,' + ((0.5 - p) * 34).toFixed(1) + 'px,0)';
+          // staggered emerge: каждый элемент выплывает из статуи по очереди
+          var offset = isMobile ? 80 : 260;
+          for (var i = 0; i < sceneItems.length; i++) {
+            var delay = i * 0.06;
+            var emerge = Math.min(1, Math.max(0, (p - delay) / 0.32));
+            var eased = 1 - Math.pow(1 - emerge, 3);
+            sceneItems[i].style.transform = 'translateX(' + ((1 - eased) * -offset).toFixed(1) + 'px)';
+            sceneItems[i].style.opacity = eased.toFixed(3);
+          }
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
 
 </body>
 </html>
