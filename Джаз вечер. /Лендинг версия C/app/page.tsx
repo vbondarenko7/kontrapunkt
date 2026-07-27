@@ -116,10 +116,10 @@ export default function Home() {
           <picture>
             <source
               type="image/webp"
-              srcSet="/venue-hero-800.webp 800w, /venue-hero-1200.webp 1200w, /venue-hero.webp 1600w"
+              srcSet="/venue-hero-fixed-800.webp 800w, /venue-hero-fixed-1200.webp 1200w, /venue-hero-fixed.webp 1600w"
               sizes="100vw"
             />
-            <img src="/venue-hero.webp" alt="" />
+            <img src="/venue-hero-fixed.webp" alt="" />
           </picture>
         </div>
         <div className="hero-tint" />
