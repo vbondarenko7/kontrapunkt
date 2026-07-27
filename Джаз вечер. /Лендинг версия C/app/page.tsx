@@ -151,12 +151,12 @@ export default function Home() {
             <strong>Moscow Imagine Live Club</strong>
           </div>
           <div>
-            <span>Как</span>
+            <span>Формат</span>
             <strong>Разговор и джазовая импровизация</strong>
           </div>
           <div>
             <span>Для кого</span>
-            <strong>Можно прийти одному или вдвоём</strong>
+            <strong>Для тех, кто ценит интеллектуальный и творческий досуг</strong>
           </div>
         </div>
       </section>
