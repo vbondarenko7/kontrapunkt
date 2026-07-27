@@ -366,14 +366,6 @@ h3 {
   text-transform: none;
 }
 
-.hero-line {
-  max-width: 620px;
-  margin-bottom: 16px;
-  color: var(--ivory);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 23px;
-}
-
 .hero-copy {
   max-width: 570px;
   margin-bottom: 34px;
@@ -402,10 +394,6 @@ h3 {
     font-size: 1.75em;
     font-weight: 600;
     line-height: 0.95;
-  }
-
-  .hero-line {
-    max-width: 760px;
   }
 
   .hero-copy {
@@ -1787,10 +1775,6 @@ footer p:last-child {
 
   .hero h1 {
     font-size: 46px;
-  }
-
-  .hero-line {
-    font-size: 20px;
   }
 
   .hero-copy {
