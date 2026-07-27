@@ -1539,7 +1539,7 @@ footer p:last-child {
   }
 
   #format-step-01 .format-cutout {
-    background-image: url("/format-host-stage-cutout.png");
+    background-image: url("/format-host-stage-full-cutout.png");
   }
 
   #format-step-02 .format-cutout {
@@ -1553,7 +1553,12 @@ footer p:last-child {
     inset: -8% -15% -10%;
     width: 130%;
     height: 118%;
-    background-image: url("/format-audience-response-cutout.png");
+    background-image: url("/format-audience-row-full-cutout.png");
+  }
+
+  #format-step-01 .format-frame picture,
+  #format-step-03 .format-frame picture {
+    display: none;
   }
 
   #format .format-frame > span:last-child {
