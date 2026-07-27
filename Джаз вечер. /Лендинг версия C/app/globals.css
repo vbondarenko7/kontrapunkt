@@ -707,6 +707,11 @@ h3 {
   line-height: 1;
 }
 
+.format-light-orbit,
+.format-cutout {
+  display: none;
+}
+
 .format-chapter-copy {
   align-self: center;
 }
@@ -1460,7 +1465,99 @@ footer p:last-child {
   }
 
   #format .format-frame {
-    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
+    overflow: visible;
+    isolation: isolate;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #format .format-frame::before {
+    position: absolute;
+    z-index: 1;
+    inset: 8% 4%;
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse,
+      rgba(211, 139, 82, 0.2),
+      rgba(109, 49, 34, 0.08) 42%,
+      transparent 72%
+    );
+    filter: blur(24px);
+    content: "";
+  }
+
+  #format .format-frame::after {
+    z-index: 3;
+    background: none;
+  }
+
+  #format .format-frame picture {
+    position: absolute;
+    z-index: 0;
+    inset: 7% -7%;
+    opacity: 0.22;
+    filter: blur(7px) saturate(0.7);
+    mask-image: radial-gradient(ellipse, #000 22%, rgba(0, 0, 0, 0.72) 52%, transparent 78%);
+  }
+
+  #format .format-frame picture img {
+    transform: scale(1.12);
+    animation: format-background-drift 18s ease-in-out infinite alternate;
+  }
+
+  #format .format-light-orbit {
+    position: absolute;
+    z-index: 1;
+    top: 15%;
+    left: 22%;
+    display: block;
+    width: 44%;
+    height: 44%;
+    border-radius: 50%;
+    background: rgba(226, 162, 101, 0.13);
+    box-shadow:
+      0 0 60px 26px rgba(181, 96, 54, 0.08),
+      120px 80px 90px 34px rgba(117, 41, 32, 0.08);
+    filter: blur(22px);
+    animation: format-light-breathe 7s ease-in-out infinite alternate;
+  }
+
+  #format .format-cutout {
+    position: absolute;
+    z-index: 2;
+    inset: -13% -12% -8%;
+    display: block;
+    width: 124%;
+    height: 121%;
+    background: center / contain no-repeat;
+    filter:
+      saturate(0.78)
+      contrast(1.04)
+      drop-shadow(0 26px 26px rgba(0, 0, 0, 0.48));
+    transform-origin: 50% 78%;
+    animation: format-figure-breathe 8s ease-in-out infinite alternate;
+  }
+
+  #format-step-01 .format-cutout {
+    background-image: url("/format-conversation-cutout.png");
+  }
+
+  #format-step-02 .format-cutout {
+    inset: -17% -4% -8%;
+    width: 108%;
+    height: 128%;
+    background-image: url("/format-bassist-cutout.png");
+  }
+
+  #format-step-03 .format-cutout {
+    inset: -8% -15% -10%;
+    width: 130%;
+    height: 118%;
+    background-image: url("/format-listeners-cutout.png");
+  }
+
+  #format .format-frame > span:last-child {
+    z-index: 4;
   }
 
   #format .format-chapter h3 {
@@ -1473,6 +1570,63 @@ footer p:last-child {
     color: rgba(242, 235, 221, 0.72);
     font-size: 18px;
     line-height: 1.7;
+  }
+
+  @keyframes format-background-drift {
+    from {
+      transform: scale(1.1) translate3d(-1.2%, 0, 0);
+    }
+    to {
+      transform: scale(1.16) translate3d(1.2%, -1%, 0);
+    }
+  }
+
+  @keyframes format-figure-breathe {
+    from {
+      transform: translate3d(0, 4px, 0) scale(0.995);
+    }
+    to {
+      transform: translate3d(0, -4px, 0) scale(1.005);
+    }
+  }
+
+  @keyframes format-light-breathe {
+    from {
+      opacity: 0.48;
+      transform: translate3d(-2%, 2%, 0) scale(0.9);
+    }
+    to {
+      opacity: 0.9;
+      transform: translate3d(5%, -3%, 0) scale(1.08);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    #format .format-frame {
+      animation: format-frame-reveal linear both;
+      animation-range: entry 8% cover 38%;
+      animation-timeline: view();
+    }
+
+    @keyframes format-frame-reveal {
+      from {
+        opacity: 0.18;
+        transform: translate3d(0, 36px, 0) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #format .format-frame,
+    #format .format-frame picture img,
+    #format .format-light-orbit,
+    #format .format-cutout {
+      animation: none;
+    }
   }
 
   .assurance-list {

@@ -203,6 +203,8 @@ export default function Home() {
                       height="800"
                     />
                   </picture>
+                  <span className="format-light-orbit" aria-hidden="true" />
+                  <span className="format-cutout" aria-hidden="true" />
                   <span aria-hidden="true">{step.number}</span>
                 </figure>
                 <div className="format-chapter-copy">
