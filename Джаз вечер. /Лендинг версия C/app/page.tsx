@@ -26,18 +26,27 @@ const benefits = [
 const formatSteps = [
   {
     number: "01",
-    title: "Разговор",
-    text: "Ведущий открывает тему и приглашает зал к спокойному разговору о том, что касается каждого.",
+    marker: "Беседа",
+    title: "Мысль возникает в беседе",
+    text: "Ведущий задаёт тему. Кто-то делится мыслью, остальные слушают. Участвовать можно настолько, насколько хочется.",
+    image: "01-conversation",
+    imageAlt: "Гости внимательно слушают друг друга за столом",
   },
   {
     number: "02",
-    title: "Музыкальный ответ",
-    text: "Когда слов становится достаточно, джазовый ансамбль отвечает на услышанное живой импровизацией.",
+    marker: "Импровизация",
+    title: "Музыканты переводят её в звук",
+    text: "Они подхватывают не только слова — их ритм, напряжение и настроение. Так рождается музыка, которой раньше не было.",
+    image: "02-musical-response",
+    imageAlt: "Джазовое трио импровизирует на сцене",
   },
   {
     number: "03",
-    title: "Продолжение",
-    text: "Музыка меняет настроение разговора. Мы возвращаемся к теме и слышим её уже немного иначе.",
+    marker: "Новый круг",
+    title: "Музыка возвращает тему залу",
+    text: "После импровизации беседа продолжается. Та же мысль звучит иначе — и начинается новый круг.",
+    image: "03-return-to-room",
+    imageAlt: "Гости продолжают беседу после музыкальной импровизации",
   },
 ];
 
@@ -164,25 +173,42 @@ export default function Home() {
       <section className="section section-dark" id="format">
         <div className="format-scroll-stage">
           <div className="format-ambient" aria-hidden="true" />
-          <div className="format-object-layer" aria-hidden="true">
-            <span className="format-object format-object-pianist" />
-            <span className="format-object format-object-bust" />
-            <span className="format-object format-object-bass" />
-            <span className="format-object format-object-metronome" />
-          </div>
           <div className="format-intro">
-            <div className="format-note-stream" aria-hidden="true">
-              <i /><i /><i /><i /><i /><i />
-            </div>
             <p className="eyebrow light">Как устроен вечер</p>
-            <h2>Разговор становится музыкой</h2>
+            <h2>Беседа становится музыкой</h2>
           </div>
-          <div className="format-grid">
-            {formatSteps.map((step) => (
-              <article className="format-step" key={step.number}>
-                <span>{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
+          <div className="format-story">
+            <div className="format-storyline" aria-hidden="true" />
+            {formatSteps.map((step, index) => (
+              <article
+                className={`format-chapter${index === 1 ? " format-chapter-reverse" : ""}`}
+                id={`format-step-${step.number}`}
+                key={step.number}
+              >
+                <figure className="format-frame">
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={`/${step.image}-800.webp 800w, /${step.image}-1200.webp 1200w`}
+                      sizes="(max-width: 980px) 100vw, 50vw"
+                    />
+                    <img
+                      src={`/${step.image}-1200.webp`}
+                      alt={step.imageAlt}
+                      width="1200"
+                      height="800"
+                    />
+                  </picture>
+                  <span aria-hidden="true">{step.number}</span>
+                </figure>
+                <div className="format-chapter-copy">
+                  <p className="format-marker">
+                    <span>{step.number}</span>
+                    {step.marker}
+                  </p>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
               </article>
             ))}
           </div>
