@@ -203,7 +203,6 @@ export default function Home() {
                       height="800"
                     />
                   </picture>
-                  <figcaption>Художественный образ</figcaption>
                   <span aria-hidden="true">{step.number}</span>
                 </figure>
                 <div className="format-chapter-copy">
