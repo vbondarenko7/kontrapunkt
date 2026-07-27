@@ -1539,7 +1539,8 @@ footer p:last-child {
   }
 
   #format-step-01 .format-cutout {
-    background-image: url("/format-conversation-cutout.png");
+    background-image: url("/format-host-opening-cutout.png");
+    mask-image: radial-gradient(ellipse at center, #000 54%, rgba(0, 0, 0, 0.82) 72%, transparent 96%);
   }
 
   #format-step-02 .format-cutout {
@@ -1553,7 +1554,8 @@ footer p:last-child {
     inset: -8% -15% -10%;
     width: 130%;
     height: 118%;
-    background-image: url("/format-listeners-cutout.png");
+    background-image: url("/format-room-response-cutout.png");
+    mask-image: radial-gradient(ellipse at center, #000 54%, rgba(0, 0, 0, 0.82) 72%, transparent 96%);
   }
 
   #format .format-frame > span:last-child {
