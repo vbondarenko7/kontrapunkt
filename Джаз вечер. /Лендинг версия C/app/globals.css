@@ -538,6 +538,14 @@ h3 {
   color: var(--mute-dark);
 }
 
+.format-intro .format-concept {
+  max-width: 620px;
+  margin: 26px auto 0;
+  color: rgba(242, 235, 221, 0.62);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
 .section-heading.compact {
   display: block;
   max-width: 760px;
@@ -660,14 +668,29 @@ h3 {
   margin: 0;
   overflow: hidden;
   background: #0b0908;
+  border: 1px solid rgba(216, 154, 113, 0.18);
+  isolation: isolate;
+}
+
+.format-frame::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(125deg, rgba(91, 20, 27, 0.72), rgba(22, 15, 12, 0.08) 48%, rgba(180, 104, 55, 0.34)),
+    rgba(73, 28, 26, 0.24);
+  mix-blend-mode: color;
+  pointer-events: none;
+  content: "";
 }
 
 .format-frame::after {
   position: absolute;
+  z-index: 1;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(11, 9, 8, 0.02), rgba(11, 9, 8, 0.28)),
-    linear-gradient(90deg, rgba(61, 16, 21, 0.2), transparent 54%);
+    linear-gradient(180deg, rgba(11, 9, 8, 0.02), rgba(11, 9, 8, 0.5)),
+    linear-gradient(90deg, rgba(61, 16, 21, 0.32), transparent 54%);
   pointer-events: none;
   content: "";
 }
@@ -681,7 +704,21 @@ h3 {
 
 .format-frame img {
   object-fit: cover;
-  filter: saturate(0.9) contrast(1.05);
+  filter: grayscale(0.58) sepia(0.18) saturate(0.76) contrast(1.16) brightness(0.88);
+  transform: scale(1.035);
+}
+
+.format-frame figcaption {
+  position: absolute;
+  z-index: 2;
+  bottom: 17px;
+  left: 18px;
+  margin: 0;
+  color: rgba(242, 235, 221, 0.68);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
 .format-frame > span {

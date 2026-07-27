@@ -125,10 +125,10 @@ export default function Home() {
           <picture>
             <source
               type="image/webp"
-              srcSet="/venue-hero-fixed-800.webp 800w, /venue-hero-fixed-1200.webp 1200w, /venue-hero-fixed.webp 1600w"
+              srcSet="/hero-jazz-club-800.webp 800w, /hero-jazz-club-1200.webp 1200w, /hero-jazz-club-1600.webp 1600w"
               sizes="100vw"
             />
-            <img src="/venue-hero-fixed.webp" alt="" />
+            <img src="/hero-jazz-club-1600.webp" alt="" />
           </picture>
         </div>
         <div className="hero-tint" />
@@ -176,6 +176,10 @@ export default function Home() {
           <div className="format-intro">
             <p className="eyebrow light">Как устроен вечер</p>
             <h2>Беседа становится музыкой</h2>
+            <p className="format-concept">
+              Три образа одного вечера: мысль рождается, музыка отвечает,
+              беседа продолжается.
+            </p>
           </div>
           <div className="format-story">
             <div className="format-storyline" aria-hidden="true" />
@@ -199,6 +203,7 @@ export default function Home() {
                       height="800"
                     />
                   </picture>
+                  <figcaption>Художественный образ</figcaption>
                   <span aria-hidden="true">{step.number}</span>
                 </figure>
                 <div className="format-chapter-copy">
