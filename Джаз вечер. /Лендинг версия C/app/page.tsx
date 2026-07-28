@@ -2,27 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const benefits = [
-  {
-    number: "01",
-    marker: "Снаружи",
-    title: "Рабочий день остаётся снаружи",
-    text: "Клубный свет, общий стол и живая музыка быстро меняют темп вечера — без долгого разгона.",
-  },
-  {
-    number: "02",
-    marker: "Впервые",
-    title: "Музыка, которой раньше не было",
-    text: "Ансамбль импровизирует по следам разговора. Эту пьесу нельзя заранее отрепетировать или повторить.",
-  },
-  {
-    number: "03",
-    marker: "Вместе",
-    title: "Общий опыт вместо светской беседы",
-    text: "Тема сама даёт повод слушать, спорить и продолжить разговор после музыки — даже если вы пришли впервые.",
-  },
-];
-
 const formatSteps = [
   {
     number: "01",
@@ -52,26 +31,20 @@ const formatSteps = [
 
 const scenarios = [
   {
-    label: "После работы",
-    title: "Сменить темп",
-    text: "Центр Москвы, приглушённый зал и вечер, в который не нужно приносить рабочую роль.",
-  },
-  {
     label: "Одному",
-    title: "Не чувствовать себя лишним",
-    text: "Общая тема собирает зал быстрее любого знакомства. Можно включиться сразу или сначала осмотреться.",
+    title: "Одному — нормально",
+    text: "Общая тема помогает почувствовать себя частью вечера без неловких знакомств и светского разговора.",
   },
   {
-    label: "Вдвоём",
-    title: "Услышать друг друга иначе",
-    text: "Разговор со сцены и музыка дают новые темы, которые легко унести с собой после вечера.",
+    label: "Без подготовки",
+    title: "Без специальной подготовки",
+    text: "Мы говорим не языком терминов, а через ситуации и чувства, знакомые каждому.",
   },
-];
-
-const assurances = [
-  "Высказаться — если хочется добавить свою мысль",
-  "Слушать — если интереснее следить за разговором",
-  "Оставить ответ музыкантам — когда слов уже достаточно",
+  {
+    label: "Слушать",
+    title: "Можно просто слушать",
+    text: "Никто не потребует высказаться или доказать свою точку зрения. Внимание — уже форма участия.",
+  },
 ];
 
 const faqs = [
@@ -457,35 +430,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section-light why-section" id="why">
-        <div className="section-heading why-intro">
-          <p className="eyebrow">Что вы получаете</p>
-          <h2>
-            <span className="why-question">Лекция? Концерт?</span>
-            <span className="why-answer">Не совсем.</span>
-          </h2>
-          <p>
-            Вечер держится на внимании зала, точном разговоре и музыке,
-            которая возникает в ответ — без заранее написанного сценария.
-          </p>
-        </div>
-        <div className="benefit-list">
-          {benefits.map((benefit) => (
-            <article className="benefit" key={benefit.number}>
-              <div className="benefit-copy">
-                <span>{benefit.number}</span>
-                <h3>{benefit.title}</h3>
-                <p>{benefit.text}</p>
-              </div>
-              <div className="benefit-marker" aria-hidden="true">
-                <span>{benefit.number}</span>
-                <em>{benefit.marker}</em>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section
         id="layered"
         className="layered-scene"
@@ -502,8 +446,16 @@ export default function Home() {
           />
           <div className="layered-tint" />
           <div className="layered-copy">
-            <p className="eyebrow light">Как можно прийти</p>
-            <h2 id="layered-scene-title">У вечера нет обязательного сценария</h2>
+            <p className="eyebrow light">Разговор без снобизма</p>
+            <h2 id="layered-scene-title">
+              Здесь не оценивают.
+              <br />
+              Здесь слушают.
+            </h2>
+            <p className="layered-lead">
+              Не нужно демонстрировать эрудицию, разбираться в философии или
+              джазе и искать правильные слова. Достаточно интереса к теме.
+            </p>
             <div className="layered-scenario-list">
               {scenarios.map((scenario) => (
                 <article className="layered-scenario" key={scenario.label}>
@@ -529,25 +481,6 @@ export default function Home() {
           <div className="layered-shade" />
           <div className="film-grain layered-grain" />
         </div>
-      </section>
-
-      <section className="section participation-section">
-        <div className="participation-copy">
-          <p className="eyebrow light">Свобода быть собой</p>
-          <h2>Ваша роль не назначена заранее</h2>
-          <p>
-            Здесь не вызывают к микрофону и не проверяют знания. Каждый сам
-            выбирает дистанцию до разговора.
-          </p>
-        </div>
-        <ul className="assurance-list">
-          {assurances.map((assurance, index) => (
-            <li key={assurance}>
-              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-              {assurance}
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section className="section ticket-section" id="ticket">
