@@ -1045,6 +1045,87 @@ h3 {
   z-index: 2;
 }
 
+.layered-resonance {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.layered-resonance-glow,
+.layered-wave {
+  position: absolute;
+  top: 35%;
+  left: 70%;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.layered-resonance-glow {
+  width: min(32vw, 500px);
+  aspect-ratio: 1.35;
+  background: radial-gradient(
+    ellipse,
+    rgba(177, 81, 46, 0.3) 0%,
+    rgba(216, 154, 113, 0.13) 38%,
+    transparent 72%
+  );
+  animation: layered-resonance-glow 7.2s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+}
+
+.layered-wave {
+  width: min(27vw, 430px);
+  aspect-ratio: 1.46;
+  border: 1px solid rgba(226, 167, 118, 0.56);
+  box-shadow:
+    0 0 16px rgba(216, 154, 113, 0.16),
+    inset 0 0 16px rgba(216, 154, 113, 0.08);
+  opacity: 0;
+  animation: layered-resonance-wave 13.5s cubic-bezier(0.22, 0.52, 0.24, 1)
+    infinite;
+}
+
+.layered-wave-two {
+  animation-delay: -4.5s;
+}
+
+.layered-wave-three {
+  animation-delay: -9s;
+}
+
+@keyframes layered-resonance-wave {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  10% {
+    opacity: 0.3;
+  }
+  68% {
+    opacity: 0.14;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(5.2);
+  }
+}
+
+@keyframes layered-resonance-glow {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  50% {
+    opacity: 0.28;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
 .layered-copy {
   position: absolute;
   z-index: 7;
@@ -2435,6 +2516,10 @@ footer p:last-child {
     display: none;
   }
 
+  .layered-resonance {
+    display: none;
+  }
+
   .layered-shade {
     background:
       linear-gradient(0deg, rgba(5, 4, 3, 0.94) 0%, rgba(5, 4, 3, 0.16) 68%),
@@ -2522,6 +2607,10 @@ footer p:last-child {
   .tragic-orbit {
     animation: none !important;
     opacity: 1 !important;
+  }
+
+  .layered-resonance {
+    display: none;
   }
 
 }
