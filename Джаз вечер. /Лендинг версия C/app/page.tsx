@@ -469,33 +469,17 @@ export default function Home() {
               ))}
             </div>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="layered-eye-layer layered-eyes-open"
-            src="/philosopher-eyes-open.png"
-            alt=""
+          <video
+            className="layered-candle-video"
             aria-hidden="true"
-            width="1600"
-            height="900"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="layered-eye-layer layered-eyes-closed"
-            src="/philosopher-eyes-closed.png"
-            alt=""
-            aria-hidden="true"
-            width="1600"
-            height="900"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="layered-candle-flame"
-            src="/candle-flame-glow.png"
-            alt=""
-            aria-hidden="true"
-            width="1600"
-            height="900"
-          />
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          >
+            <source src="/candle-flame-real.mp4" type="video/mp4" />
+          </video>
           <div className="layered-shade" />
           <div className="film-grain layered-grain" />
         </div>
