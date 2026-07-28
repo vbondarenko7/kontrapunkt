@@ -748,12 +748,12 @@ h3 {
 
 .musicians-section {
   position: relative;
-  padding: 118px 20px 132px;
+  padding: 118px 20px 92px;
   overflow: clip;
   color: var(--ivory);
   background:
-    radial-gradient(circle at 74% 46%, rgba(151, 65, 39, 0.16), transparent 31%),
-    linear-gradient(145deg, #17110e 0%, #0b0908 58%, #17100d 100%);
+    radial-gradient(circle at 50% 56%, rgba(139, 59, 37, 0.2), transparent 30%),
+    linear-gradient(180deg, #17100d 0%, #0a0807 68%, #17110e 100%);
 }
 
 .musicians-section::before {
@@ -784,6 +784,8 @@ h3 {
   grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
   gap: clamp(56px, 7vw, 112px);
   align-items: end;
+  width: min(100% - 64px, 1160px);
+  margin: 0 auto;
 }
 
 .musicians-intro .eyebrow {
@@ -822,7 +824,7 @@ h3 {
 .musicians-copy span {
   display: block;
   margin-top: 22px;
-  color: #aa9887;
+  color: #9e8b7b;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -830,91 +832,107 @@ h3 {
 
 .ensemble-stage {
   position: relative;
-  margin-top: 76px;
+  height: clamp(610px, 58vw, 780px);
+  margin: 50px 0 0;
+  isolation: isolate;
 }
 
 .ensemble-glow {
   position: absolute;
-  z-index: -1;
-  inset: -16% 7% -12%;
+  z-index: 0;
+  top: 16%;
+  left: 50%;
+  width: min(78vw, 980px);
+  height: 58%;
   border-radius: 50%;
   background: radial-gradient(
     ellipse,
-    rgba(139, 57, 35, 0.34),
-    rgba(94, 39, 28, 0.13) 43%,
+    rgba(149, 65, 38, 0.34),
+    rgba(102, 42, 29, 0.12) 44%,
     transparent 72%
   );
-  filter: blur(28px);
-  opacity: 0.72;
-  transform: scale(0.92);
+  filter: blur(32px);
+  opacity: 0.8;
+  transform: translateX(-50%) scale(0.94);
 }
 
-.ensemble-grid {
-  position: relative;
+.ensemble-words {
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+  right: 0;
+  left: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  aspect-ratio: 2.05 / 1;
-  overflow: hidden;
-  border: 1px solid rgba(228, 184, 143, 0.24);
-  background: #080605;
-  box-shadow: 0 38px 100px rgba(0, 0, 0, 0.38);
+  justify-items: center;
+  color: rgba(242, 235, 221, 0.08);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(88px, 12.5vw, 188px);
+  font-weight: 500;
+  line-height: 0.68;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.ensemble-panel {
-  position: relative;
-  min-width: 0;
-  margin: 0;
-  overflow: hidden;
-  background-image:
-    linear-gradient(180deg, rgba(8, 6, 5, 0.06), rgba(8, 6, 5, 0.76)),
-    url("/02-musical-response-1200.webp");
-  background-repeat: no-repeat;
-  background-size: 100% 100%, 300% 100%;
-  background-position: center, left center;
-  isolation: isolate;
+.ensemble-words span:last-child {
+  margin-top: 0.44em;
+  margin-left: 0.18em;
+  color: rgba(205, 116, 88, 0.12);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
 }
 
-.ensemble-panel:nth-child(2) {
-  border-right: 1px solid rgba(242, 235, 221, 0.18);
-  border-left: 1px solid rgba(242, 235, 221, 0.18);
-  background-position: center, center;
-}
-
-.ensemble-panel:nth-child(3) {
-  background-position: center, right center;
-}
-
-.ensemble-panel::before {
+.ensemble-pianist,
+.ensemble-bassist {
   position: absolute;
-  z-index: -1;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(61, 16, 21, 0.14), transparent 48%),
-    linear-gradient(180deg, transparent 50%, rgba(8, 6, 5, 0.66) 100%);
-  content: "";
+  z-index: 2;
+  display: block;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter:
+    saturate(0.86)
+    contrast(1.04)
+    drop-shadow(0 30px 30px rgba(0, 0, 0, 0.44));
 }
 
-.ensemble-number {
+.ensemble-pianist {
+  bottom: -1%;
+  left: -7%;
+  width: min(69%, 900px);
+}
+
+.ensemble-bassist {
+  right: 1%;
+  bottom: -4%;
+  width: min(38%, 470px);
+}
+
+.ensemble-name {
   position: absolute;
-  top: 23px;
-  left: 25px;
-  color: rgba(242, 235, 221, 0.6);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  z-index: 4;
+  display: grid;
+  gap: 3px;
+  width: max-content;
+  padding-top: 11px;
+  border-top: 1px solid rgba(216, 154, 113, 0.58);
 }
 
-.ensemble-person {
-  position: absolute;
-  right: 25px;
-  bottom: 25px;
-  left: 25px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(242, 235, 221, 0.28);
+.ensemble-name-piano {
+  bottom: 12%;
+  left: 8%;
 }
 
-.ensemble-person p {
-  margin: 0 0 4px;
+.ensemble-name-bass {
+  right: 5%;
+  bottom: 16%;
+  text-align: right;
+}
+
+.ensemble-name span {
   color: #d89a71;
   font-size: 10px;
   font-weight: 600;
@@ -922,21 +940,29 @@ h3 {
   text-transform: uppercase;
 }
 
-.ensemble-person h3 {
-  margin: 0;
-  color: var(--ivory);
+.ensemble-name strong {
+  color: rgba(242, 235, 221, 0.86);
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(22px, 2.1vw, 31px);
+  font-size: 19px;
   font-style: italic;
   font-weight: 500;
 }
 
 .ensemble-note {
+  position: absolute;
+  z-index: 5;
+  right: 50%;
+  bottom: 2%;
   display: flex;
-  gap: 26px;
+  gap: 18px;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 22px;
+  width: min(100% - 40px, 610px);
+  padding: 16px 22px;
+  border: 1px solid rgba(242, 235, 221, 0.13);
+  border-radius: 999px;
+  background: rgba(17, 12, 10, 0.72);
+  backdrop-filter: blur(12px);
+  transform: translateX(50%);
 }
 
 .ensemble-note span {
@@ -951,80 +977,122 @@ h3 {
 .ensemble-note strong {
   color: rgba(242, 235, 221, 0.7);
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 21px;
+  font-size: 19px;
   font-style: italic;
   font-weight: 500;
-  text-align: right;
 }
 
-.musicians-section[data-motion-ready="true"] .ensemble-panel {
-  clip-path: inset(100% 0 0);
-  transform: translate3d(0, 48px, 0);
-  will-change: clip-path, transform;
-}
-
-.musicians-section[data-active="true"] .ensemble-panel {
-  animation: ensemble-panel-arrive 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.musicians-section[data-active="true"] .ensemble-panel:nth-child(2) {
-  animation-delay: 150ms;
-}
-
-.musicians-section[data-active="true"] .ensemble-panel:nth-child(3) {
-  animation-delay: 285ms;
-}
-
-.musicians-section[data-motion-ready="true"] .ensemble-person,
-.musicians-section[data-motion-ready="true"] .ensemble-number {
+.musicians-section[data-motion-ready="true"] .ensemble-pianist {
   opacity: 0;
-  transform: translate3d(0, 24px, 0);
+  transform: translate3d(-88px, 18px, 0) scale(0.97);
+  will-change: transform, opacity;
 }
 
-.musicians-section[data-active="true"] .ensemble-person,
-.musicians-section[data-active="true"] .ensemble-number {
-  animation: ensemble-label-arrive 620ms cubic-bezier(0.16, 1, 0.3, 1) 470ms
+.musicians-section[data-motion-ready="true"] .ensemble-bassist {
+  opacity: 0;
+  transform: translate3d(82px, 22px, 0) scale(0.97);
+  will-change: transform, opacity;
+}
+
+.musicians-section[data-active="true"] .ensemble-pianist {
+  animation: ensemble-pianist-arrive 1.25s cubic-bezier(0.16, 1, 0.3, 1)
+    120ms both;
+}
+
+.musicians-section[data-active="true"] .ensemble-bassist {
+  animation: ensemble-bassist-arrive 1.25s cubic-bezier(0.16, 1, 0.3, 1)
+    260ms both;
+}
+
+.musicians-section[data-motion-ready="true"] .ensemble-words span,
+.musicians-section[data-motion-ready="true"] .ensemble-name,
+.musicians-section[data-motion-ready="true"] .ensemble-note {
+  opacity: 0;
+  transform: translate3d(0, 46px, 0);
+}
+
+.musicians-section[data-motion-ready="true"] .ensemble-note {
+  transform: translate3d(0, 24px, 0) translateX(50%);
+}
+
+.musicians-section[data-active="true"] .ensemble-words span {
+  animation: ensemble-word-arrive 720ms cubic-bezier(0.16, 1, 0.3, 1) 40ms
     both;
 }
 
-.musicians-section[data-active="true"] .ensemble-panel:nth-child(2)
-  .ensemble-person,
-.musicians-section[data-active="true"] .ensemble-panel:nth-child(2)
-  .ensemble-number {
-  animation-delay: 620ms;
+.musicians-section[data-active="true"] .ensemble-words span:last-child {
+  animation-delay: 180ms;
 }
 
-.musicians-section[data-active="true"] .ensemble-panel:nth-child(3)
-  .ensemble-person,
-.musicians-section[data-active="true"] .ensemble-panel:nth-child(3)
-  .ensemble-number {
-  animation-delay: 755ms;
+.musicians-section[data-active="true"] .ensemble-name {
+  animation: ensemble-label-arrive 620ms cubic-bezier(0.16, 1, 0.3, 1) 960ms
+    both;
+}
+
+.musicians-section[data-active="true"] .ensemble-name-bass {
+  animation-delay: 1080ms;
+}
+
+.musicians-section[data-active="true"] .ensemble-note {
+  animation: ensemble-note-arrive 700ms cubic-bezier(0.16, 1, 0.3, 1) 1180ms
+    both;
 }
 
 .musicians-section[data-motion-ready="true"] .ensemble-glow {
   opacity: 0;
-  transform: scale(0.82);
+  transform: translateX(-50%) scale(0.82);
 }
 
 .musicians-section[data-active="true"] .ensemble-glow {
-  animation: ensemble-glow-bloom 1450ms ease-out 240ms both;
+  animation: ensemble-glow-bloom 1450ms ease-out 220ms both;
 }
 
-@keyframes ensemble-panel-arrive {
-  from {
-    clip-path: inset(100% 0 0);
-    transform: translate3d(0, 48px, 0);
-  }
-  to {
-    clip-path: inset(0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes ensemble-label-arrive {
+@keyframes ensemble-pianist-arrive {
   0% {
     opacity: 0;
-    transform: translate3d(0, 24px, 0);
+    transform: translate3d(-88px, 18px, 0) scale(0.97);
+  }
+  1% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+    transform: translate3d(-58px, 12px, 0) scale(0.98);
+  }
+  52% {
+    transform: translate3d(-17px, 3px, 0) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes ensemble-bassist-arrive {
+  0% {
+    opacity: 0;
+    transform: translate3d(82px, 22px, 0) scale(0.97);
+  }
+  1% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+    transform: translate3d(54px, 14px, 0) scale(0.98);
+  }
+  52% {
+    transform: translate3d(16px, 4px, 0) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes ensemble-word-arrive {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 46px, 0);
   }
   1% {
     opacity: 1;
@@ -1035,14 +1103,36 @@ h3 {
   }
 }
 
+@keyframes ensemble-label-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ensemble-note-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) translateX(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) translateX(50%);
+  }
+}
+
 @keyframes ensemble-glow-bloom {
   from {
     opacity: 0;
-    transform: scale(0.82);
+    transform: translateX(-50%) scale(0.82);
   }
   to {
-    opacity: 0.72;
-    transform: scale(1);
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1);
   }
 }
 
@@ -2679,6 +2769,7 @@ footer p:last-child {
 
   .musicians-intro {
     gap: 32px;
+    width: 100%;
   }
 
   .musicians-intro h2 {
@@ -2690,52 +2781,55 @@ footer p:last-child {
   }
 
   .ensemble-stage {
+    height: 540px;
     margin-top: 52px;
   }
 
-  .ensemble-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    aspect-ratio: auto;
-    height: 720px;
+  .ensemble-words {
+    top: 13%;
+    font-size: clamp(57px, 18vw, 78px);
+    line-height: 0.75;
   }
 
-  .ensemble-panel {
-    background-size: 100% 100%, 190% auto;
-    background-position: center, 8% 42%;
+  .ensemble-words span:last-child {
+    margin-top: 0.58em;
   }
 
-  .ensemble-panel:nth-child(2) {
-    border: 0;
-    border-top: 1px solid rgba(242, 235, 221, 0.18);
-    border-bottom: 1px solid rgba(242, 235, 221, 0.18);
-    background-position: center, 66% 42%;
+  .ensemble-pianist {
+    bottom: 67px;
+    left: -42%;
+    width: 126%;
   }
 
-  .ensemble-panel:nth-child(3) {
-    background-position: center, 100% 42%;
+  .ensemble-bassist {
+    right: -10%;
+    bottom: 63px;
+    width: 65%;
   }
 
-  .ensemble-person {
-    right: 18px;
-    bottom: 17px;
-    left: 18px;
-    padding-top: 10px;
+  .ensemble-name {
+    padding-top: 7px;
   }
 
-  .ensemble-person h3 {
-    font-size: 25px;
+  .ensemble-name-piano {
+    bottom: 105px;
+    left: 1%;
   }
 
-  .ensemble-number {
-    top: 16px;
-    left: 18px;
+  .ensemble-name-bass {
+    right: 1%;
+    bottom: 138px;
   }
 
   .ensemble-note {
+    right: 50%;
+    bottom: 0;
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 3px;
   }
 
   .ensemble-note strong {
@@ -2898,14 +2992,25 @@ footer p:last-child {
     opacity: 1 !important;
   }
 
-  .ensemble-panel,
-  .ensemble-person,
-  .ensemble-number,
-  .ensemble-glow {
+  .ensemble-pianist,
+  .ensemble-bassist,
+  .ensemble-words span,
+  .ensemble-name {
     animation: none !important;
-    clip-path: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .ensemble-glow {
+    animation: none !important;
+    opacity: 0.8 !important;
+    transform: translateX(-50%) scale(1) !important;
+  }
+
+  .ensemble-note {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateX(50%) !important;
   }
 
   .layered-candle-cleanup,

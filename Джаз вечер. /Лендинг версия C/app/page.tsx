@@ -47,24 +47,6 @@ const scenarios = [
   },
 ];
 
-const musicians = [
-  {
-    number: "01",
-    instrument: "Рояль",
-    name: "Имя музыканта",
-  },
-  {
-    number: "02",
-    instrument: "Контрабас",
-    name: "Имя музыканта",
-  },
-  {
-    number: "03",
-    instrument: "Ударные",
-    name: "Имя музыканта",
-  },
-];
-
 const faqs = [
   {
     question: "Какой уровень подготовки нужен?",
@@ -409,33 +391,49 @@ export default function Home() {
             </div>
           </div>
 
-          <div
+          <figure
             className="ensemble-stage"
-            role="group"
-            aria-label="Предварительный состав джазового трио"
+            aria-label="Пианист и контрабасист вступают в музыкальный диалог"
           >
             <span className="ensemble-glow" aria-hidden="true" />
-            <div className="ensemble-grid">
-              {musicians.map((musician) => (
-                <article
-                  className="ensemble-panel"
-                  key={musician.instrument}
-                >
-                  <span className="ensemble-number" aria-hidden="true">
-                    {musician.number}
-                  </span>
-                  <div className="ensemble-person">
-                    <p>{musician.instrument}</p>
-                    <h3>{musician.name}</h3>
-                  </div>
-                </article>
-              ))}
+            <div className="ensemble-words" aria-hidden="true">
+              <span>Слышат</span>
+              <span>Отвечают</span>
             </div>
-            <div className="ensemble-note">
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="ensemble-pianist"
+              src="/decor/pianist-grand-piano.png"
+              alt=""
+              aria-hidden="true"
+              width="1536"
+              height="1024"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="ensemble-bassist"
+              src="/format-bassist-cutout.png"
+              alt=""
+              aria-hidden="true"
+              width="1024"
+              height="1536"
+            />
+
+            <div className="ensemble-name ensemble-name-piano">
+              <span>Рояль</span>
+              <strong>Имя музыканта — скоро</strong>
+            </div>
+            <div className="ensemble-name ensemble-name-bass">
+              <span>Контрабас</span>
+              <strong>Имя музыканта — скоро</strong>
+            </div>
+
+            <figcaption className="ensemble-note">
               <span>Не готовая программа</span>
               <strong>Музыка возникает в моменте — вместе с беседой</strong>
-            </div>
-          </div>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
