@@ -732,7 +732,7 @@ h3 {
   position: relative;
   aspect-ratio: 3 / 2;
   overflow: hidden;
-  background: url("/collective-canvas.webp") center / cover no-repeat;
+  background: var(--collective-image) center / cover no-repeat;
   box-shadow: 0 36px 90px rgba(0, 0, 0, 0.34);
 }
 
@@ -2018,7 +2018,7 @@ footer p:last-child {
     display: block;
     width: 124%;
     height: 121%;
-    background: center / contain no-repeat;
+    background: var(--format-cutout-image) center / contain no-repeat;
     filter:
       saturate(0.78)
       contrast(1.04)
@@ -2027,22 +2027,16 @@ footer p:last-child {
     animation: format-figure-breathe 8s ease-in-out infinite alternate;
   }
 
-  #format-step-01 .format-cutout {
-    background-image: url("/format-host-stage-full-cutout.png");
-  }
-
   #format-step-02 .format-cutout {
     inset: -17% -4% -8%;
     width: 108%;
     height: 128%;
-    background-image: url("/format-bassist-cutout.png");
   }
 
   #format-step-03 .format-cutout {
     inset: -8% -15% -10%;
     width: 130%;
     height: 118%;
-    background-image: url("/format-audience-row-full-cutout.png");
   }
 
   #format-step-01 .format-frame picture,
@@ -2139,7 +2133,7 @@ footer p:last-child {
 
   .collective-underlay,
   .collective-fragment {
-    background: url("/collective-canvas.webp") center / 100% 100% no-repeat;
+    background: var(--collective-image) center / 100% 100% no-repeat;
   }
 
   .collective-underlay {

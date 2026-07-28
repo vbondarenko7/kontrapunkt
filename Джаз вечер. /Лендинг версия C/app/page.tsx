@@ -1,6 +1,10 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
 
 const formatSteps = [
   {
@@ -10,6 +14,7 @@ const formatSteps = [
     text: "Ведущий задаёт тему. Кто-то делится мыслью, остальные слушают. Участвовать можно настолько, насколько хочется.",
     image: "01-conversation",
     imageAlt: "Гости внимательно слушают друг друга за столом",
+    cutout: "format-host-stage-full-cutout.png",
   },
   {
     number: "02",
@@ -18,6 +23,7 @@ const formatSteps = [
     text: "Музыканты подхватывают мысль, её ритм и настроение — и сразу переводят их в звук. Эту пьесу нельзя заранее отрепетировать или повторить.",
     image: "02-musical-response",
     imageAlt: "Джазовое трио импровизирует на сцене",
+    cutout: "format-bassist-cutout.png",
   },
   {
     number: "03",
@@ -26,6 +32,7 @@ const formatSteps = [
     text: "После импровизации беседа продолжается. Та же мысль звучит иначе — и начинается новый круг.",
     image: "03-return-to-room",
     imageAlt: "Гости продолжают беседу после музыкальной импровизации",
+    cutout: "format-audience-row-full-cutout.png",
   },
 ];
 
@@ -233,10 +240,10 @@ export default function Home() {
           <picture>
             <source
               type="image/webp"
-              srcSet="/hero-jazz-club-800.webp 800w, /hero-jazz-club-1200.webp 1200w, /hero-jazz-club-1600.webp 1600w"
+              srcSet={`${assetPath("/hero-jazz-club-800.webp")} 800w, ${assetPath("/hero-jazz-club-1200.webp")} 1200w, ${assetPath("/hero-jazz-club-1600.webp")} 1600w`}
               sizes="100vw"
             />
-            <img src="/hero-jazz-club-1600.webp" alt="" />
+            <img src={assetPath("/hero-jazz-club-1600.webp")} alt="" />
           </picture>
         </div>
         <div className="hero-tint" />
@@ -296,16 +303,21 @@ export default function Home() {
                 className={`format-chapter${index === 1 ? " format-chapter-reverse" : ""}`}
                 id={`format-step-${step.number}`}
                 key={step.number}
+                style={
+                  {
+                    "--format-cutout-image": `url("${assetPath(`/${step.cutout}`)}")`,
+                  } as CSSProperties
+                }
               >
                 <figure className="format-frame">
                   <picture>
                     <source
                       type="image/webp"
-                      srcSet={`/${step.image}-800.webp 800w, /${step.image}-1200.webp 1200w`}
+                      srcSet={`${assetPath(`/${step.image}-800.webp`)} 800w, ${assetPath(`/${step.image}-1200.webp`)} 1200w`}
                       sizes="(max-width: 980px) 100vw, 50vw"
                     />
                     <img
-                      src={`/${step.image}-1200.webp`}
+                      src={assetPath(`/${step.image}-1200.webp`)}
                       alt={step.imageAlt}
                       width="1200"
                       height="800"
@@ -333,6 +345,11 @@ export default function Home() {
         ref={collectiveCanvasRef}
         className="collective-section"
         aria-labelledby="collective-title"
+        style={
+          {
+            "--collective-image": `url("${assetPath("/collective-canvas.webp")}")`,
+          } as CSSProperties
+        }
       >
         <div className="collective-sticky">
           <div className="collective-copy">
@@ -404,7 +421,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="ensemble-pianist"
-              src="/decor/pianist-grand-piano.png"
+              src={assetPath("/decor/pianist-grand-piano.png")}
               alt=""
               aria-hidden="true"
               width="1536"
@@ -413,7 +430,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="ensemble-bassist"
-              src="/format-bassist-cutout.png"
+              src={assetPath("/format-bassist-cutout.png")}
               alt=""
               aria-hidden="true"
               width="1024"
@@ -494,21 +511,21 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="tragic-ghost tragic-ghost-one tragic-sequence"
-              src="/tragic-loop-walker.png"
+              src={assetPath("/tragic-loop-walker.png")}
               alt=""
               aria-hidden="true"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="tragic-ghost tragic-ghost-two tragic-sequence"
-              src="/tragic-loop-walker.png"
+              src={assetPath("/tragic-loop-walker.png")}
               alt=""
               aria-hidden="true"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="tragic-walker tragic-orbit"
-              src="/tragic-loop-walker.png"
+              src={assetPath("/tragic-loop-walker.png")}
               alt=""
               aria-hidden="true"
             />
@@ -543,7 +560,7 @@ export default function Home() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="layered-base"
-            src="/philosopher-scene.webp"
+            src={assetPath("/philosopher-scene.webp")}
             alt="Мраморный философ сидит за столом в джазовом клубе"
             width="1600"
             height="900"
@@ -576,7 +593,7 @@ export default function Home() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="layered-candle-cleanup"
-            src="/candle-flame-cleanup.png"
+            src={assetPath("/candle-flame-cleanup.png")}
             alt=""
             aria-hidden="true"
             width="1600"
@@ -585,7 +602,7 @@ export default function Home() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="layered-candle-motion"
-            src="/candle-flame-real.webp"
+            src={assetPath("/candle-flame-real.webp")}
             alt=""
             aria-hidden="true"
             width="1600"
