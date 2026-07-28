@@ -170,7 +170,7 @@ export default function Home() {
     }
 
     const scrubbedElements = Array.from(
-      section.querySelectorAll<HTMLElement>(".theme-scrub"),
+      section.querySelectorAll<HTMLElement>(".tragic-scrub"),
     );
     let animationFrame = 0;
 
@@ -184,7 +184,7 @@ export default function Home() {
         element.style.animationDelay = `${-progress}s`;
       });
 
-      section.dataset.complete = progress > 0.92 ? "true" : "false";
+      section.dataset.complete = progress > 0.94 ? "true" : "false";
     };
 
     const requestUpdate = () => {
@@ -360,69 +360,96 @@ export default function Home() {
 
       <section
         ref={tragicThemeRef}
-        className="theme-section"
+        className="tragic-section"
         aria-labelledby="theme-title"
       >
-        <div className="theme-sticky">
-          <div className="theme-copy">
-            <p className="eyebrow">Тема первой встречи</p>
-            <h2 id="theme-title">Трагический характер</h2>
-            <p className="theme-question">
-              Почему мы вступаем в бой там, где достаточно пройти мимо, — и
-              отступаем там, где нужно сделать шаг?
-            </p>
-
-            <div className="theme-beats">
-              <article className="theme-beat theme-beat-one theme-scrub">
-                <span>01 / импульс</span>
-                <h3>Спешим, когда нужна выдержка</h3>
-                <p>
-                  Одно обидное слово — и мы уже готовы обнажить меч. Хотя иногда
-                  достаточно не отвечать и пройти мимо.
-                </p>
-              </article>
-
-              <article className="theme-beat theme-beat-two theme-scrub">
-                <span>02 / выбор</span>
-                <h3>Отступаем, когда нужна смелость</h3>
-                <p>
-                  Перед важным разговором, признанием или великодушным поступком
-                  тот же человек может испугаться и не сделать шаг.
-                </p>
-              </article>
+        <div className="tragic-sticky">
+          <div className="tragic-copy">
+            <div className="tragic-kicker">
+              <span>Первая встреча</span>
+              <i aria-hidden="true" />
+              <b>Тема 01</b>
             </div>
-
-            <div className="theme-summary theme-scrub">
+            <h2 id="theme-title">Трагический характер</h2>
+            <p className="tragic-lead">
+              Характер становится судьбой, когда мы не узнаём собственную
+              ошибку в её следующем повторении.
+            </p>
+            <div className="tragic-body">
               <p>
-                Поговорим о трагическом несовпадении между чувством и поступком —
-                и о пространстве для другого выбора.
+                Событие произошло, но опыт из него не извлечён. Поэтому мы снова
+                приходим в ту же точку — с теми же чувствами, страхами и
+                поступками.
               </p>
-              <span>
-                Можно включиться в беседу или остаться внимательным слушателем.
-              </span>
+              <p>
+                На первой встрече попробуем увидеть этот круг в собственной
+                жизни. Можно включиться в беседу или просто слушать.
+              </p>
             </div>
           </div>
 
           <div
-            className="theme-visual"
+            className="tragic-visual"
             role="img"
-            aria-label="Красный импульс останавливается перед столкновением, затем две разделённые формы делают шаг навстречу друг другу"
+            aria-label="Человек снова и снова идёт по замкнутому кругу, оставляя следы повторения; в конце в круге появляется небольшой разрыв"
           >
-            <span className="theme-thread" aria-hidden="true" />
+            <span className="tragic-field" aria-hidden="true" />
+            <span className="tragic-ring tragic-ring-base" aria-hidden="true" />
+            <span
+              className="tragic-ring tragic-ring-echo-one tragic-scrub"
+              aria-hidden="true"
+            />
+            <span
+              className="tragic-ring tragic-ring-echo-two tragic-scrub"
+              aria-hidden="true"
+            />
+            <span
+              className="tragic-ring tragic-ring-echo-three tragic-scrub"
+              aria-hidden="true"
+            />
 
-            <div className="theme-strike-scene theme-scrub" aria-hidden="true">
-              <span className="theme-strike-origin" />
-              <span className="theme-strike theme-scrub" />
-              <span className="theme-stop" />
-              <span className="theme-ripple theme-scrub" />
-              <em className="theme-pause-word theme-scrub">выдержка</em>
-            </div>
+            <span className="tragic-scar tragic-scar-one" aria-hidden="true" />
+            <span className="tragic-scar tragic-scar-two" aria-hidden="true" />
+            <span className="tragic-scar tragic-scar-three" aria-hidden="true" />
 
-            <div className="theme-step-scene theme-scrub" aria-hidden="true">
-              <span className="theme-form theme-form-left" />
-              <span className="theme-connection theme-scrub" />
-              <span className="theme-form theme-form-right theme-scrub" />
-              <em className="theme-step-word theme-scrub">сделать шаг</em>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="tragic-ghost tragic-ghost-one tragic-scrub"
+              src="/tragic-loop-walker.png"
+              alt=""
+              aria-hidden="true"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="tragic-ghost tragic-ghost-two tragic-scrub"
+              src="/tragic-loop-walker.png"
+              alt=""
+              aria-hidden="true"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="tragic-walker tragic-scrub"
+              src="/tragic-loop-walker.png"
+              alt=""
+              aria-hidden="true"
+            />
+
+            <blockquote className="tragic-quote tragic-scrub">
+              <p>
+                «Ад — это забытое.
+                <br />
+                А раз забытое, значит,
+                <br />
+                будет повторяться».
+              </p>
+              <cite>Мераб Мамардашвили</cite>
+            </blockquote>
+
+            <span className="tragic-break tragic-scrub" aria-hidden="true" />
+            <div className="tragic-final-question tragic-scrub">
+              Какой опыт должен быть извлечён,
+              <br />
+              чтобы круг разомкнулся?
             </div>
           </div>
         </div>
