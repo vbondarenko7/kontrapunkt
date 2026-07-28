@@ -445,11 +445,10 @@ export default function Home() {
             height="900"
           />
           <div className="layered-tint" />
-          <div className="layered-resonance" aria-hidden="true">
-            <span className="layered-resonance-glow" />
-            <i className="layered-wave layered-wave-one" />
-            <i className="layered-wave layered-wave-two" />
-            <i className="layered-wave layered-wave-three" />
+          <div className="layered-atmosphere" aria-hidden="true">
+            <span className="layered-stage-glow" />
+            <span className="layered-light-shaft" />
+            <span className="layered-haze" />
           </div>
           <div className="layered-copy">
             <p className="eyebrow light">Разговор без снобизма</p>
