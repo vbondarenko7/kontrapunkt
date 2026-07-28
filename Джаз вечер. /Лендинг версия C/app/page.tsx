@@ -445,11 +445,6 @@ export default function Home() {
             height="900"
           />
           <div className="layered-tint" />
-          <div className="layered-atmosphere" aria-hidden="true">
-            <span className="layered-stage-glow" />
-            <span className="layered-light-shaft" />
-            <span className="layered-haze" />
-          </div>
           <div className="layered-copy">
             <p className="eyebrow light">Разговор без снобизма</p>
             <h2 id="layered-scene-title">
@@ -474,11 +469,28 @@ export default function Home() {
               ))}
             </div>
           </div>
-          {/* The duplicate is masked so the moving copy passes behind the statue. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            className="layered-statue"
-            src="/philosopher-scene.webp"
+            className="layered-eye-layer layered-eyes-open"
+            src="/philosopher-eyes-open.png"
+            alt=""
+            aria-hidden="true"
+            width="1600"
+            height="900"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="layered-eye-layer layered-eyes-closed"
+            src="/philosopher-eyes-closed.png"
+            alt=""
+            aria-hidden="true"
+            width="1600"
+            height="900"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="layered-candle-flame"
+            src="/candle-flame-glow.png"
             alt=""
             aria-hidden="true"
             width="1600"
