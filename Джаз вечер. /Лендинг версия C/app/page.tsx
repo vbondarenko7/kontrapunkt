@@ -478,17 +478,15 @@ export default function Home() {
             width="1600"
             height="900"
           />
-          <video
-            className="layered-candle-video"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="layered-candle-motion"
+            src="/candle-flame-real.webp"
+            alt=""
             aria-hidden="true"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-          >
-            <source src="/candle-flame-real.mp4" type="video/mp4" />
-          </video>
+            width="1600"
+            height="900"
+          />
           <div className="layered-shade" />
           <div className="film-grain layered-grain" />
         </div>

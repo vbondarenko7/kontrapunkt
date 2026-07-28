@@ -1026,7 +1026,7 @@ h3 {
 
 .layered-base,
 .layered-candle-cleanup,
-.layered-candle-video {
+.layered-candle-motion {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1050,7 +1050,7 @@ h3 {
   z-index: 3;
 }
 
-.layered-candle-video {
+.layered-candle-motion {
   z-index: 6;
   opacity: 0.9;
   mix-blend-mode: screen;
@@ -2434,7 +2434,7 @@ footer p:last-child {
   }
 
   .layered-candle-cleanup,
-  .layered-candle-video {
+  .layered-candle-motion {
     display: none;
   }
 
@@ -2528,7 +2528,7 @@ footer p:last-child {
   }
 
   .layered-candle-cleanup,
-  .layered-candle-video {
+  .layered-candle-motion {
     display: none;
   }
 
