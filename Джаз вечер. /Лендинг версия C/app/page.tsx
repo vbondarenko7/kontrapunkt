@@ -341,9 +341,9 @@ export default function Home() {
         <div className="tragic-sticky">
           <div className="tragic-copy">
             <div className="tragic-kicker">
-              <span>Первая встреча</span>
+              <span>Тема первой встречи</span>
               <i aria-hidden="true" />
-              <b>Тема 01</b>
+              <b>№ 01</b>
             </div>
             <h2 id="theme-title">Трагический характер</h2>
             <p className="tragic-lead">
