@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const benefits = [
   {
@@ -104,6 +104,59 @@ const faqs = [
 
 export default function Home() {
   const [ticketNoticeOpen, setTicketNoticeOpen] = useState(false);
+  const collectiveCanvasRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = collectiveCanvasRef.current;
+    const motionAllowed = window.matchMedia(
+      "(min-width: 981px) and (prefers-reduced-motion: no-preference)",
+    ).matches;
+
+    if (!section || !motionAllowed) {
+      return;
+    }
+
+    const fragments = Array.from(
+      section.querySelectorAll<HTMLElement>(".collective-fragment"),
+    );
+    const fragmentStarts = [0.02, 0.09, 0.16, 0.23, 0.3, 0.37, 0.44, 0.51];
+    let animationFrame = 0;
+
+    const updateCanvas = () => {
+      animationFrame = 0;
+      const rect = section.getBoundingClientRect();
+      const scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
+
+      fragments.forEach((fragment, index) => {
+        const localProgress = Math.min(
+          1,
+          Math.max(0, (progress - fragmentStarts[index]) / 0.42),
+        );
+        fragment.style.animationDelay = `${-localProgress}s`;
+      });
+
+      section.style.setProperty("--collective-fill", `${progress * 100}%`);
+      section.dataset.complete = progress > 0.965 ? "true" : "false";
+    };
+
+    const requestUpdate = () => {
+      if (!animationFrame) {
+        animationFrame = window.requestAnimationFrame(updateCanvas);
+      }
+    };
+
+    section.dataset.scrollReady = "true";
+    updateCanvas();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
 
   return (
     <main id="top">
@@ -217,6 +270,43 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        ref={collectiveCanvasRef}
+        className="collective-section"
+        aria-labelledby="collective-title"
+      >
+        <div className="collective-sticky">
+          <div className="collective-copy">
+            <p className="eyebrow light">Финальный аккорд</p>
+            <h2 id="collective-title">
+              Каждая встреча — картина, которую мы создаём вместе.
+              <em>Здесь и сейчас.</em>
+            </h2>
+          </div>
+
+          <div className="collective-visual">
+            <div
+              className="collective-art"
+              role="img"
+              aria-label="Абстрактная картина собирается из отдельных фрагментов в единое целое"
+            >
+              <span className="collective-underlay" aria-hidden="true" />
+              {Array.from({ length: 8 }, (_, index) => (
+                <span
+                  className="collective-fragment"
+                  aria-hidden="true"
+                  key={index}
+                />
+              ))}
+              <span className="collective-frame" aria-hidden="true" />
+            </div>
+            <div className="collective-progress" aria-hidden="true">
+              <span />
+            </div>
           </div>
         </div>
       </section>
