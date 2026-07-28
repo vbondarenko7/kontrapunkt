@@ -964,14 +964,14 @@ h3 {
   z-index: 4;
   width: clamp(72px, 14vw, 104px);
   height: auto;
-  offset-path: ellipse(39% 32% at 50% 49%);
+  offset-path: ellipse(37% 32% at 50% 49%);
   offset-rotate: 0deg;
   offset-anchor: 50% 84%;
   pointer-events: none;
 }
 
 .tragic-walker {
-  offset-distance: 300%;
+  offset-distance: 0%;
   filter: drop-shadow(0 11px 13px rgba(56, 39, 30, 0.16));
 }
 
@@ -2170,8 +2170,12 @@ footer p:last-child {
     animation-play-state: running;
   }
 
-  .tragic-section[data-auto-ready="true"] .tragic-walker {
-    animation-name: tragic-walker-loop;
+  .tragic-section[data-auto-ready="true"] .tragic-orbit {
+    animation: tragic-walker-orbit 13.5s linear infinite both paused;
+  }
+
+  .tragic-section[data-active="true"] .tragic-orbit {
+    animation-play-state: running;
   }
 
   .tragic-section[data-auto-ready="true"] .tragic-ring-echo-one {
@@ -2210,17 +2214,14 @@ footer p:last-child {
     filter: drop-shadow(0 0 38px rgba(249, 238, 216, 0.72));
   }
 
-  @keyframes tragic-walker-loop {
+  @keyframes tragic-walker-orbit {
     0% {
-      opacity: 0;
-      offset-distance: 0%;
-    }
-    4% {
       opacity: 1;
+      offset-distance: 0%;
     }
     100% {
       opacity: 1;
-      offset-distance: 300%;
+      offset-distance: 100%;
     }
   }
 
@@ -2772,7 +2773,8 @@ footer p:last-child {
     padding-bottom: 96px;
   }
 
-  .tragic-sequence {
+  .tragic-sequence,
+  .tragic-orbit {
     animation: none !important;
     opacity: 1 !important;
   }

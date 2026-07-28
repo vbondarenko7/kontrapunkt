@@ -170,7 +170,9 @@ export default function Home() {
     }
 
     const visual = section.querySelector<HTMLElement>(".tragic-visual");
-    const walker = section.querySelector<HTMLElement>(".tragic-walker");
+    const finale = section.querySelector<HTMLElement>(
+      ".tragic-final-question",
+    );
 
     if (!visual) {
       return;
@@ -193,12 +195,12 @@ export default function Home() {
     );
 
     section.dataset.autoReady = "true";
-    walker?.addEventListener("animationend", markComplete, { once: true });
+    finale?.addEventListener("animationend", markComplete, { once: true });
     observer.observe(visual);
 
     return () => {
       observer.disconnect();
-      walker?.removeEventListener("animationend", markComplete);
+      finale?.removeEventListener("animationend", markComplete);
       delete section.dataset.autoReady;
       delete section.dataset.active;
       delete section.dataset.complete;
@@ -428,7 +430,7 @@ export default function Home() {
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="tragic-walker tragic-sequence"
+              className="tragic-walker tragic-orbit"
               src="/tragic-loop-walker.png"
               alt=""
               aria-hidden="true"
