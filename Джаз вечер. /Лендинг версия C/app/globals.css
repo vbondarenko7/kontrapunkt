@@ -2126,18 +2126,18 @@ footer p:last-child {
   }
 
   .tragic-section {
-    height: 255svh;
-    padding: 0;
+    height: auto;
+    padding: clamp(96px, 11svh, 132px) 0;
   }
 
   .tragic-sticky {
-    position: sticky;
-    top: 0;
+    position: relative;
     grid-template-columns: minmax(430px, 0.88fr) minmax(560px, 1.12fr);
     gap: clamp(50px, 5.5vw, 92px);
     align-items: center;
     width: min(100% - 64px, 1320px);
-    height: 100svh;
+    min-height: min(780px, 100svh);
+    height: auto;
   }
 
   .tragic-copy h2 {
@@ -2159,46 +2159,50 @@ footer p:last-child {
     min-height: min(74svh, 720px);
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-scrub {
-    animation-duration: 1s;
+  .tragic-section[data-auto-ready="true"] .tragic-sequence {
+    animation-duration: 9.2s;
     animation-timing-function: linear;
     animation-fill-mode: both;
     animation-play-state: paused;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-walker {
+  .tragic-section[data-active="true"] .tragic-sequence {
+    animation-play-state: running;
+  }
+
+  .tragic-section[data-auto-ready="true"] .tragic-walker {
     animation-name: tragic-walker-loop;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-ring-echo-one {
+  .tragic-section[data-auto-ready="true"] .tragic-ring-echo-one {
     animation-name: tragic-echo-one;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-ring-echo-two {
+  .tragic-section[data-auto-ready="true"] .tragic-ring-echo-two {
     animation-name: tragic-echo-two;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-ring-echo-three {
+  .tragic-section[data-auto-ready="true"] .tragic-ring-echo-three {
     animation-name: tragic-echo-three;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-ghost-one {
+  .tragic-section[data-auto-ready="true"] .tragic-ghost-one {
     animation-name: tragic-ghost-one;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-ghost-two {
+  .tragic-section[data-auto-ready="true"] .tragic-ghost-two {
     animation-name: tragic-ghost-two;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-quote {
+  .tragic-section[data-auto-ready="true"] .tragic-quote {
     animation-name: tragic-quote-reveal;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-break {
+  .tragic-section[data-auto-ready="true"] .tragic-break {
     animation-name: tragic-break-reveal;
   }
 
-  .tragic-section[data-scroll-ready="true"] .tragic-final-question {
+  .tragic-section[data-auto-ready="true"] .tragic-final-question {
     animation-name: tragic-question-reveal;
   }
 
@@ -2768,7 +2772,7 @@ footer p:last-child {
     padding-bottom: 96px;
   }
 
-  .tragic-scrub {
+  .tragic-sequence {
     animation: none !important;
     opacity: 1 !important;
   }

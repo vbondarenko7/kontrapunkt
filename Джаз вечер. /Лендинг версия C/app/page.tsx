@@ -169,39 +169,39 @@ export default function Home() {
       return;
     }
 
-    const scrubbedElements = Array.from(
-      section.querySelectorAll<HTMLElement>(".tragic-scrub"),
+    const visual = section.querySelector<HTMLElement>(".tragic-visual");
+    const walker = section.querySelector<HTMLElement>(".tragic-walker");
+
+    if (!visual) {
+      return;
+    }
+
+    const markComplete = () => {
+      section.dataset.complete = "true";
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          section.dataset.active = "true";
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.28,
+      },
     );
-    let animationFrame = 0;
 
-    const updateTheme = () => {
-      animationFrame = 0;
-      const rect = section.getBoundingClientRect();
-      const scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
-
-      scrubbedElements.forEach((element) => {
-        element.style.animationDelay = `${-progress}s`;
-      });
-
-      section.dataset.complete = progress > 0.94 ? "true" : "false";
-    };
-
-    const requestUpdate = () => {
-      if (!animationFrame) {
-        animationFrame = window.requestAnimationFrame(updateTheme);
-      }
-    };
-
-    section.dataset.scrollReady = "true";
-    updateTheme();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    section.dataset.autoReady = "true";
+    walker?.addEventListener("animationend", markComplete, { once: true });
+    observer.observe(visual);
 
     return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      window.cancelAnimationFrame(animationFrame);
+      observer.disconnect();
+      walker?.removeEventListener("animationend", markComplete);
+      delete section.dataset.autoReady;
+      delete section.dataset.active;
+      delete section.dataset.complete;
     };
   }, []);
 
@@ -396,15 +396,15 @@ export default function Home() {
             <span className="tragic-field" aria-hidden="true" />
             <span className="tragic-ring tragic-ring-base" aria-hidden="true" />
             <span
-              className="tragic-ring tragic-ring-echo-one tragic-scrub"
+              className="tragic-ring tragic-ring-echo-one tragic-sequence"
               aria-hidden="true"
             />
             <span
-              className="tragic-ring tragic-ring-echo-two tragic-scrub"
+              className="tragic-ring tragic-ring-echo-two tragic-sequence"
               aria-hidden="true"
             />
             <span
-              className="tragic-ring tragic-ring-echo-three tragic-scrub"
+              className="tragic-ring tragic-ring-echo-three tragic-sequence"
               aria-hidden="true"
             />
 
@@ -414,27 +414,27 @@ export default function Home() {
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="tragic-ghost tragic-ghost-one tragic-scrub"
+              className="tragic-ghost tragic-ghost-one tragic-sequence"
               src="/tragic-loop-walker.png"
               alt=""
               aria-hidden="true"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="tragic-ghost tragic-ghost-two tragic-scrub"
+              className="tragic-ghost tragic-ghost-two tragic-sequence"
               src="/tragic-loop-walker.png"
               alt=""
               aria-hidden="true"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="tragic-walker tragic-scrub"
+              className="tragic-walker tragic-sequence"
               src="/tragic-loop-walker.png"
               alt=""
               aria-hidden="true"
             />
 
-            <blockquote className="tragic-quote tragic-scrub">
+            <blockquote className="tragic-quote tragic-sequence">
               <p>
                 «Ад — это забытое.
                 <br />
@@ -445,8 +445,8 @@ export default function Home() {
               <cite>Мераб Мамардашвили</cite>
             </blockquote>
 
-            <span className="tragic-break tragic-scrub" aria-hidden="true" />
-            <div className="tragic-final-question tragic-scrub">
+            <span className="tragic-break tragic-sequence" aria-hidden="true" />
+            <div className="tragic-final-question tragic-sequence">
               Какой опыт должен быть извлечён,
               <br />
               чтобы круг разомкнулся?
