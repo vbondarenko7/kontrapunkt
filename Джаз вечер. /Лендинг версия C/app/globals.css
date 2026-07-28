@@ -746,6 +746,306 @@ h3 {
   display: none;
 }
 
+.musicians-section {
+  position: relative;
+  padding: 118px 20px 132px;
+  overflow: clip;
+  color: var(--ivory);
+  background:
+    radial-gradient(circle at 74% 46%, rgba(151, 65, 39, 0.16), transparent 31%),
+    linear-gradient(145deg, #17110e 0%, #0b0908 58%, #17100d 100%);
+}
+
+.musicians-section::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(100% - 40px, 1320px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(216, 154, 113, 0.48),
+    transparent
+  );
+  transform: translateX(-50%);
+  content: "";
+}
+
+.musicians-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1320px);
+  margin: 0 auto;
+}
+
+.musicians-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: clamp(56px, 7vw, 112px);
+  align-items: end;
+}
+
+.musicians-intro .eyebrow {
+  margin-bottom: 26px;
+}
+
+.musicians-intro h2 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(50px, 5.1vw, 76px);
+  line-height: 0.98;
+}
+
+.musicians-intro h2 em {
+  display: block;
+  margin-top: 0.12em;
+  color: #d9a5a2;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.94em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.musicians-copy {
+  max-width: 530px;
+  padding-bottom: 5px;
+}
+
+.musicians-copy p {
+  margin: 0;
+  color: rgba(242, 235, 221, 0.74);
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.musicians-copy span {
+  display: block;
+  margin-top: 22px;
+  color: #aa9887;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ensemble-stage {
+  position: relative;
+  margin-top: 76px;
+}
+
+.ensemble-glow {
+  position: absolute;
+  z-index: -1;
+  inset: -16% 7% -12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(139, 57, 35, 0.34),
+    rgba(94, 39, 28, 0.13) 43%,
+    transparent 72%
+  );
+  filter: blur(28px);
+  opacity: 0.72;
+  transform: scale(0.92);
+}
+
+.ensemble-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 2.05 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(228, 184, 143, 0.24);
+  background: #080605;
+  box-shadow: 0 38px 100px rgba(0, 0, 0, 0.38);
+}
+
+.ensemble-panel {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  background-image:
+    linear-gradient(180deg, rgba(8, 6, 5, 0.06), rgba(8, 6, 5, 0.76)),
+    url("/02-musical-response-1200.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 300% 100%;
+  background-position: center, left center;
+  isolation: isolate;
+}
+
+.ensemble-panel:nth-child(2) {
+  border-right: 1px solid rgba(242, 235, 221, 0.18);
+  border-left: 1px solid rgba(242, 235, 221, 0.18);
+  background-position: center, center;
+}
+
+.ensemble-panel:nth-child(3) {
+  background-position: center, right center;
+}
+
+.ensemble-panel::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(61, 16, 21, 0.14), transparent 48%),
+    linear-gradient(180deg, transparent 50%, rgba(8, 6, 5, 0.66) 100%);
+  content: "";
+}
+
+.ensemble-number {
+  position: absolute;
+  top: 23px;
+  left: 25px;
+  color: rgba(242, 235, 221, 0.6);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.ensemble-person {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  left: 25px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(242, 235, 221, 0.28);
+}
+
+.ensemble-person p {
+  margin: 0 0 4px;
+  color: #d89a71;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ensemble-person h3 {
+  margin: 0;
+  color: var(--ivory);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(22px, 2.1vw, 31px);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.ensemble-note {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+}
+
+.ensemble-note span {
+  flex: 0 0 auto;
+  color: #d89a71;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ensemble-note strong {
+  color: rgba(242, 235, 221, 0.7);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 500;
+  text-align: right;
+}
+
+.musicians-section[data-motion-ready="true"] .ensemble-panel {
+  clip-path: inset(100% 0 0);
+  transform: translate3d(0, 48px, 0);
+  will-change: clip-path, transform;
+}
+
+.musicians-section[data-active="true"] .ensemble-panel {
+  animation: ensemble-panel-arrive 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.musicians-section[data-active="true"] .ensemble-panel:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.musicians-section[data-active="true"] .ensemble-panel:nth-child(3) {
+  animation-delay: 285ms;
+}
+
+.musicians-section[data-motion-ready="true"] .ensemble-person,
+.musicians-section[data-motion-ready="true"] .ensemble-number {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+
+.musicians-section[data-active="true"] .ensemble-person,
+.musicians-section[data-active="true"] .ensemble-number {
+  animation: ensemble-label-arrive 620ms cubic-bezier(0.16, 1, 0.3, 1) 470ms
+    both;
+}
+
+.musicians-section[data-active="true"] .ensemble-panel:nth-child(2)
+  .ensemble-person,
+.musicians-section[data-active="true"] .ensemble-panel:nth-child(2)
+  .ensemble-number {
+  animation-delay: 620ms;
+}
+
+.musicians-section[data-active="true"] .ensemble-panel:nth-child(3)
+  .ensemble-person,
+.musicians-section[data-active="true"] .ensemble-panel:nth-child(3)
+  .ensemble-number {
+  animation-delay: 755ms;
+}
+
+.musicians-section[data-motion-ready="true"] .ensemble-glow {
+  opacity: 0;
+  transform: scale(0.82);
+}
+
+.musicians-section[data-active="true"] .ensemble-glow {
+  animation: ensemble-glow-bloom 1450ms ease-out 240ms both;
+}
+
+@keyframes ensemble-panel-arrive {
+  from {
+    clip-path: inset(100% 0 0);
+    transform: translate3d(0, 48px, 0);
+  }
+  to {
+    clip-path: inset(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ensemble-label-arrive {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ensemble-glow-bloom {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+}
+
 .tragic-section {
   position: relative;
   padding: 112px 20px 124px;
@@ -2225,6 +2525,7 @@ footer p:last-child {
   }
 
   .format-intro,
+  .musicians-intro,
   .ticket-section,
   .faq-section {
     grid-template-columns: 1fr;
@@ -2370,6 +2671,76 @@ footer p:last-child {
 
   .collective-copy h2 {
     font-size: 42px;
+  }
+
+  .musicians-section {
+    padding: 82px 20px 90px;
+  }
+
+  .musicians-intro {
+    gap: 32px;
+  }
+
+  .musicians-intro h2 {
+    font-size: 44px;
+  }
+
+  .musicians-copy p {
+    font-size: 15px;
+  }
+
+  .ensemble-stage {
+    margin-top: 52px;
+  }
+
+  .ensemble-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    aspect-ratio: auto;
+    height: 720px;
+  }
+
+  .ensemble-panel {
+    background-size: 100% 100%, 190% auto;
+    background-position: center, 8% 42%;
+  }
+
+  .ensemble-panel:nth-child(2) {
+    border: 0;
+    border-top: 1px solid rgba(242, 235, 221, 0.18);
+    border-bottom: 1px solid rgba(242, 235, 221, 0.18);
+    background-position: center, 66% 42%;
+  }
+
+  .ensemble-panel:nth-child(3) {
+    background-position: center, 100% 42%;
+  }
+
+  .ensemble-person {
+    right: 18px;
+    bottom: 17px;
+    left: 18px;
+    padding-top: 10px;
+  }
+
+  .ensemble-person h3 {
+    font-size: 25px;
+  }
+
+  .ensemble-number {
+    top: 16px;
+    left: 18px;
+  }
+
+  .ensemble-note {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ensemble-note strong {
+    font-size: 19px;
+    text-align: left;
   }
 
   .tragic-copy h2 {
@@ -2525,6 +2896,16 @@ footer p:last-child {
   .tragic-orbit {
     animation: none !important;
     opacity: 1 !important;
+  }
+
+  .ensemble-panel,
+  .ensemble-person,
+  .ensemble-number,
+  .ensemble-glow {
+    animation: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .layered-candle-cleanup,

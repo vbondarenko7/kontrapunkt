@@ -47,6 +47,24 @@ const scenarios = [
   },
 ];
 
+const musicians = [
+  {
+    number: "01",
+    instrument: "Рояль",
+    name: "Имя музыканта",
+  },
+  {
+    number: "02",
+    instrument: "Контрабас",
+    name: "Имя музыканта",
+  },
+  {
+    number: "03",
+    instrument: "Ударные",
+    name: "Имя музыканта",
+  },
+];
+
 const faqs = [
   {
     question: "Какой уровень подготовки нужен?",
@@ -78,6 +96,7 @@ const faqs = [
 export default function Home() {
   const [ticketNoticeOpen, setTicketNoticeOpen] = useState(false);
   const collectiveCanvasRef = useRef<HTMLElement>(null);
+  const musiciansRef = useRef<HTMLElement>(null);
   const tragicThemeRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -129,6 +148,38 @@ export default function Home() {
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
       window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = musiciansRef.current;
+    const motionAllowed = window.matchMedia(
+      "(prefers-reduced-motion: no-preference)",
+    ).matches;
+
+    if (!section || !motionAllowed) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          section.dataset.active = "true";
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.24,
+      },
+    );
+
+    section.dataset.motionReady = "true";
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+      delete section.dataset.motionReady;
+      delete section.dataset.active;
     };
   }, []);
 
@@ -328,6 +379,61 @@ export default function Home() {
             </div>
             <div className="collective-progress" aria-hidden="true">
               <span />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        ref={musiciansRef}
+        className="musicians-section"
+        aria-labelledby="musicians-title"
+      >
+        <div className="musicians-shell">
+          <div className="musicians-intro">
+            <div>
+              <p className="eyebrow light">Музыканты вечера</p>
+              <h2 id="musicians-title">
+                Они не сопровождают беседу.
+                <em>Они отвечают ей.</em>
+              </h2>
+            </div>
+            <div className="musicians-copy">
+              <p>
+                На сцене — профессиональные джазовые музыканты с большим опытом
+                живой импровизации. Они слушают ход беседы, улавливают паузы,
+                напряжение и настроение зала — и превращают всё это в музыку,
+                которой раньше не было.
+              </p>
+              <span>Состав и короткие биографии добавим после анонса.</span>
+            </div>
+          </div>
+
+          <div
+            className="ensemble-stage"
+            role="group"
+            aria-label="Предварительный состав джазового трио"
+          >
+            <span className="ensemble-glow" aria-hidden="true" />
+            <div className="ensemble-grid">
+              {musicians.map((musician) => (
+                <article
+                  className="ensemble-panel"
+                  key={musician.instrument}
+                >
+                  <span className="ensemble-number" aria-hidden="true">
+                    {musician.number}
+                  </span>
+                  <div className="ensemble-person">
+                    <p>{musician.instrument}</p>
+                    <h3>{musician.name}</h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="ensemble-note">
+              <span>Не готовая программа</span>
+              <strong>Музыка возникает в моменте — вместе с беседой</strong>
             </div>
           </div>
         </div>
