@@ -105,6 +105,7 @@ const faqs = [
 export default function Home() {
   const [ticketNoticeOpen, setTicketNoticeOpen] = useState(false);
   const collectiveCanvasRef = useRef<HTMLElement>(null);
+  const tragicThemeRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const section = collectiveCanvasRef.current;
@@ -148,6 +149,52 @@ export default function Home() {
 
     section.dataset.scrollReady = "true";
     updateCanvas();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = tragicThemeRef.current;
+    const motionAllowed = window.matchMedia(
+      "(min-width: 981px) and (prefers-reduced-motion: no-preference)",
+    ).matches;
+
+    if (!section || !motionAllowed) {
+      return;
+    }
+
+    const scrubbedElements = Array.from(
+      section.querySelectorAll<HTMLElement>(".theme-scrub"),
+    );
+    let animationFrame = 0;
+
+    const updateTheme = () => {
+      animationFrame = 0;
+      const rect = section.getBoundingClientRect();
+      const scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
+
+      scrubbedElements.forEach((element) => {
+        element.style.animationDelay = `${-progress}s`;
+      });
+
+      section.dataset.complete = progress > 0.92 ? "true" : "false";
+    };
+
+    const requestUpdate = () => {
+      if (!animationFrame) {
+        animationFrame = window.requestAnimationFrame(updateTheme);
+      }
+    };
+
+    section.dataset.scrollReady = "true";
+    updateTheme();
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
 
@@ -306,6 +353,76 @@ export default function Home() {
             </div>
             <div className="collective-progress" aria-hidden="true">
               <span />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        ref={tragicThemeRef}
+        className="theme-section"
+        aria-labelledby="theme-title"
+      >
+        <div className="theme-sticky">
+          <div className="theme-copy">
+            <p className="eyebrow">Тема первой встречи</p>
+            <h2 id="theme-title">Трагический характер</h2>
+            <p className="theme-question">
+              Почему мы вступаем в бой там, где достаточно пройти мимо, — и
+              отступаем там, где нужно сделать шаг?
+            </p>
+
+            <div className="theme-beats">
+              <article className="theme-beat theme-beat-one theme-scrub">
+                <span>01 / импульс</span>
+                <h3>Спешим, когда нужна выдержка</h3>
+                <p>
+                  Одно обидное слово — и мы уже готовы обнажить меч. Хотя иногда
+                  достаточно не отвечать и пройти мимо.
+                </p>
+              </article>
+
+              <article className="theme-beat theme-beat-two theme-scrub">
+                <span>02 / выбор</span>
+                <h3>Отступаем, когда нужна смелость</h3>
+                <p>
+                  Перед важным разговором, признанием или великодушным поступком
+                  тот же человек может испугаться и не сделать шаг.
+                </p>
+              </article>
+            </div>
+
+            <div className="theme-summary theme-scrub">
+              <p>
+                Поговорим о трагическом несовпадении между чувством и поступком —
+                и о пространстве для другого выбора.
+              </p>
+              <span>
+                Можно включиться в беседу или остаться внимательным слушателем.
+              </span>
+            </div>
+          </div>
+
+          <div
+            className="theme-visual"
+            role="img"
+            aria-label="Красный импульс останавливается перед столкновением, затем две разделённые формы делают шаг навстречу друг другу"
+          >
+            <span className="theme-thread" aria-hidden="true" />
+
+            <div className="theme-strike-scene theme-scrub" aria-hidden="true">
+              <span className="theme-strike-origin" />
+              <span className="theme-strike theme-scrub" />
+              <span className="theme-stop" />
+              <span className="theme-ripple theme-scrub" />
+              <em className="theme-pause-word theme-scrub">выдержка</em>
+            </div>
+
+            <div className="theme-step-scene theme-scrub" aria-hidden="true">
+              <span className="theme-form theme-form-left" />
+              <span className="theme-connection theme-scrub" />
+              <span className="theme-form theme-form-right theme-scrub" />
+              <em className="theme-step-word theme-scrub">сделать шаг</em>
             </div>
           </div>
         </div>
