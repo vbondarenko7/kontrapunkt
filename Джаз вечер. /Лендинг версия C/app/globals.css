@@ -1025,6 +1025,7 @@ h3 {
 }
 
 .layered-base,
+.layered-candle-cleanup,
 .layered-candle-video {
   position: absolute;
   inset: 0;
@@ -1045,11 +1046,15 @@ h3 {
   z-index: 2;
 }
 
+.layered-candle-cleanup {
+  z-index: 3;
+}
+
 .layered-candle-video {
-  z-index: 4;
-  opacity: 0.96;
+  z-index: 6;
+  opacity: 0.9;
   mix-blend-mode: screen;
-  filter: saturate(1.06) brightness(1.02);
+  filter: saturate(1.12) brightness(1.06);
 }
 
 .layered-copy {
@@ -2428,6 +2433,7 @@ footer p:last-child {
     font-size: 12px;
   }
 
+  .layered-candle-cleanup,
   .layered-candle-video {
     display: none;
   }
@@ -2521,6 +2527,7 @@ footer p:last-child {
     opacity: 1 !important;
   }
 
+  .layered-candle-cleanup,
   .layered-candle-video {
     display: none;
   }

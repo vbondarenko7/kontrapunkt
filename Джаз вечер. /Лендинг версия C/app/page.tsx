@@ -469,6 +469,15 @@ export default function Home() {
               ))}
             </div>
           </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="layered-candle-cleanup"
+            src="/candle-flame-cleanup.png"
+            alt=""
+            aria-hidden="true"
+            width="1600"
+            height="900"
+          />
           <video
             className="layered-candle-video"
             aria-hidden="true"
