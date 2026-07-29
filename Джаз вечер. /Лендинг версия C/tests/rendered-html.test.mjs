@@ -22,6 +22,21 @@ function createEnv() {
       },
       DB: {
         prepare(sql) {
+          if (/SELECT name, contact, source, created_at/.test(sql)) {
+            return {
+              async all() {
+                return {
+                  results: inserts.map((values) => ({
+                    name: values[1],
+                    contact: values[2],
+                    source: values[4],
+                    created_at: values[6],
+                  })),
+                };
+              },
+            };
+          }
+
           assert.match(sql, /INSERT INTO waitlist_leads/);
           return {
             bind(...values) {
@@ -40,6 +55,7 @@ function createEnv() {
           };
         },
       },
+      WAITLIST_ADMIN_EMAIL: "owner@example.com",
     },
   };
 }
@@ -156,6 +172,56 @@ test("waitlist endpoint rejects invalid or unconsented contacts", async () => {
   assert.equal(invalid.status, 400);
   assert.equal(unconsented.status, 400);
   assert.equal(inserts.length, 0);
+});
+
+test("waitlist export is owner-only and returns a CSV", async () => {
+  const worker = await loadWorker();
+  const { env } = createEnv();
+  const payload = JSON.stringify({
+    name: "Гость",
+    contact: "guest@example.com",
+    consent: true,
+  });
+
+  await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: payload,
+    }),
+    env,
+    ctx,
+  );
+
+  const anonymous = await worker.fetch(
+    new Request("http://localhost/api/waitlist"),
+    env,
+    ctx,
+  );
+  const stranger = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      headers: { "oai-authenticated-user-email": "stranger@example.com" },
+    }),
+    env,
+    ctx,
+  );
+  const owner = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      headers: { "oai-authenticated-user-email": "owner@example.com" },
+    }),
+    env,
+    ctx,
+  );
+
+  assert.equal(anonymous.status, 302);
+  assert.match(
+    anonymous.headers.get("location") ?? "",
+    /signin-with-chatgpt/,
+  );
+  assert.equal(stranger.status, 403);
+  assert.equal(owner.status, 200);
+  assert.match(owner.headers.get("content-type") ?? "", /^text\/csv/);
+  assert.match(await owner.text(), /Гость.*guest@example\.com/);
 });
 
 test("generated migration creates the waitlist table and unique contact index", async () => {

@@ -5,6 +5,7 @@ import handler from "vinext/server/app-router-entry";
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
+  WAITLIST_ADMIN_EMAIL?: string;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -24,6 +25,13 @@ interface WaitlistPayload {
   contact?: unknown;
   consent?: unknown;
   website?: unknown;
+}
+
+interface WaitlistRow {
+  name: string | null;
+  contact: string;
+  source: string;
+  created_at: string;
 }
 
 const json = (body: unknown, status = 200) =>
@@ -61,7 +69,58 @@ function normalizeContact(contact: string) {
   return null;
 }
 
+function csvCell(value: string | null) {
+  return `"${(value ?? "").replaceAll('"', '""')}"`;
+}
+
+async function exportWaitlist(request: Request, env: Env) {
+  const url = new URL(request.url);
+  const userEmail = request.headers.get("oai-authenticated-user-email");
+
+  if (!userEmail) {
+    const signInUrl = new URL("/signin-with-chatgpt", url);
+    signInUrl.searchParams.set("return_to", `${url.pathname}${url.search}`);
+    return Response.redirect(signInUrl, 302);
+  }
+
+  if (
+    !env.WAITLIST_ADMIN_EMAIL ||
+    userEmail.toLowerCase() !== env.WAITLIST_ADMIN_EMAIL.toLowerCase()
+  ) {
+    return json({ message: "Доступ запрещён." }, 403);
+  }
+
+  const { results = [] } = await env.DB.prepare(
+    `SELECT name, contact, source, created_at
+     FROM waitlist_leads
+     ORDER BY created_at DESC`,
+  ).all<WaitlistRow>();
+  const rows = [
+    ["Имя", "Контакт", "Источник", "Добавлен"],
+    ...results.map((lead) => [
+      lead.name,
+      lead.contact,
+      lead.source,
+      lead.created_at,
+    ]),
+  ];
+  const csv = rows.map((row) => row.map(csvCell).join(",")).join("\r\n");
+  const date = new Date().toISOString().slice(0, 10);
+
+  return new Response(`\uFEFF${csv}\r\n`, {
+    headers: {
+      "cache-control": "no-store",
+      "content-disposition": `attachment; filename="waitlist-${date}.csv"`,
+      "content-type": "text/csv; charset=utf-8",
+    },
+  });
+}
+
 async function handleWaitlist(request: Request, env: Env) {
+  if (request.method === "GET") {
+    return exportWaitlist(request, env);
+  }
+
   if (request.method !== "POST") {
     return json({ message: "Метод не поддерживается." }, 405);
   }
