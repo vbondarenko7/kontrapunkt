@@ -1,2 +1,2 @@
-:HL["/kontrapunkt/_next/static/chunks/0f3j0ka~6li86.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"tcNiM75vli14WntsmhF3o"}
+:HL["/kontrapunkt/_next/static/chunks/1f1632na822wc.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"S1UHAAsdI1yXUmKH1Mz-m"}

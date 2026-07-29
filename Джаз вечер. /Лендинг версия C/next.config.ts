@@ -9,6 +9,7 @@ const waitlistApiUrl = isGitHubPages
 const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_STATIC_PREVIEW: isGitHubPages ? "true" : "",
     NEXT_PUBLIC_WAITLIST_API_URL: waitlistApiUrl,
   },
   ...(isGitHubPages

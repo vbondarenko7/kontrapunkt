@@ -4,6 +4,7 @@ import type { CSSProperties, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const isStaticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "true";
 const waitlistApiUrl =
   process.env.NEXT_PUBLIC_WAITLIST_API_URL ?? `${basePath}/api/waitlist`;
 const assetPath = (path: string) => `${basePath}${path}`;
@@ -698,7 +699,23 @@ export default function Home() {
             >
               ×
             </button>
-            {waitlistStatus === "success" ? (
+            {isStaticPreview ? (
+              <div className="waitlist-success">
+                <p className="eyebrow">Предварительный анонс</p>
+                <h2 id="ticket-modal-title">Дата первого вечера скоро появится</h2>
+                <p>
+                  Вместе с датой опубликуем финальную стоимость и откроем
+                  предварительный список.
+                </p>
+                <button
+                  className="button button-dark"
+                  type="button"
+                  onClick={() => setTicketNoticeOpen(false)}
+                >
+                  Понятно
+                </button>
+              </div>
+            ) : waitlistStatus === "success" ? (
               <div className="waitlist-success" aria-live="polite">
                 <p className="eyebrow">Контакт сохранён</p>
                 <h2 id="ticket-modal-title">Вы в предварительном списке</h2>
