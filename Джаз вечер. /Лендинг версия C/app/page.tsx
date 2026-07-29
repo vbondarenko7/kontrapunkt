@@ -232,6 +232,27 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="why-section" aria-labelledby="why-title">
+        <div className="why-inner">
+          <p className="eyebrow light">Зачем идти</p>
+          <h2 id="why-title">Такие разговоры не случаются сами</h2>
+          <p className="why-lead">
+            После тридцати разговор незаметно сжимается до работы, новостей и
+            планов. Не потому что не о чем — просто некогда, не с кем и неловко
+            начинать.
+          </p>
+          <p className="why-body">
+            Чтобы разговор состоялся, его кто-то должен устроить: выбрать
+            вопрос, собрать людей, задать тон и следить, чтобы услышали всех.
+            Этот вечер — такое устройство.
+          </p>
+          <p className="why-closing">
+            Уносят отсюда не конспект, а вопрос, который не закрывается на
+            выходе.
+          </p>
+        </div>
+      </section>
+
       <section className="section section-dark" id="format">
         <div className="format-scroll-stage">
           <div className="format-ambient" aria-hidden="true" />
