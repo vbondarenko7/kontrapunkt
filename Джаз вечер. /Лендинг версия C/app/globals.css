@@ -1651,6 +1651,13 @@ h3 {
   font-size: 17px;
 }
 
+.final-section .button {
+  min-height: 68px;
+  padding-right: 42px;
+  padding-left: 42px;
+  font-size: 14px;
+}
+
 footer {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -2690,6 +2697,10 @@ footer p:last-child {
 
   .final-section h2 {
     font-size: 42px;
+  }
+
+  .final-section .button {
+    width: 100%;
   }
 
   footer {
