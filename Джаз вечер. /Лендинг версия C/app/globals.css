@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap");
+/* Шрифты подключены в app/layout.tsx через <link>: так браузер начинает их
+   качать сразу, а не после того, как скачает и разберёт этот файл. */
 @import "tailwindcss";
 
 :root {

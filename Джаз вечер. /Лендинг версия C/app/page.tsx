@@ -17,7 +17,7 @@ const formatSteps = [
     text: "Ведущий задаёт тему. Кто-то делится мыслью, остальные слушают.",
     image: "01-conversation",
     imageAlt: "Гости внимательно слушают друг друга за столом",
-    cutout: "format-host-stage-full-cutout.png",
+    cutout: "format-host-stage-full-cutout.webp",
   },
   {
     number: "02",
@@ -26,7 +26,7 @@ const formatSteps = [
     text: "Музыканты подхватывают мысль, её ритм и настроение — и сразу переводят их в звук. Эту пьесу нельзя заранее отрепетировать или повторить.",
     image: "02-musical-response",
     imageAlt: "Джазовое трио импровизирует на сцене",
-    cutout: "format-bassist-cutout.png",
+    cutout: "format-bassist-cutout.webp",
   },
   {
     number: "03",
@@ -35,7 +35,7 @@ const formatSteps = [
     text: "После импровизации беседа продолжается. Та же мысль звучит иначе — и начинается новый круг.",
     image: "03-return-to-room",
     imageAlt: "Гости продолжают беседу после музыкальной импровизации",
-    cutout: "format-audience-row-full-cutout.png",
+    cutout: "format-audience-row-full-cutout.webp",
   },
 ];
 
@@ -274,9 +274,9 @@ export default function Home() {
           <p className="chapter"><b>01</b> / первый вечер</p>
           <p className="hero-script">живые встречи</p>
           <h1 id="hero-title">
-            Разговор по душам,
+            Разговор по душам,{" "}
             <span>
-              который становится
+              который становится{" "}
               <em>живым джазом</em>
             </span>
           </h1>
@@ -500,7 +500,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="ensemble-pianist"
-              src={assetPath("/decor/pianist-grand-piano.png")}
+              src={assetPath("/decor/pianist-grand-piano.webp")}
               alt=""
               aria-hidden="true"
               width="1536"
@@ -509,7 +509,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="ensemble-bassist"
-              src={assetPath("/format-bassist-cutout.png")}
+              src={assetPath("/format-bassist-cutout.webp")}
               alt=""
               aria-hidden="true"
               width="1024"
