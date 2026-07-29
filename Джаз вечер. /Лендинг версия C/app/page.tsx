@@ -349,10 +349,25 @@ export default function Home() {
             role="img"
             aria-label="Две линии проходят рядом, но не встречаются"
           >
-            <div className="theme-paths" aria-hidden="true">
-              <span className="theme-path theme-path-left" />
-              <span className="theme-path theme-path-right" />
-            </div>
+            <svg
+              className="theme-paths"
+              viewBox="0 0 600 240"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
+            >
+              <path
+                className="theme-path theme-path-upper"
+                pathLength="1"
+                d="M0,34 C150,34 232,106 300,110 C368,114 450,34 600,34"
+              />
+              <path
+                className="theme-path theme-path-lower"
+                pathLength="1"
+                d="M0,206 C150,206 232,134 300,130 C368,126 450,206 600,206"
+              />
+              <line className="theme-tick" x1="300" y1="98" x2="300" y2="110" />
+              <line className="theme-tick" x1="300" y1="130" x2="300" y2="142" />
+            </svg>
 
             <blockquote className="theme-quote theme-sequence">
               <p>
