@@ -2366,6 +2366,13 @@ footer p:last-child {
 }
 
 @media (max-width: 700px) {
+  .film-grain,
+  .film-grain.layered-grain {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .hero-note-stream {
     display: none;
   }
