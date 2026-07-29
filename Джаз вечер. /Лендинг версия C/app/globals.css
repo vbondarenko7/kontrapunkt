@@ -2559,6 +2559,10 @@ footer p:last-child {
     font-size: 18px;
   }
 
+  .host-copy .host-signature {
+    font-size: 13px;
+  }
+
   .theme-copy h2 {
     font-size: 50px;
   }
@@ -2600,7 +2604,7 @@ footer p:last-child {
 
   .layered-lead {
     margin-bottom: 24px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .layered-scenario {
@@ -2612,7 +2616,7 @@ footer p:last-child {
   }
 
   .layered-scenario p {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .layered-candle-cleanup,
@@ -2622,8 +2626,8 @@ footer p:last-child {
 
   .layered-shade {
     background:
-      linear-gradient(0deg, rgba(5, 4, 3, 0.94) 0%, rgba(5, 4, 3, 0.16) 68%),
-      linear-gradient(180deg, rgba(5, 4, 3, 0.42) 0%, rgba(5, 4, 3, 0) 24%);
+      linear-gradient(0deg, rgba(5, 4, 3, 0.97) 0%, rgba(5, 4, 3, 0.7) 54%, rgba(5, 4, 3, 0.2) 78%),
+      linear-gradient(180deg, rgba(5, 4, 3, 0.56) 0%, rgba(5, 4, 3, 0) 28%);
   }
 
   .ticket-card {
@@ -2632,6 +2636,10 @@ footer p:last-child {
 
   .ticket-topline strong {
     font-size: 44px;
+  }
+
+  .limited {
+    font-size: 14px;
   }
 
   .final-section {
