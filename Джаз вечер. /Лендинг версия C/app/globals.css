@@ -1144,7 +1144,7 @@ h3 {
   }
 }
 
-.tragic-section {
+.theme-section {
   position: relative;
   padding: 112px 20px 124px;
   overflow: clip;
@@ -1155,7 +1155,7 @@ h3 {
     #e8ddcc;
 }
 
-.tragic-section::before {
+.theme-section::before {
   position: absolute;
   top: 0;
   left: 50%;
@@ -1165,19 +1165,19 @@ h3 {
   content: "";
 }
 
-.tragic-sticky {
+.theme-sticky {
   display: grid;
   gap: 64px;
   width: min(100%, 1180px);
   margin: 0 auto;
 }
 
-.tragic-copy {
+.theme-copy {
   position: relative;
   z-index: 3;
 }
 
-.tragic-kicker {
+.theme-kicker {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -1185,7 +1185,7 @@ h3 {
   margin-bottom: 26px;
 }
 
-.tragic-kicker span {
+.theme-kicker span {
   flex: 0 0 auto;
   color: var(--red-dark);
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -1194,13 +1194,13 @@ h3 {
   line-height: 1;
 }
 
-.tragic-kicker i {
+.theme-kicker i {
   width: min(112px, 18vw);
   height: 1px;
   background: rgba(109, 61, 41, 0.35);
 }
 
-.tragic-kicker b {
+.theme-kicker b {
   flex: 0 0 auto;
   color: #7d6858;
   font-size: 10px;
@@ -1209,14 +1209,14 @@ h3 {
   text-transform: uppercase;
 }
 
-.tragic-copy h2 {
+.theme-copy h2 {
   max-width: 800px;
   margin: 0;
   font-size: 54px;
   line-height: 0.98;
 }
 
-.tragic-lead {
+.theme-lead {
   max-width: 710px;
   margin: 29px 0 0;
   color: #59493f;
@@ -1225,7 +1225,7 @@ h3 {
   line-height: 1.45;
 }
 
-.tragic-body {
+.theme-body {
   display: grid;
   gap: 16px;
   max-width: 650px;
@@ -1234,133 +1234,77 @@ h3 {
   border-top: 1px solid rgba(92, 64, 34, 0.2);
 }
 
-.tragic-body p {
+.theme-body p {
   margin: 0;
   color: #76675a;
   font-size: 15px;
   line-height: 1.7;
 }
 
-.tragic-visual {
+.theme-visual {
   position: relative;
   min-height: 560px;
   overflow: hidden;
   isolation: isolate;
 }
 
-.tragic-field {
+.theme-paths {
   position: absolute;
-  inset: 9% 2% 12%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(249, 242, 229, 0.92), rgba(238, 222, 198, 0.34) 49%, transparent 71%);
-  filter: blur(0.2px);
+  top: 24%;
+  right: 3%;
+  left: 3%;
+  height: 80px;
 }
 
-.tragic-ring {
+.theme-path {
   position: absolute;
-  inset: 16% 8% 18%;
-  border: 1.5px solid rgba(60, 45, 36, 0.5);
-  border-radius: 49% 51% 48% 52% / 53% 48% 52% 47%;
-  transform: rotate(-3deg);
-}
-
-.tragic-ring-base {
-  box-shadow:
-    0 0 0 1px rgba(91, 56, 40, 0.05),
-    inset 0 0 42px rgba(88, 54, 38, 0.025);
-}
-
-.tragic-ring-echo-one {
-  inset: 15.4% 8.8% 18.7% 7.4%;
-  border-color: rgba(112, 48, 40, 0.2);
-  transform: rotate(0.6deg);
-}
-
-.tragic-ring-echo-two {
-  inset: 16.5% 7.3% 17.5% 8.9%;
-  border-color: rgba(83, 54, 42, 0.16);
-  transform: rotate(-5.4deg);
-}
-
-.tragic-ring-echo-three {
-  inset: 14.8% 9.5% 19.4% 7.8%;
-  border-color: rgba(151, 63, 48, 0.16);
-  transform: rotate(2.8deg);
-}
-
-.tragic-walker,
-.tragic-ghost {
-  position: absolute;
-  top: 0;
+  right: 0;
   left: 0;
-  z-index: 4;
-  width: clamp(72px, 14vw, 104px);
-  height: auto;
-  offset-path: ellipse(37% 32% at 50% 49%);
-  offset-rotate: 0deg;
-  offset-anchor: 50% 84%;
-  pointer-events: none;
+  height: 1px;
+  background: var(--rule-light);
 }
 
-.tragic-walker {
-  offset-distance: 0%;
-  filter: drop-shadow(0 11px 13px rgba(56, 39, 30, 0.16));
-}
-
-.tragic-ghost {
-  z-index: 2;
-  opacity: 0.09;
-  filter: sepia(0.4) blur(0.2px);
-}
-
-.tragic-ghost-one {
-  offset-distance: 34%;
-}
-
-.tragic-ghost-two {
-  offset-distance: 67%;
-}
-
-.tragic-scar {
+.theme-path::after {
   position: absolute;
-  z-index: 3;
-  width: 18px;
-  height: 5px;
-  border-top: 2px solid rgba(155, 57, 43, 0.64);
-  border-bottom: 1px solid rgba(88, 50, 39, 0.25);
+  left: 50%;
+  width: 1px;
+  height: 16px;
+  background: var(--red);
+  content: "";
 }
 
-.tragic-scar-one {
-  top: 21%;
-  left: 28%;
-  transform: rotate(25deg);
+.theme-path-left {
+  top: 0;
+  transform-origin: left center;
 }
 
-.tragic-scar-two {
-  right: 11%;
-  bottom: 35%;
-  transform: rotate(81deg);
+.theme-path-left::after {
+  top: -8px;
+  margin-left: -20px;
 }
 
-.tragic-scar-three {
-  bottom: 19%;
-  left: 34%;
-  transform: rotate(-14deg);
+.theme-path-right {
+  bottom: 0;
+  transform-origin: right center;
 }
 
-.tragic-quote {
+.theme-path-right::after {
+  top: -8px;
+  margin-left: 20px;
+}
+
+.theme-quote {
   position: absolute;
-  top: 48%;
+  top: 56%;
   left: 50%;
   z-index: 3;
-  width: min(78%, 410px);
+  width: min(86%, 470px);
   margin: 0;
   text-align: center;
   transform: translate(-50%, -50%);
 }
 
-.tragic-quote p {
+.theme-quote p {
   margin: 0;
   color: #3c3028;
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -1370,7 +1314,7 @@ h3 {
   line-height: 1.06;
 }
 
-.tragic-quote cite {
+.theme-quote cite {
   display: block;
   margin-top: 19px;
   color: #8d332c;
@@ -1381,19 +1325,7 @@ h3 {
   text-transform: uppercase;
 }
 
-.tragic-break {
-  position: absolute;
-  top: 43%;
-  right: 5.6%;
-  z-index: 5;
-  width: 28px;
-  height: 64px;
-  background: #e9decd;
-  box-shadow: 0 0 20px 15px rgba(233, 222, 205, 0.82);
-  transform: rotate(3deg);
-}
-
-.tragic-final-question {
+.theme-final-question {
   position: absolute;
   right: 8%;
   bottom: 4%;
@@ -2068,12 +2000,12 @@ footer p:last-child {
     line-height: 1.7;
   }
 
-  .tragic-section {
+  .theme-section {
     height: auto;
     padding: clamp(96px, 11svh, 132px) 0;
   }
 
-  .tragic-sticky {
+  .theme-sticky {
     position: relative;
     grid-template-columns: minmax(430px, 0.88fr) minmax(560px, 1.12fr);
     gap: clamp(50px, 5.5vw, 92px);
@@ -2083,179 +2015,76 @@ footer p:last-child {
     height: auto;
   }
 
-  .tragic-copy h2 {
+  .theme-copy h2 {
     max-width: 570px;
     font-size: clamp(68px, 6.25vw, 96px);
     line-height: 0.92;
   }
 
-  .tragic-lead {
+  .theme-lead {
     max-width: 570px;
     font-size: clamp(20px, 1.55vw, 24px);
   }
 
-  .tragic-body {
+  .theme-body {
     max-width: 550px;
   }
 
-  .tragic-visual {
+  .theme-visual {
     min-height: min(74svh, 720px);
   }
 
-  .tragic-section[data-auto-ready="true"] .tragic-sequence {
-    animation-duration: 9.2s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-    animation-play-state: paused;
+  .theme-section[data-auto-ready="true"] .theme-path {
+    transform: scaleX(0);
   }
 
-  .tragic-section[data-active="true"] .tragic-sequence {
-    animation-play-state: running;
+  .theme-section[data-active="true"] .theme-path-left {
+    animation: theme-path-draw 2s cubic-bezier(0.22, 0.76, 0.24, 1) both;
   }
 
-  .tragic-section[data-auto-ready="true"] .tragic-orbit {
-    animation: tragic-walker-orbit 13.5s linear infinite both paused;
+  .theme-section[data-active="true"] .theme-path-right {
+    animation: theme-path-draw 2s cubic-bezier(0.22, 0.76, 0.24, 1) 80ms
+      both;
   }
 
-  .tragic-section[data-active="true"] .tragic-orbit {
-    animation-play-state: running;
+  .theme-section[data-auto-ready="true"] .theme-sequence {
+    opacity: 0;
   }
 
-  .tragic-section[data-auto-ready="true"] .tragic-ring-echo-one {
-    animation-name: tragic-echo-one;
+  .theme-section[data-active="true"] .theme-quote {
+    animation: theme-quote-reveal 720ms ease-out 2.15s both;
   }
 
-  .tragic-section[data-auto-ready="true"] .tragic-ring-echo-two {
-    animation-name: tragic-echo-two;
+  .theme-section[data-active="true"] .theme-final-question {
+    animation: theme-question-reveal 720ms ease-out 2.85s both;
   }
 
-  .tragic-section[data-auto-ready="true"] .tragic-ring-echo-three {
-    animation-name: tragic-echo-three;
-  }
-
-  .tragic-section[data-auto-ready="true"] .tragic-ghost-one {
-    animation-name: tragic-ghost-one;
-  }
-
-  .tragic-section[data-auto-ready="true"] .tragic-ghost-two {
-    animation-name: tragic-ghost-two;
-  }
-
-  .tragic-section[data-auto-ready="true"] .tragic-quote {
-    animation-name: tragic-quote-reveal;
-  }
-
-  .tragic-section[data-auto-ready="true"] .tragic-break {
-    animation-name: tragic-break-reveal;
-  }
-
-  .tragic-section[data-auto-ready="true"] .tragic-final-question {
-    animation-name: tragic-question-reveal;
-  }
-
-  .tragic-section[data-complete="true"] .tragic-field {
-    filter: drop-shadow(0 0 38px rgba(249, 238, 216, 0.72));
-  }
-
-  @keyframes tragic-walker-orbit {
-    0% {
-      opacity: 1;
-      offset-distance: 0%;
+  @keyframes theme-path-draw {
+    from {
+      transform: scaleX(0);
     }
-    100% {
-      opacity: 1;
-      offset-distance: 100%;
+    to {
+      transform: scaleX(1);
     }
   }
 
-  @keyframes tragic-echo-one {
-    0%,
-    29% {
-      opacity: 0;
-    }
-    37%,
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes tragic-echo-two {
-    0%,
-    56% {
-      opacity: 0;
-    }
-    65%,
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes tragic-echo-three {
-    0%,
-    79% {
-      opacity: 0;
-    }
-    88%,
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes tragic-ghost-one {
-    0%,
-    30% {
-      opacity: 0;
-    }
-    39%,
-    100% {
-      opacity: 0.09;
-    }
-  }
-
-  @keyframes tragic-ghost-two {
-    0%,
-    59% {
-      opacity: 0;
-    }
-    68%,
-    100% {
-      opacity: 0.075;
-    }
-  }
-
-  @keyframes tragic-quote-reveal {
-    0%,
-    26% {
+  @keyframes theme-quote-reveal {
+    from {
       opacity: 0;
       transform: translate(-50%, calc(-50% + 13px));
     }
-    43%,
-    100% {
+    to {
       opacity: 1;
       transform: translate(-50%, -50%);
     }
   }
 
-  @keyframes tragic-break-reveal {
-    0%,
-    89% {
-      opacity: 0;
-      transform: rotate(3deg) scaleY(0.2);
-    }
-    100% {
-      opacity: 1;
-      transform: rotate(3deg) scaleY(1);
-    }
-  }
-
-  @keyframes tragic-question-reveal {
-    0%,
-    84% {
+  @keyframes theme-question-reveal {
+    from {
       opacity: 0;
       transform: translate3d(0, 10px, 0);
     }
-    96%,
-    100% {
+    to {
       opacity: 1;
       transform: translate3d(0, 0, 0);
     }
@@ -2613,15 +2442,15 @@ footer p:last-child {
     text-align: left;
   }
 
-  .tragic-copy h2 {
+  .theme-copy h2 {
     font-size: 50px;
   }
 
-  .tragic-lead {
+  .theme-lead {
     font-size: 20px;
   }
 
-  .tragic-visual {
+  .theme-visual {
     min-height: 530px;
   }
 
@@ -2738,11 +2567,11 @@ footer p:last-child {
     transition: none;
   }
 
-  .tragic-section {
+  .theme-section {
     height: auto;
   }
 
-  .tragic-sticky {
+  .theme-sticky {
     position: relative;
     height: auto;
     min-height: 100svh;
@@ -2750,10 +2579,15 @@ footer p:last-child {
     padding-bottom: 96px;
   }
 
-  .tragic-sequence,
-  .tragic-orbit {
+  .theme-sequence {
     animation: none !important;
     opacity: 1 !important;
+  }
+
+  .theme-path {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .ensemble-pianist,

@@ -85,7 +85,7 @@ const faqs = [
 export default function Home() {
   const [ticketNoticeOpen, setTicketNoticeOpen] = useState(false);
   const musiciansRef = useRef<HTMLElement>(null);
-  const tragicThemeRef = useRef<HTMLElement>(null);
+  const themeRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const section = musiciansRef.current;
@@ -120,7 +120,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const section = tragicThemeRef.current;
+    const section = themeRef.current;
     const motionAllowed = window.matchMedia(
       "(min-width: 981px) and (prefers-reduced-motion: no-preference)",
     ).matches;
@@ -129,9 +129,9 @@ export default function Home() {
       return;
     }
 
-    const visual = section.querySelector<HTMLElement>(".tragic-visual");
+    const visual = section.querySelector<HTMLElement>(".theme-visual");
     const finale = section.querySelector<HTMLElement>(
-      ".tragic-final-question",
+      ".theme-final-question",
     );
 
     if (!visual) {
@@ -314,6 +314,63 @@ export default function Home() {
       </section>
 
       <section
+        ref={themeRef}
+        className="theme-section"
+        aria-labelledby="theme-title"
+      >
+        <div className="theme-sticky">
+          <div className="theme-copy">
+            <div className="theme-kicker">
+              <span>Тема первой встречи</span>
+              <i aria-hidden="true" />
+              <b>№ 01</b>
+            </div>
+            <h2 id="theme-title">Созданные друг для друга проходят мимо</h2>
+            <p className="theme-lead">
+              Мы любим не тех, кто похож на наших родителей. Мы любим тех, кто
+              похож на то, что однажды открылось в нас самих.
+            </p>
+            <div className="theme-body">
+              <p>
+                Если это так, то встреча — вопрос не удачи, а готовности узнать.
+                И тогда понятно, почему люди, которым стоило встретиться,
+                расходятся: пути пересеклись некстати, и никто никого не узнал.
+              </p>
+              <p>
+                На первом вечере разберём, что именно мы узнаём в другом
+                человеке — и почему это чувство всегда возвращается одним и тем
+                же.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="theme-visual"
+            role="img"
+            aria-label="Две линии проходят рядом, но не встречаются"
+          >
+            <div className="theme-paths" aria-hidden="true">
+              <span className="theme-path theme-path-left" />
+              <span className="theme-path theme-path-right" />
+            </div>
+
+            <blockquote className="theme-quote theme-sequence">
+              <p>
+                Но люди, созданные друг для друга,
+                <br />
+                Соединяются, увы, так редко
+              </p>
+              <cite>Николай Гумилёв</cite>
+            </blockquote>
+
+            <div className="theme-final-question theme-sequence">
+              Кого мы проходим, не узнав?
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
         ref={musiciansRef}
         className="musicians-section"
         aria-labelledby="musicians-title"
@@ -381,103 +438,6 @@ export default function Home() {
               <strong>Музыка возникает в моменте — вместе с беседой</strong>
             </figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section
-        ref={tragicThemeRef}
-        className="tragic-section"
-        aria-labelledby="theme-title"
-      >
-        <div className="tragic-sticky">
-          <div className="tragic-copy">
-            <div className="tragic-kicker">
-              <span>Тема первой встречи</span>
-              <i aria-hidden="true" />
-              <b>№ 01</b>
-            </div>
-            <h2 id="theme-title">Трагический характер</h2>
-            <p className="tragic-lead">
-              Характер становится судьбой, когда мы не узнаём собственную
-              ошибку в её следующем повторении.
-            </p>
-            <div className="tragic-body">
-              <p>
-                Событие произошло, но опыт из него не извлечён. Поэтому мы снова
-                приходим в ту же точку — с теми же чувствами, страхами и
-                поступками.
-              </p>
-              <p>
-                На первой встрече попробуем увидеть этот круг в собственной
-                жизни. Можно включиться в беседу или просто слушать.
-              </p>
-            </div>
-          </div>
-
-          <div
-            className="tragic-visual"
-            role="img"
-            aria-label="Человек снова и снова идёт по замкнутому кругу, оставляя следы повторения; в конце в круге появляется небольшой разрыв"
-          >
-            <span className="tragic-field" aria-hidden="true" />
-            <span className="tragic-ring tragic-ring-base" aria-hidden="true" />
-            <span
-              className="tragic-ring tragic-ring-echo-one tragic-sequence"
-              aria-hidden="true"
-            />
-            <span
-              className="tragic-ring tragic-ring-echo-two tragic-sequence"
-              aria-hidden="true"
-            />
-            <span
-              className="tragic-ring tragic-ring-echo-three tragic-sequence"
-              aria-hidden="true"
-            />
-
-            <span className="tragic-scar tragic-scar-one" aria-hidden="true" />
-            <span className="tragic-scar tragic-scar-two" aria-hidden="true" />
-            <span className="tragic-scar tragic-scar-three" aria-hidden="true" />
-
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="tragic-ghost tragic-ghost-one tragic-sequence"
-              src={assetPath("/tragic-loop-walker.png")}
-              alt=""
-              aria-hidden="true"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="tragic-ghost tragic-ghost-two tragic-sequence"
-              src={assetPath("/tragic-loop-walker.png")}
-              alt=""
-              aria-hidden="true"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="tragic-walker tragic-orbit"
-              src={assetPath("/tragic-loop-walker.png")}
-              alt=""
-              aria-hidden="true"
-            />
-
-            <blockquote className="tragic-quote tragic-sequence">
-              <p>
-                «Ад — это забытое.
-                <br />
-                А раз забытое, значит,
-                <br />
-                будет повторяться».
-              </p>
-              <cite>Мераб Мамардашвили</cite>
-            </blockquote>
-
-            <span className="tragic-break tragic-sequence" aria-hidden="true" />
-            <div className="tragic-final-question tragic-sequence">
-              Какой опыт должен быть извлечён,
-              <br />
-              чтобы круг разомкнулся?
-            </div>
-          </div>
         </div>
       </section>
 
