@@ -34,6 +34,8 @@ interface WaitlistRow {
   created_at: string;
 }
 
+const GITHUB_PAGES_ORIGIN = "https://vbondarenko7.github.io";
+
 const json = (body: unknown, status = 200) =>
   Response.json(body, {
     status,
@@ -41,6 +43,24 @@ const json = (body: unknown, status = 200) =>
       "cache-control": "no-store",
     },
   });
+
+function withWaitlistCors(response: Response, request: Request) {
+  if (request.headers.get("origin") !== GITHUB_PAGES_ORIGIN) {
+    return response;
+  }
+
+  const headers = new Headers(response.headers);
+  headers.set("access-control-allow-headers", "content-type");
+  headers.set("access-control-allow-methods", "POST, OPTIONS");
+  headers.set("access-control-allow-origin", GITHUB_PAGES_ORIGIN);
+  headers.set("vary", "Origin");
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 function normalizeContact(contact: string) {
   const trimmed = contact.trim();
@@ -219,7 +239,11 @@ const worker = {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/waitlist") {
-      return handleWaitlist(request, env);
+      if (request.method === "OPTIONS") {
+        return withWaitlistCors(new Response(null, { status: 204 }), request);
+      }
+
+      return withWaitlistCors(await handleWaitlist(request, env), request);
     }
 
     if (url.pathname === "/_vinext/image") {

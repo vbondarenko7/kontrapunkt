@@ -174,6 +174,62 @@ test("waitlist endpoint rejects invalid or unconsented contacts", async () => {
   assert.equal(inserts.length, 0);
 });
 
+test("waitlist endpoint allows the GitHub Pages origin only", async () => {
+  const worker = await loadWorker();
+  const { env } = createEnv();
+  const allowedOrigin = "https://vbondarenko7.github.io";
+  const payload = JSON.stringify({
+    contact: "visitor@example.com",
+    consent: true,
+  });
+
+  const preflight = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "OPTIONS",
+      headers: { origin: allowedOrigin },
+    }),
+    env,
+    ctx,
+  );
+  const allowed = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        origin: allowedOrigin,
+      },
+      body: payload,
+    }),
+    env,
+    ctx,
+  );
+  const blocked = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        origin: "https://example.com",
+      },
+      body: JSON.stringify({
+        contact: "visitor-two@example.com",
+        consent: true,
+      }),
+    }),
+    env,
+    ctx,
+  );
+
+  assert.equal(preflight.status, 204);
+  assert.equal(
+    preflight.headers.get("access-control-allow-origin"),
+    allowedOrigin,
+  );
+  assert.equal(allowed.status, 201);
+  assert.equal(allowed.headers.get("access-control-allow-origin"), allowedOrigin);
+  assert.equal(blocked.status, 201);
+  assert.equal(blocked.headers.get("access-control-allow-origin"), null);
+});
+
 test("waitlist export is owner-only and returns a CSV", async () => {
   const worker = await loadWorker();
   const { env } = createEnv();

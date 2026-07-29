@@ -4,6 +4,8 @@ import type { CSSProperties, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const waitlistApiUrl =
+  process.env.NEXT_PUBLIC_WAITLIST_API_URL ?? `${basePath}/api/waitlist`;
 const assetPath = (path: string) => `${basePath}${path}`;
 
 const formatSteps = [
@@ -202,7 +204,7 @@ export default function Home() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch(`${basePath}/api/waitlist`, {
+      const response = await fetch(waitlistApiUrl, {
         method: "POST",
         headers: {
           "content-type": "application/json",
