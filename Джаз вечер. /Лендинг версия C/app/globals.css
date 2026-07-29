@@ -2294,6 +2294,12 @@ footer p:last-child {
 }
 
 @media (max-width: 980px) {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   .site-header {
     grid-template-columns: 1fr auto;
     width: min(100% - 40px, 1160px);
@@ -2665,6 +2671,18 @@ footer p:last-child {
   .modal h2 {
     padding-right: 25px;
     font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .format-intro h2,
+  .ticket-copy h2,
+  .faq-heading h2,
+  .musicians-intro h2,
+  .theme-copy h2,
+  .layered-copy h2,
+  .final-section h2 {
+    font-size: 36px;
   }
 }
 
