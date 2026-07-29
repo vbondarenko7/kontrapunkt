@@ -2484,46 +2484,53 @@ footer p:last-child {
   }
 
   .ensemble-stage {
-    height: 540px;
+    display: grid;
+    justify-items: center;
+    height: auto;
     margin-top: 52px;
   }
 
-  .ensemble-words {
-    top: 13%;
-    font-size: clamp(57px, 18vw, 78px);
-    line-height: 0.75;
-  }
-
-  .ensemble-words span:last-child {
-    margin-top: 0.58em;
-  }
-
+  .ensemble-words,
   .ensemble-pianist {
-    bottom: 67px;
-    left: -42%;
-    width: 126%;
+    display: none;
   }
 
   .ensemble-bassist {
-    right: -10%;
-    bottom: 63px;
-    width: 65%;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(78%, 300px);
+    max-height: 430px;
   }
 
   .ensemble-note {
-    right: 50%;
-    bottom: 0;
+    position: relative;
+    right: auto;
+    bottom: auto;
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
     width: 100%;
+    margin-top: 24px;
     padding: 13px 16px;
     border-radius: 3px;
+    transform: none;
   }
 
   .ensemble-note strong {
     font-size: 19px;
     text-align: left;
+  }
+
+  .musicians-section[data-motion-ready="true"] .ensemble-bassist,
+  .musicians-section[data-motion-ready="true"] .ensemble-note {
+    opacity: 1;
+    transform: none;
+  }
+
+  .musicians-section[data-active="true"] .ensemble-bassist,
+  .musicians-section[data-active="true"] .ensemble-note {
+    animation: none;
   }
 
   .host-profile {
