@@ -36,6 +36,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+main {
+  overflow-x: clip;
+}
+
 ::selection {
   color: var(--ivory);
   background: var(--red);
@@ -366,6 +370,10 @@ h3 {
   text-transform: none;
 }
 
+.hero h1 em {
+  display: block;
+}
+
 .hero-copy {
   max-width: 570px;
   margin-bottom: 34px;
@@ -613,7 +621,7 @@ h3 {
 .format-storyline {
   position: absolute;
   top: 0;
-  bottom: 18px;
+  bottom: 158px;
   left: 12px;
   width: 1px;
   background: linear-gradient(
@@ -1005,7 +1013,9 @@ h3 {
   line-height: 1.65;
 }
 
-.host-copy > p + p {
+.host-copy > p:not(.eyebrow, .host-signature)
+  + p:not(.eyebrow, .host-signature),
+.host-copy > .host-signature {
   margin-top: 24px;
 }
 
@@ -1702,13 +1712,12 @@ footer p:last-child {
 
 @media (min-width: 981px) {
   .hero {
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: hidden;
   }
 
   .hero-tint,
   .hero-shade {
-    bottom: -12svh;
+    bottom: 0;
   }
 
   .site-header {
@@ -1749,6 +1758,7 @@ footer p:last-child {
   #format {
     position: relative;
     z-index: 6;
+    overflow: clip;
     isolation: isolate;
     padding: 0;
     background: linear-gradient(180deg, transparent 0, #0b0908 10svh, #0b0908 100%);
@@ -1848,8 +1858,22 @@ footer p:last-child {
 
   #format .format-storyline {
     top: 4%;
-    bottom: 18px;
+    bottom: 168px;
     left: 50%;
+  }
+
+  #format .format-closing::before {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 11px;
+    height: 11px;
+    margin-left: -5px;
+    border: 1px solid rgba(240, 180, 170, 0.9);
+    border-radius: 50%;
+    background: #17130f;
+    box-shadow: 0 0 0 6px rgba(163, 44, 44, 0.1);
+    content: "";
   }
 
   #format .format-chapter {
@@ -1992,7 +2016,7 @@ footer p:last-child {
 
   .theme-sticky {
     position: relative;
-    grid-template-columns: minmax(430px, 0.88fr) minmax(560px, 1.12fr);
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
     gap: clamp(50px, 5.5vw, 92px);
     align-items: center;
     width: min(100% - 64px, 1320px);
@@ -2002,8 +2026,8 @@ footer p:last-child {
 
   .theme-copy h2 {
     max-width: 570px;
-    font-size: clamp(68px, 6.25vw, 96px);
-    line-height: 0.92;
+    font-size: clamp(58px, 5vw, 76px);
+    line-height: 0.96;
   }
 
   .theme-lead {
@@ -2347,6 +2371,10 @@ footer p:last-child {
 
   .format-chapter h3 {
     font-size: 34px;
+  }
+
+  .format-storyline {
+    bottom: 237px;
   }
 
   .format-frame > span {
