@@ -829,13 +829,31 @@ h3 {
   line-height: 1.72;
 }
 
-.musicians-copy span {
-  display: block;
+.musicians-fact {
   margin-top: 22px;
-  color: #9e8b7b;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-dark);
+}
+
+.musicians-fact span,
+.musicians-fact strong {
+  display: block;
+}
+
+.musicians-fact span {
+  margin-bottom: 7px;
+  color: var(--red);
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.musicians-fact strong {
+  color: var(--ivory);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .ensemble-stage {
@@ -919,43 +937,6 @@ h3 {
   width: min(38%, 470px);
 }
 
-.ensemble-name {
-  position: absolute;
-  z-index: 4;
-  display: grid;
-  gap: 3px;
-  width: max-content;
-  padding-top: 11px;
-  border-top: 1px solid rgba(216, 154, 113, 0.58);
-}
-
-.ensemble-name-piano {
-  bottom: 12%;
-  left: 8%;
-}
-
-.ensemble-name-bass {
-  right: 5%;
-  bottom: 16%;
-  text-align: right;
-}
-
-.ensemble-name span {
-  color: #d89a71;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.ensemble-name strong {
-  color: rgba(242, 235, 221, 0.86);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 19px;
-  font-style: italic;
-  font-weight: 500;
-}
-
 .ensemble-note {
   position: absolute;
   z-index: 5;
@@ -990,6 +971,50 @@ h3 {
   font-weight: 500;
 }
 
+.host-profile {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(56px, 8vw, 118px);
+  align-items: center;
+  width: min(100% - 64px, 1160px);
+  margin: 96px auto 24px;
+}
+
+.host-photo {
+  display: grid;
+  aspect-ratio: 4 / 5;
+  place-items: center;
+  padding: 24px;
+  border: 1px solid var(--rule-dark);
+  color: var(--mute-dark);
+  background: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.host-copy .eyebrow {
+  margin-bottom: 26px;
+}
+
+.host-copy > p:not(.eyebrow, .host-signature) {
+  margin: 0;
+  color: var(--ivory);
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.host-copy > p + p {
+  margin-top: 24px;
+}
+
+.host-copy .host-signature {
+  color: var(--mute-dark);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
 .musicians-section[data-motion-ready="true"] .ensemble-pianist {
   opacity: 0;
   transform: translate3d(-88px, 18px, 0) scale(0.97);
@@ -1013,7 +1038,6 @@ h3 {
 }
 
 .musicians-section[data-motion-ready="true"] .ensemble-words span,
-.musicians-section[data-motion-ready="true"] .ensemble-name,
 .musicians-section[data-motion-ready="true"] .ensemble-note {
   opacity: 0;
   transform: translate3d(0, 46px, 0);
@@ -1030,15 +1054,6 @@ h3 {
 
 .musicians-section[data-active="true"] .ensemble-words span:last-child {
   animation-delay: 180ms;
-}
-
-.musicians-section[data-active="true"] .ensemble-name {
-  animation: ensemble-label-arrive 620ms cubic-bezier(0.16, 1, 0.3, 1) 960ms
-    both;
-}
-
-.musicians-section[data-active="true"] .ensemble-name-bass {
-  animation-delay: 1080ms;
 }
 
 .musicians-section[data-active="true"] .ensemble-note {
@@ -1106,17 +1121,6 @@ h3 {
     opacity: 1;
   }
   100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes ensemble-label-arrive {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0);
-  }
-  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
@@ -2412,20 +2416,6 @@ footer p:last-child {
     width: 65%;
   }
 
-  .ensemble-name {
-    padding-top: 7px;
-  }
-
-  .ensemble-name-piano {
-    bottom: 105px;
-    left: 1%;
-  }
-
-  .ensemble-name-bass {
-    right: 1%;
-    bottom: 138px;
-  }
-
   .ensemble-note {
     right: 50%;
     bottom: 0;
@@ -2440,6 +2430,21 @@ footer p:last-child {
   .ensemble-note strong {
     font-size: 19px;
     text-align: left;
+  }
+
+  .host-profile {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    width: 100%;
+    margin-top: 72px;
+  }
+
+  .host-photo {
+    width: min(100%, 360px);
+  }
+
+  .host-copy > p:not(.eyebrow, .host-signature) {
+    font-size: 18px;
   }
 
   .theme-copy h2 {
@@ -2592,8 +2597,7 @@ footer p:last-child {
 
   .ensemble-pianist,
   .ensemble-bassist,
-  .ensemble-words span,
-  .ensemble-name {
+  .ensemble-words span {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

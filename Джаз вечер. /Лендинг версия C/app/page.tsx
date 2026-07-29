@@ -378,7 +378,7 @@ export default function Home() {
         <div className="musicians-shell">
           <div className="musicians-intro">
             <div>
-              <p className="eyebrow light">Музыканты вечера</p>
+              <p className="eyebrow light">Кто на сцене</p>
               <h2 id="musicians-title">
                 Они не сопровождают беседу.
                 <em>Они отвечают ей.</em>
@@ -391,7 +391,13 @@ export default function Home() {
                 напряжение и настроение зала — и превращают всё это в музыку,
                 которой раньше не было.
               </p>
-              <span>Состав и короткие биографии добавим после анонса.</span>
+              <div className="musicians-fact">
+                <span>Опыт</span>
+                <strong>
+                  [ЗАПОЛНИТЬ: действующие джазовые музыканты, играют в московских
+                  клубах более N лет]
+                </strong>
+              </div>
             </div>
           </div>
 
@@ -424,20 +430,30 @@ export default function Home() {
               height="1536"
             />
 
-            <div className="ensemble-name ensemble-name-piano">
-              <span>Рояль</span>
-              <strong>Имя музыканта — скоро</strong>
-            </div>
-            <div className="ensemble-name ensemble-name-bass">
-              <span>Контрабас</span>
-              <strong>Имя музыканта — скоро</strong>
-            </div>
-
             <figcaption className="ensemble-note">
               <span>Не готовая программа</span>
               <strong>Музыка возникает в моменте — вместе с беседой</strong>
             </figcaption>
           </figure>
+
+          <div className="host-profile">
+            <div className="host-photo">[ЗАПОЛНИТЬ: фото ведущего]</div>
+            <div className="host-copy">
+              <p className="eyebrow light">Ведущий</p>
+              <p>
+                Я не преподаватель и не философ. Четыре года я веду
+                телеграм-канал, где разбираю эти вопросы для себя — там
+                накопилось больше двухсот заметок. Мне негде было говорить об
+                этом вживую, поэтому я сделал такой вечер.
+              </p>
+              <p>
+                Моя работа здесь — задать тему и следить, чтобы услышали всех.
+              </p>
+              <p className="host-signature">
+                Вадим Бондаренко · автор формата
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
