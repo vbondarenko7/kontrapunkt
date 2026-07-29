@@ -435,14 +435,17 @@ h3 {
   transform: none;
 }
 
+/* Лак — это почти один тон: узкая светлая полоса у верхней кромки,
+   ровное тело и потемнение к низу. Широкая растяжка читается глянцем. */
 .button-primary,
 .button-ticket {
   color: var(--ivory);
   background: linear-gradient(
     180deg,
-    #b53a36 0%,
-    var(--red) 48%,
-    var(--red-dark) 100%
+    #ad342f 0%,
+    var(--red) 16%,
+    var(--red) 68%,
+    #8d2729 100%
   );
   box-shadow:
     inset 0 1px 0 rgba(255, 213, 177, 0.22),
@@ -454,9 +457,10 @@ h3 {
 .button-ticket:hover {
   background: linear-gradient(
     180deg,
-    #bc403a 0%,
-    #aa302e 48%,
-    var(--red-dark) 100%
+    #b53a34 0%,
+    #a9302e 16%,
+    #a9302e 68%,
+    #92292a 100%
   );
   box-shadow:
     inset 0 1px 0 rgba(255, 219, 183, 0.25),
@@ -468,9 +472,10 @@ h3 {
 .button-ticket:not(:disabled):active {
   background: linear-gradient(
     180deg,
-    #ae3532 0%,
-    #9b292b 52%,
-    var(--red-dark) 100%
+    #9d2d2b 0%,
+    #97292a 20%,
+    #97292a 70%,
+    #832426 100%
   );
   box-shadow:
     inset 0 1px 0 rgba(255, 213, 177, 0.1),
@@ -1672,9 +1677,56 @@ h3 {
 
 .final-section .button {
   min-height: 68px;
-  padding-right: 42px;
-  padding-left: 42px;
+  padding-right: 70px;
+  padding-left: 70px;
   font-size: 14px;
+}
+
+/* На бордовой секции атмосфера сама красная, поэтому красная кнопка тонет.
+   Здесь контраст обратный: кость по бордовому. Отделка та же, лаковая. */
+.final-section .button-primary {
+  color: var(--burgundy);
+  background: linear-gradient(
+    180deg,
+    #fdf9f1 0%,
+    var(--ivory) 16%,
+    var(--ivory) 68%,
+    #ded4c2 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(120, 96, 64, 0.34),
+    0 13px 30px rgba(16, 4, 6, 0.46);
+}
+
+.final-section .button-primary:hover {
+  background: linear-gradient(
+    180deg,
+    #fffdf7 0%,
+    #f8f2e4 16%,
+    #f8f2e4 68%,
+    #e3d9c7 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(120, 96, 64, 0.36),
+    0 17px 38px rgba(16, 4, 6, 0.5);
+}
+
+.final-section .button-primary:not(:disabled):active {
+  background: linear-gradient(
+    180deg,
+    #ece3d3 0%,
+    #e7ddcb 20%,
+    #e7ddcb 70%,
+    #d2c7b3 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(120, 96, 64, 0.4),
+    0 4px 11px rgba(16, 4, 6, 0.42);
+  transform: translateY(2px);
+  transition-duration: 50ms;
 }
 
 footer {
