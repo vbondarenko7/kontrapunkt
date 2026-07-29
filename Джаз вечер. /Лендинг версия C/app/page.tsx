@@ -305,6 +305,10 @@ export default function Home() {
                 </div>
               </article>
             ))}
+            <p className="format-closing">
+              Ваше присутствие меняет музыку. Даже если вы промолчите весь
+              вечер.
+            </p>
           </div>
         </div>
       </section>

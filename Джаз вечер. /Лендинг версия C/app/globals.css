@@ -613,7 +613,7 @@ h3 {
 .format-storyline {
   position: absolute;
   top: 0;
-  bottom: 64px;
+  bottom: 18px;
   left: 12px;
   width: 1px;
   background: linear-gradient(
@@ -740,6 +740,18 @@ h3 {
   color: var(--mute-dark);
   font-size: 16px;
   line-height: 1.65;
+}
+
+.format-closing {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 100px auto 0;
+  color: var(--ivory);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 29px;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .musicians-section {
@@ -1919,7 +1931,7 @@ footer p:last-child {
 
   #format .format-storyline {
     top: 4%;
-    bottom: 8%;
+    bottom: 18px;
     left: 50%;
   }
 
