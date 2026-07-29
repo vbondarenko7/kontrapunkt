@@ -1432,25 +1432,6 @@ h3 {
   padding: 0;
 }
 
-.layered-scenario:nth-child(2) {
-  margin-left: 46px;
-}
-
-.layered-scenario:nth-child(3) {
-  margin-left: 14px;
-}
-
-.layered-scenario > span {
-  display: block;
-  margin-bottom: 4px;
-  color: #d89a71;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 18px;
-  font-style: italic;
-  font-weight: 500;
-  text-transform: none;
-}
-
 .layered-scenario h3 {
   margin: 0 0 6px;
   color: var(--ivory);
@@ -2493,11 +2474,6 @@ footer p:last-child {
 
   .layered-scenario {
     max-width: none;
-  }
-
-  .layered-scenario:nth-child(2),
-  .layered-scenario:nth-child(3) {
-    margin-left: 0;
   }
 
   .layered-scenario h3 {
