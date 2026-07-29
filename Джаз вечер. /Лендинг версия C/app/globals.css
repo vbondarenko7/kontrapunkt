@@ -2682,14 +2682,18 @@ footer p:last-child {
 }
 
 @media (max-width: 480px) {
+  .why-inner h2,
   .format-intro h2,
   .ticket-copy h2,
   .faq-heading h2,
-  .musicians-intro h2,
   .theme-copy h2,
   .layered-copy h2,
   .final-section h2 {
     font-size: 36px;
+  }
+
+  .musicians-intro h2 {
+    font-size: 32px;
   }
 }
 
