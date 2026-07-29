@@ -1,91 +1,173 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
 const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
 
-async function render() {
+async function loadWorker() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${Math.random()}`);
   const { default: worker } = await import(workerUrl.href);
+  return worker;
+}
 
-  return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
+function createEnv() {
+  const contacts = new Set();
+  const inserts = [];
+
+  return {
+    inserts,
+    env: {
       ASSETS: {
         fetch: async () => new Response("Not found", { status: 404 }),
       },
+      DB: {
+        prepare(sql) {
+          assert.match(sql, /INSERT INTO waitlist_leads/);
+          return {
+            bind(...values) {
+              return {
+                async run() {
+                  const normalizedContact = values[3];
+                  if (contacts.has(normalizedContact)) {
+                    throw new Error("UNIQUE constraint failed");
+                  }
+                  contacts.add(normalizedContact);
+                  inserts.push(values);
+                  return { success: true };
+                },
+              };
+            },
+          };
+        },
+      },
     },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+  };
 }
 
-test("server-renders the starter loading skeleton", async () => {
-  const response = await render();
+const ctx = {
+  waitUntil() {},
+  passThroughOnException() {},
+};
+
+test("server-renders the version D prelaunch page", async () => {
+  const worker = await loadWorker();
+  const { env } = createEnv();
+  const response = await worker.fetch(
+    new Request("http://localhost/", {
+      headers: { accept: "text/html" },
+    }),
+    env,
+    ctx,
+  );
+
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Building your site/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(
-    html,
-    /Your first version will appear here automatically when it’s ready\./,
-  );
-  assert.doesNotMatch(html, /Codex/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+  assert.match(html, /Разговор по душам/);
+  assert.match(html, /Узнать о старте продаж/);
+  assert.match(html, /Узнать дату первым/);
+  assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton/);
 });
 
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
-  ]);
-
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
-
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
+test("waitlist endpoint stores a consented contact", async () => {
+  const worker = await loadWorker();
+  const { env, inserts } = createEnv();
+  const response = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: " Вадим ",
+        contact: " Test@Example.com ",
+        consent: true,
+      }),
+    }),
+    env,
+    ctx,
   );
 
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
+  assert.equal(response.status, 201);
+  assert.equal(inserts.length, 1);
+  assert.equal(inserts[0][1], "Вадим");
+  assert.equal(inserts[0][2], "Test@Example.com");
+  assert.equal(inserts[0][3], "email:test@example.com");
+});
 
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
+test("waitlist endpoint treats duplicate contacts as success", async () => {
+  const worker = await loadWorker();
+  const { env, inserts } = createEnv();
+  const payload = JSON.stringify({
+    contact: "@JazzGuest",
+    consent: true,
+  });
+
+  const first = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: payload,
+    }),
+    env,
+    ctx,
+  );
+  const duplicate = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: payload,
+    }),
+    env,
+    ctx,
+  );
+
+  assert.equal(first.status, 201);
+  assert.equal(duplicate.status, 200);
+  assert.equal(inserts.length, 1);
+  assert.match(
+    (await duplicate.json()).message,
+    /уже есть в предварительном списке/,
+  );
+});
+
+test("waitlist endpoint rejects invalid or unconsented contacts", async () => {
+  const worker = await loadWorker();
+  const { env, inserts } = createEnv();
+
+  const invalid = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ contact: "not-a-contact", consent: true }),
+    }),
+    env,
+    ctx,
+  );
+  const unconsented = await worker.fetch(
+    new Request("http://localhost/api/waitlist", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ contact: "test@example.com", consent: false }),
+    }),
+    env,
+    ctx,
+  );
+
+  assert.equal(invalid.status, 400);
+  assert.equal(unconsented.status, 400);
+  assert.equal(inserts.length, 0);
+});
+
+test("generated migration creates the waitlist table and unique contact index", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const migration = await readFile(
+    new URL("drizzle/0000_deep_guardsmen.sql", templateRoot),
+    "utf8",
+  );
+
+  assert.match(migration, /CREATE TABLE `waitlist_leads`/);
+  assert.match(
+    migration,
+    /CREATE UNIQUE INDEX `waitlist_leads_contact_normalized_unique`/,
   );
 });

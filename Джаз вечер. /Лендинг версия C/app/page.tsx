@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import type { CSSProperties, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -82,8 +82,13 @@ const faqs = [
   },
 ];
 
+type WaitlistStatus = "idle" | "submitting" | "success" | "error";
+
 export default function Home() {
   const [ticketNoticeOpen, setTicketNoticeOpen] = useState(false);
+  const [waitlistStatus, setWaitlistStatus] =
+    useState<WaitlistStatus>("idle");
+  const [waitlistMessage, setWaitlistMessage] = useState("");
   const musiciansRef = useRef<HTMLElement>(null);
   const themeRef = useRef<HTMLElement>(null);
 
@@ -166,6 +171,69 @@ export default function Home() {
       delete section.dataset.complete;
     };
   }, []);
+
+  useEffect(() => {
+    if (!ticketNoticeOpen) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setTicketNoticeOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [ticketNoticeOpen]);
+
+  const openWaitlist = () => {
+    setWaitlistStatus("idle");
+    setWaitlistMessage("");
+    setTicketNoticeOpen(true);
+  };
+
+  const submitWaitlist = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setWaitlistStatus("submitting");
+    setWaitlistMessage("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(`${basePath}/api/waitlist`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          contact: formData.get("contact"),
+          consent: formData.get("consent") === "yes",
+          website: formData.get("website"),
+        }),
+      });
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message ?? "Не удалось сохранить контакт.");
+      }
+
+      setWaitlistStatus("success");
+      setWaitlistMessage(
+        result.message ?? "Готово. Мы сообщим, когда откроются продажи.",
+      );
+      form.reset();
+    } catch (error) {
+      setWaitlistStatus("error");
+      setWaitlistMessage(
+        error instanceof Error
+          ? error.message
+          : "Не удалось сохранить контакт. Попробуйте ещё раз.",
+      );
+    }
+  };
 
   return (
     <main id="top">
@@ -560,9 +628,9 @@ export default function Home() {
           <button
             className="button button-ticket"
             type="button"
-            onClick={() => setTicketNoticeOpen(true)}
+            onClick={openWaitlist}
           >
-            Купить билет
+            Узнать о старте продаж
           </button>
           <p className="limited">Количество мест ограничено камерным форматом.</p>
         </aside>
@@ -592,9 +660,9 @@ export default function Home() {
         <button
           className="button button-primary"
           type="button"
-          onClick={() => setTicketNoticeOpen(true)}
+          onClick={openWaitlist}
         >
-          Купить билет
+          Узнать дату первым
         </button>
       </section>
 
@@ -628,18 +696,83 @@ export default function Home() {
             >
               ×
             </button>
-            <p className="eyebrow">Продажи откроются после анонса</p>
-            <h2 id="ticket-modal-title">Дата следующего вечера скоро появится</h2>
-            <p>
-              Вместе с датой опубликуем тему, финальную стоимость и условия возврата.
-            </p>
-            <button
-              className="button button-dark"
-              type="button"
-              onClick={() => setTicketNoticeOpen(false)}
-            >
-              Понятно
-            </button>
+            {waitlistStatus === "success" ? (
+              <div className="waitlist-success" aria-live="polite">
+                <p className="eyebrow">Контакт сохранён</p>
+                <h2 id="ticket-modal-title">Вы в предварительном списке</h2>
+                <p>{waitlistMessage}</p>
+                <button
+                  className="button button-dark"
+                  type="button"
+                  onClick={() => setTicketNoticeOpen(false)}
+                >
+                  Закрыть
+                </button>
+              </div>
+            ) : (
+              <>
+                <p className="eyebrow">Предварительный список</p>
+                <h2 id="ticket-modal-title">Узнать о первом вечере</h2>
+                <p>
+                  Оставьте контакт — напишем один раз, когда появятся дата и
+                  билеты.
+                </p>
+                <form className="waitlist-form" onSubmit={submitWaitlist}>
+                  <label>
+                    <span>Имя <small>необязательно</small></span>
+                    <input
+                      autoComplete="name"
+                      maxLength={80}
+                      name="name"
+                      placeholder="Как к вам обращаться"
+                      type="text"
+                    />
+                  </label>
+                  <label>
+                    <span>Email или Telegram</span>
+                    <input
+                      autoComplete="email"
+                      autoFocus
+                      maxLength={160}
+                      name="contact"
+                      placeholder="name@example.com или @username"
+                      required
+                      type="text"
+                    />
+                  </label>
+                  <label className="waitlist-consent">
+                    <input name="consent" required type="checkbox" value="yes" />
+                    <span>Согласен получить сообщение о первом вечере.</span>
+                  </label>
+                  <label className="waitlist-honeypot" aria-hidden="true">
+                    <span>Сайт</span>
+                    <input
+                      autoComplete="off"
+                      name="website"
+                      tabIndex={-1}
+                      type="text"
+                    />
+                  </label>
+                  {waitlistMessage && (
+                    <p
+                      className="waitlist-error"
+                      role="alert"
+                    >
+                      {waitlistMessage}
+                    </p>
+                  )}
+                  <button
+                    className="button button-dark"
+                    disabled={waitlistStatus === "submitting"}
+                    type="submit"
+                  >
+                    {waitlistStatus === "submitting"
+                      ? "Сохраняем…"
+                      : "Оставить контакт"}
+                  </button>
+                </form>
+              </>
+            )}
           </section>
         </div>
       )}

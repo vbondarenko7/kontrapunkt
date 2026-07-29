@@ -428,6 +428,12 @@ h3 {
   transform: translateY(-2px);
 }
 
+.button:disabled {
+  cursor: wait;
+  opacity: 0.66;
+  transform: none;
+}
+
 .button-primary,
 .button-ticket {
   color: var(--ivory);
@@ -1687,6 +1693,88 @@ footer p:last-child {
 .button-dark {
   color: var(--ivory);
   background: var(--black);
+}
+
+.waitlist-form {
+  display: grid;
+  gap: 18px;
+}
+
+.waitlist-form > label:not(.waitlist-consent, .waitlist-honeypot) {
+  display: grid;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.waitlist-form label small {
+  color: var(--mute-light);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.waitlist-form input[type="text"] {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid #c9bfb1;
+  border-radius: 4px;
+  color: var(--ink);
+  background: #fffdf8;
+  font: inherit;
+}
+
+.waitlist-form input[type="text"]::placeholder {
+  color: #9a8e81;
+}
+
+.waitlist-form input[type="text"]:focus {
+  border-color: var(--red);
+  outline: 3px solid rgba(163, 44, 44, 0.14);
+}
+
+.waitlist-consent {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  color: var(--mute-light);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.waitlist-consent input {
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  accent-color: var(--red);
+}
+
+.waitlist-form .button {
+  width: 100%;
+}
+
+.waitlist-error {
+  margin: -5px 0 0;
+  color: var(--red);
+  font-size: 13px;
+}
+
+.waitlist-honeypot {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.waitlist-success > p:not(.eyebrow) {
+  margin-bottom: 27px;
+  color: var(--mute-light);
 }
 
 @media (min-width: 981px) {
