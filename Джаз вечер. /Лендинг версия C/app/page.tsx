@@ -226,8 +226,8 @@ export default function Home() {
             <strong>Разговор и джазовая импровизация</strong>
           </div>
           <div>
-            <span>Для кого</span>
-            <strong>Для тех, кто ценит интеллектуальный и творческий досуг</strong>
+            <span>Когда</span>
+            <strong>[ЗАПОЛНИТЬ: дата и время]</strong>
           </div>
         </div>
       </section>
