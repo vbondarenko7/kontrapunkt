@@ -2541,7 +2541,18 @@ footer p:last-child {
   }
 
   .host-photo {
-    width: min(100%, 360px);
+    width: min(72vw, 224px);
+    height: 280px;
+    aspect-ratio: auto;
+    justify-self: start;
+    padding: 18px;
+    overflow: hidden;
+  }
+
+  .host-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .host-copy > p:not(.eyebrow, .host-signature) {
