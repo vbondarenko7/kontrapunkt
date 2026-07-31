@@ -65,7 +65,7 @@ const ctx = {
   passThroughOnException() {},
 };
 
-test("server-renders the version D prelaunch page", async () => {
+test("server-renders the approved version D copy without the waitlist UI", async () => {
   const worker = await loadWorker();
   const { env } = createEnv();
   const response = await worker.fetch(
@@ -81,8 +81,10 @@ test("server-renders the version D prelaunch page", async () => {
 
   const html = await response.text();
   assert.match(html, /Разговор по душам/);
-  assert.match(html, /Узнать о старте продаж/);
-  assert.match(html, /Узнать дату первым/);
+  assert.match(html, /на который отвечает/);
+  assert.match(html, /Купить билет/);
+  assert.match(html, /disabled=""/);
+  assert.doesNotMatch(html, /Предварительный список|Оставить контакт/);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton/);
 });
 

@@ -366,17 +366,6 @@ h3 {
   color: #d9a5a2;
 }
 
-.hero-script {
-  margin: 0 0 2px 4px;
-  color: #f0b4aa;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 40px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: var(--leading-heading);
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
-}
-
 .hero h1 {
   max-width: 1000px;
   margin-bottom: 28px;
@@ -450,12 +439,12 @@ h3 {
   transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
-.button:hover {
+.button:not(:disabled):hover {
   transform: translateY(-2px);
 }
 
 .button:disabled {
-  cursor: wait;
+  cursor: not-allowed;
   opacity: 0.66;
   transform: none;
 }
@@ -1110,6 +1099,17 @@ h3 {
   letter-spacing: 0.05em;
 }
 
+.host-copy a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(217, 165, 162, 0.7);
+  text-underline-offset: 0.18em;
+}
+
+.host-copy a:hover {
+  color: var(--ivory);
+}
+
 .musicians-section[data-motion-ready="true"] .ensemble-pianist {
   opacity: 0;
   transform: translate3d(-88px, 18px, 0) scale(0.97);
@@ -1557,27 +1557,6 @@ h3 {
   background: var(--ivory);
 }
 
-.trust-note {
-  display: grid;
-  gap: 7px;
-  max-width: 610px;
-  margin-top: 38px;
-  padding-top: 23px;
-  border-top: 1px solid var(--rule-light);
-}
-
-.trust-note strong {
-  color: var(--red);
-  font-size: var(--type-label);
-  font-weight: 600;
-  line-height: var(--leading-label);
-  text-transform: uppercase;
-}
-
-.trust-note span {
-  color: var(--mute-light);
-}
-
 .ticket-card {
   padding: 37px;
   border: 0;
@@ -1631,21 +1610,20 @@ h3 {
 .ticket-card ul {
   display: grid;
   gap: 13px;
-  margin: 27px 0 29px;
+  margin: 27px 0 18px;
   padding-left: 20px;
   color: #d5c6b5;
 }
 
-.button-ticket {
-  width: 100%;
-}
-
-.limited {
-  margin: 15px 0 0;
+.ticket-terms {
+  margin: 0 0 29px;
   color: #ad9d8c;
   font-size: var(--type-ui);
-  line-height: var(--leading-label);
-  text-align: center;
+  line-height: var(--leading-body);
+}
+
+.button-ticket {
+  width: 100%;
 }
 
 .faq-section {
@@ -1858,151 +1836,6 @@ footer p:last-child {
   color: var(--mute-dark);
   font-size: var(--type-lead);
   line-height: var(--leading-lead);
-}
-
-.modal-backdrop {
-  position: fixed;
-  z-index: 100;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: rgba(10, 7, 5, 0.84);
-}
-
-.modal {
-  position: relative;
-  width: min(100%, 520px);
-  padding: 41px;
-  border: 1px solid var(--rule-light);
-  border-radius: 6px;
-  color: var(--ink);
-  background: var(--ivory);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.4);
-}
-
-.modal h2 {
-  margin-bottom: 19px;
-  font-size: 40px;
-  line-height: var(--leading-heading);
-}
-
-.modal > p:not(.eyebrow) {
-  margin-bottom: 27px;
-  color: var(--mute-light);
-}
-
-.modal-close {
-  position: absolute;
-  top: 13px;
-  right: 13px;
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  color: var(--ink);
-  background: transparent;
-  cursor: pointer;
-  font-size: var(--type-accent);
-  line-height: 1;
-}
-
-.modal-close:hover {
-  background: var(--rule-light);
-}
-
-.button-dark {
-  color: var(--ivory);
-  background: var(--black);
-}
-
-.waitlist-form {
-  display: grid;
-  gap: 18px;
-}
-
-.waitlist-form > label:not(.waitlist-consent, .waitlist-honeypot) {
-  display: grid;
-  gap: 8px;
-  color: var(--ink);
-  font-size: var(--type-ui);
-  font-weight: 600;
-  line-height: var(--leading-label);
-}
-
-.waitlist-form label small {
-  color: var(--mute-light);
-  font-size: var(--type-label);
-  font-weight: 400;
-  line-height: var(--leading-label);
-}
-
-.waitlist-form input[type="text"] {
-  width: 100%;
-  min-height: 50px;
-  padding: 0 14px;
-  border: 1px solid #c9bfb1;
-  border-radius: 4px;
-  color: var(--ink);
-  background: #fffdf8;
-  font-family: inherit;
-  font-size: var(--type-body);
-  font-weight: 400;
-  line-height: var(--leading-body);
-}
-
-.waitlist-form input[type="text"]::placeholder {
-  color: #9a8e81;
-}
-
-.waitlist-form input[type="text"]:focus {
-  border-color: var(--red);
-  outline: 3px solid rgba(163, 44, 44, 0.14);
-}
-
-.waitlist-consent {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 10px;
-  align-items: start;
-  color: var(--mute-light);
-  cursor: pointer;
-  font-size: var(--type-ui);
-  line-height: var(--leading-label);
-}
-
-.waitlist-consent input {
-  width: 16px;
-  height: 16px;
-  margin: 1px 0 0;
-  accent-color: var(--red);
-}
-
-.waitlist-form .button {
-  width: 100%;
-}
-
-.waitlist-error {
-  margin: -5px 0 0;
-  color: var(--red);
-  font-size: var(--type-ui);
-  line-height: var(--leading-label);
-}
-
-.waitlist-honeypot {
-  position: absolute;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.waitlist-success > p:not(.eyebrow) {
-  margin-bottom: 27px;
-  color: var(--mute-light);
 }
 
 @media (min-width: 981px) {
@@ -2471,14 +2304,8 @@ footer p:last-child {
       linear-gradient(125deg, #2b1b15, #17110e 72%);
   }
 
-  .ticket-copy > p:not(.eyebrow),
-  .trust-note span {
+  .ticket-copy > p:not(.eyebrow) {
     color: var(--mute-dark);
-  }
-
-  .trust-note {
-    padding-top: 0;
-    border-top: 0;
   }
 
   .ticket-card {
@@ -2637,16 +2464,17 @@ footer p:last-child {
     margin-bottom: 30px;
   }
 
-  .hero-script {
-    font-size: var(--type-accent);
-  }
-
   .hero h1 {
     font-size: 44px;
   }
 
   .hero h1 > span {
-    font-size: 36px;
+    font-size: clamp(22px, 7.2vw, 28px);
+    white-space: nowrap;
+  }
+
+  .hero h1 em {
+    display: inline;
   }
 
   .hero-copy {
@@ -2896,10 +2724,6 @@ footer p:last-child {
     font-size: 44px;
   }
 
-  .limited {
-    font-size: var(--type-ui);
-  }
-
   .final-section {
     padding: 84px 20px;
   }
@@ -2920,14 +2744,6 @@ footer p:last-child {
     grid-column: auto;
   }
 
-  .modal {
-    padding: 33px 23px 27px;
-  }
-
-  .modal h2 {
-    padding-right: 25px;
-    font-size: var(--type-accent);
-  }
 }
 
 @media (max-width: 480px) {

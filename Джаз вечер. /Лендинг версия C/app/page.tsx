@@ -1,12 +1,9 @@
 "use client";
 
-import type { CSSProperties, FormEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
+import { useEffect, useRef } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const isStaticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "true";
-const waitlistApiUrl =
-  process.env.NEXT_PUBLIC_WAITLIST_API_URL ?? `${basePath}/api/waitlist`;
 const assetPath = (path: string) => `${basePath}${path}`;
 
 const formatSteps = [
@@ -14,7 +11,7 @@ const formatSteps = [
     number: "01",
     marker: "Беседа",
     title: "Мысль возникает в беседе",
-    text: "Ведущий задаёт тему. Кто-то делится мыслью, остальные слушают.",
+    text: "Ведущий задаёт тему. Кто-то из гостей говорит первым, остальные слушают.",
     image: "01-conversation",
     imageAlt: "Гости внимательно слушают друг друга за столом",
     cutout: "format-host-stage-full-cutout.webp",
@@ -23,16 +20,16 @@ const formatSteps = [
     number: "02",
     marker: "Импровизация",
     title: "Музыка, которой раньше не было",
-    text: "Музыканты подхватывают мысль, её ритм и настроение — и сразу переводят их в звук. Эту пьесу нельзя заранее отрепетировать или повторить.",
+    text: "Музыканты слушают гостей и следят за настроением зала. В нужный момент ведущий даёт им знак начать импровизацию.",
     image: "02-musical-response",
-    imageAlt: "Джазовое трио импровизирует на сцене",
+    imageAlt: "Джазовые музыканты импровизируют на сцене",
     cutout: "format-bassist-cutout.webp",
   },
   {
     number: "03",
     marker: "Новый круг",
-    title: "Музыка возвращает тему залу",
-    text: "После импровизации беседа продолжается. Та же мысль звучит иначе — и начинается новый круг.",
+    title: "Импровизация меняет ход беседы",
+    text: "Разговор продолжается, но та же мысль теперь звучит иначе — так начинается новый круг.",
     image: "03-return-to-room",
     imageAlt: "Гости продолжают беседу после музыкальной импровизации",
     cutout: "format-audience-row-full-cutout.webp",
@@ -41,16 +38,16 @@ const formatSteps = [
 
 const scenarios = [
   {
-    title: "Одному здесь не одиноко",
-    text: "Общая тема делает вас частью вечера без светских знакомств и неловких вопросов.",
+    title: "Можно прийти без компании",
+    text: "Не нужно заранее знать других гостей или специально с кем-то знакомиться: общая тема объединяет весь зал.",
   },
   {
     title: "Готовиться не нужно",
-    text: "Мы говорим не терминами, а через ситуации и чувства, знакомые каждому.",
+    text: "Мы говорим о том, что знакомо по собственному опыту. Специальных знаний не требуется.",
   },
   {
     title: "Молчать — тоже участвовать",
-    text: "Никто не вызовет вас высказаться. Внимание — уже форма участия.",
+    text: "Никто не попросит вас говорить, если вы этого не хотите. Внимание — уже форма участия.",
   },
 ];
 
@@ -67,12 +64,12 @@ const faqs = [
   {
     question: "Можно ли поужинать во время вечера?",
     answer:
-      "[ЗАПОЛНИТЬ: подтвердить у площадки]. Еда и напитки оплачиваются отдельно.",
+      "[ЗАПОЛНИТЬ: подтвердить у площадки, можно ли заказывать во время программы]. Еда и напитки оплачиваются отдельно.",
   },
   {
     question: "Как устроена посадка?",
     answer:
-      "Посадка свободная: после прихода вы выбираете любое доступное место в зале.",
+      "Посадка свободная, без нумерации. Можно занять любое свободное место.",
   },
   {
     question: "Как добраться?",
@@ -83,15 +80,13 @@ const faqs = [
     answer:
       "[ЗАПОЛНИТЬ: решить, будет ли фото и видео и как это устроено]",
   },
+  {
+    question: "Можно ли вернуть билет?",
+    answer: "[ЗАПОЛНИТЬ: условия возврата после выбора билетного сервиса]",
+  },
 ];
 
-type WaitlistStatus = "idle" | "submitting" | "success" | "error";
-
 export default function Home() {
-  const [ticketNoticeOpen, setTicketNoticeOpen] = useState(false);
-  const [waitlistStatus, setWaitlistStatus] =
-    useState<WaitlistStatus>("idle");
-  const [waitlistMessage, setWaitlistMessage] = useState("");
   const musiciansRef = useRef<HTMLElement>(null);
   const themeRef = useRef<HTMLElement>(null);
 
@@ -175,69 +170,6 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!ticketNoticeOpen) {
-      return;
-    }
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setTicketNoticeOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
-  }, [ticketNoticeOpen]);
-
-  const openWaitlist = () => {
-    setWaitlistStatus("idle");
-    setWaitlistMessage("");
-    setTicketNoticeOpen(true);
-  };
-
-  const submitWaitlist = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setWaitlistStatus("submitting");
-    setWaitlistMessage("");
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch(waitlistApiUrl, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          contact: formData.get("contact"),
-          consent: formData.get("consent") === "yes",
-          website: formData.get("website"),
-        }),
-      });
-      const result = (await response.json()) as { message?: string };
-
-      if (!response.ok) {
-        throw new Error(result.message ?? "Не удалось сохранить контакт.");
-      }
-
-      setWaitlistStatus("success");
-      setWaitlistMessage(
-        result.message ?? "Готово. Мы сообщим, когда откроются продажи.",
-      );
-      form.reset();
-    } catch (error) {
-      setWaitlistStatus("error");
-      setWaitlistMessage(
-        error instanceof Error
-          ? error.message
-          : "Не удалось сохранить контакт. Попробуйте ещё раз.",
-      );
-    }
-  };
-
   return (
     <main id="top">
       <header className="site-header" aria-label="Основная навигация">
@@ -272,16 +204,14 @@ export default function Home() {
         </div>
         <div className="hero-inner">
           <p className="chapter"><b>01</b> / первый вечер</p>
-          <p className="hero-script">живые встречи</p>
           <h1 id="hero-title">
             Разговор по душам,{" "}
             <span>
-              который становится{" "}
-              <em>живым джазом</em>
+              на который отвечает <em>живой джаз</em>
             </span>
           </h1>
           <p className="hero-copy">
-            Музыканты ловят мысли и настроение зала и сразу переводят их в музыку.
+            Музыканты слушают разговор и импровизируют по его ходу.
           </p>
           <a className="button button-primary" href="#format">
             Узнать подробнее <span aria-hidden="true">↓</span>
@@ -293,8 +223,8 @@ export default function Home() {
             <strong>Moscow Imagine Live Club</strong>
           </div>
           <div>
-            <span>Формат</span>
-            <strong>Разговор и джазовая импровизация</strong>
+            <span>Гостей</span>
+            <strong>не более 60</strong>
           </div>
           <div>
             <span>Когда</span>
@@ -308,18 +238,17 @@ export default function Home() {
           <p className="eyebrow light">Зачем идти</p>
           <h2 id="why-title">Такие разговоры не случаются сами</h2>
           <p className="why-lead">
-            После тридцати разговор незаметно сжимается до работы, новостей и
-            планов. Не потому что не о чем — просто некогда, не с кем и неловко
-            начинать.
+            Со временем разговоры всё чаще сводятся к работе, новостям и
+            планам. Не потому, что говорить не о чем. Просто не хватает времени или подходящей
+            компании, а начинать бывает неловко.
           </p>
           <p className="why-body">
-            Чтобы разговор состоялся, его кто-то должен устроить: выбрать
-            вопрос, собрать людей, задать тон и следить, чтобы услышали всех.
-            Этот вечер — такое устройство.
+            Мы выбираем тему и собираем людей, чтобы спокойно говорить и слушать друг друга.
+            Так устроен этот вечер.
           </p>
           <p className="why-closing">
-            Уносят отсюда не конспект, а вопрос, который не закрывается на
-            выходе.
+            Отсюда уходят не с готовым ответом, а с вопросом, который ещё долго звучит
+            внутри.
           </p>
         </div>
       </section>
@@ -329,10 +258,9 @@ export default function Home() {
           <div className="format-ambient" aria-hidden="true" />
           <div className="format-intro">
             <p className="eyebrow light">Как устроен вечер</p>
-            <h2>Беседа становится музыкой</h2>
+            <h2>Разговор сменяется музыкой — и продолжается</h2>
             <p className="format-concept">
-              Три образа одного вечера: мысль рождается, музыка отвечает,
-              беседа продолжается.
+              За вечер этот цикл повторится [ЗАПОЛНИТЬ: число циклов] раз.
             </p>
           </div>
           <div className="format-story">
@@ -398,19 +326,13 @@ export default function Home() {
             </div>
             <h2 id="theme-title">Созданные друг для друга проходят мимо</h2>
             <p className="theme-lead">
-              Мы любим не тех, кто похож на наших родителей. Мы любим тех, кто
-              похож на то, что однажды открылось в нас самих.
+              Иногда среди десятков людей один человек вдруг притягивает внимание. Мы ещё
+              ничего о нём не знаем, но уже чувствуем: здесь может начаться что-то важное.
             </p>
             <div className="theme-body">
               <p>
-                Если это так, то встреча — вопрос не удачи, а готовности узнать.
-                И тогда понятно, почему люди, которым стоило встретиться,
-                расходятся: пути пересеклись некстати, и никто никого не узнал.
-              </p>
-              <p>
-                На первом вечере разберём, что именно мы узнаём в другом
-                человеке — и почему это чувство всегда возвращается одним и тем
-                же.
+                На первом вечере поговорим о первых мгновениях любви — о том, откуда берётся это притяжение
+                и почему иногда мы всё-таки не делаем шаг навстречу.
               </p>
             </div>
           </div>
@@ -450,7 +372,7 @@ export default function Home() {
             </blockquote>
 
             <div className="theme-final-question theme-sequence">
-              Кого мы проходим, не узнав?
+              Кого мы не замечаем, проходя мимо?
             </div>
           </div>
         </div>
@@ -466,22 +388,19 @@ export default function Home() {
             <div>
               <p className="eyebrow light">Кто на сцене</p>
               <h2 id="musicians-title">
-                Они не сопровождают беседу.
-                <em>Они отвечают ей.</em>
+                Они не сопровождают разговор.
+                <em>Они продолжают его музыкой.</em>
               </h2>
             </div>
             <div className="musicians-copy">
               <p>
-                На сцене — профессиональные джазовые музыканты с большим опытом
-                живой импровизации. Они слушают ход беседы, улавливают паузы,
-                напряжение и настроение зала — и превращают всё это в музыку,
-                которой раньше не было.
+                На сцене — профессиональные джазовые музыканты.
               </p>
               <div className="musicians-fact">
-                <span>Опыт</span>
+                <span>Состав и опыт</span>
                 <strong>
-                  [ЗАПОЛНИТЬ: действующие джазовые музыканты, играют в московских
-                  клубах более N лет]
+                  [ЗАПОЛНИТЬ: имена музыкантов и проверяемые факты об их опыте,
+                  проектах или клубах]
                 </strong>
               </div>
             </div>
@@ -517,8 +436,7 @@ export default function Home() {
             />
 
             <figcaption className="ensemble-note">
-              <span>Не готовая программа</span>
-              <strong>Музыка возникает в моменте — вместе с беседой</strong>
+              <span>Без готовой программы</span>
             </figcaption>
           </figure>
 
@@ -528,12 +446,14 @@ export default function Home() {
               <p className="eyebrow light">Ведущий</p>
               <p>
                 Я не преподаватель и не философ. Четыре года я веду
-                телеграм-канал, где разбираю эти вопросы для себя — там
-                накопилось больше двухсот заметок. Мне негде было говорить об
-                этом вживую, поэтому я сделал такой вечер.
+                {" "}
+                <a href="https://t.me/VadimBond7">телеграм-канал</a>, где разбираю важные для меня
+                вопросы. За это время там накопилось больше двухсот заметок. В какой-то момент мне
+                захотелось обсуждать эти вопросы не только в канале, но и вживую — вместе с другими
+                людьми. Так появился этот вечер.
               </p>
               <p>
-                Моя работа здесь — задать тему и следить, чтобы услышали всех.
+                Моя задача — задать тему, вести разговор и давать слово тем, кто хочет высказаться.
               </p>
               <p className="host-signature">
                 Вадим Бондаренко · автор формата
@@ -604,44 +524,35 @@ export default function Home() {
       <section className="section ticket-section" id="ticket">
         <div className="ticket-copy">
           <p className="eyebrow">Билет на вечер</p>
-          <h2>Один билет на весь вечер</h2>
-          <p>
-            В него входит разговор и все музыкальные импровизации. Посадка
-            свободная — выбираете любое доступное место в зале.
-          </p>
-          <div className="trust-note">
-            <strong>До оплаты</strong>
-            <span>
-              Покажем дату, тему, финальную стоимость и точные условия возврата.
-            </span>
-          </div>
+          <h2>Вся программа — в одном билете</h2>
+          <p>На первом вечере — не более 60 гостей.</p>
         </div>
 
         <aside className="ticket-card" aria-label="Состав билета">
           <div className="ticket-topline">
-            <span>ПРЕДВАРИТЕЛЬНАЯ ЦЕНА</span>
+            <span>ЦЕНА БИЛЕТА</span>
             <strong>2 300 ₽</strong>
           </div>
           <ul>
-            <li>Вход на всю программу вечера</li>
-            <li>Все циклы разговора и живой импровизации</li>
-            <li>Свободная посадка по доступным местам</li>
-            <li>Еда и напитки оплачиваются отдельно</li>
+            <li>участие в общем разговоре</li>
+            <li>все музыкальные импровизации вечера</li>
           </ul>
+          <p className="ticket-terms">
+            Посадка свободная. Еда и напитки оплачиваются отдельно.
+          </p>
           <button
             className="button button-ticket"
+            aria-disabled="true"
+            disabled
             type="button"
-            onClick={openWaitlist}
           >
-            Узнать о старте продаж
+            Купить билет
           </button>
-          <p className="limited">Количество мест ограничено камерным форматом.</p>
         </aside>
       </section>
 
       <section className="section faq-section">
         <div className="faq-heading">
-          <p className="eyebrow light">Перед решением</p>
           <h2>Коротко о важном</h2>
         </div>
         <div className="faq-list">
@@ -665,14 +576,15 @@ export default function Home() {
         <p className="eyebrow light">Чистые пруды · Москва</p>
         <h2>Этот разговор прозвучит только один раз</h2>
         <p>
-          Тема может вернуться. Состав зала, его паузы и музыка этого вечера — нет.
+          К этой теме можно вернуться. Но именно в таком составе зал больше не соберётся, и эта музыка не прозвучит снова.
         </p>
         <button
           className="button button-primary"
+          aria-disabled="true"
+          disabled
           type="button"
-          onClick={openWaitlist}
         >
-          Узнать дату первым
+          Купить билет
         </button>
       </section>
 
@@ -683,125 +595,6 @@ export default function Home() {
         <p>Moscow Imagine Live Club · Чистые пруды</p>
         <p>Камерные вечера разговора и джаза</p>
       </footer>
-
-      {ticketNoticeOpen && (
-        <div
-          className="modal-backdrop"
-          role="presentation"
-          onMouseDown={() => setTicketNoticeOpen(false)}
-        >
-          <section
-            className="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="ticket-modal-title"
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <button
-              className="modal-close"
-              type="button"
-              aria-label="Закрыть"
-              title="Закрыть"
-              onClick={() => setTicketNoticeOpen(false)}
-            >
-              ×
-            </button>
-            {isStaticPreview ? (
-              <div className="waitlist-success">
-                <p className="eyebrow">Предварительный анонс</p>
-                <h2 id="ticket-modal-title">Дата первого вечера скоро появится</h2>
-                <p>
-                  Вместе с датой опубликуем финальную стоимость и откроем
-                  предварительный список.
-                </p>
-                <button
-                  className="button button-dark"
-                  type="button"
-                  onClick={() => setTicketNoticeOpen(false)}
-                >
-                  Понятно
-                </button>
-              </div>
-            ) : waitlistStatus === "success" ? (
-              <div className="waitlist-success" aria-live="polite">
-                <p className="eyebrow">Контакт сохранён</p>
-                <h2 id="ticket-modal-title">Вы в предварительном списке</h2>
-                <p>{waitlistMessage}</p>
-                <button
-                  className="button button-dark"
-                  type="button"
-                  onClick={() => setTicketNoticeOpen(false)}
-                >
-                  Закрыть
-                </button>
-              </div>
-            ) : (
-              <>
-                <p className="eyebrow">Предварительный список</p>
-                <h2 id="ticket-modal-title">Узнать о первом вечере</h2>
-                <p>
-                  Оставьте контакт — напишем один раз, когда появятся дата и
-                  билеты.
-                </p>
-                <form className="waitlist-form" onSubmit={submitWaitlist}>
-                  <label>
-                    <span>Имя <small>необязательно</small></span>
-                    <input
-                      autoComplete="name"
-                      maxLength={80}
-                      name="name"
-                      placeholder="Как к вам обращаться"
-                      type="text"
-                    />
-                  </label>
-                  <label>
-                    <span>Email или Telegram</span>
-                    <input
-                      autoComplete="email"
-                      autoFocus
-                      maxLength={160}
-                      name="contact"
-                      placeholder="name@example.com или @username"
-                      required
-                      type="text"
-                    />
-                  </label>
-                  <label className="waitlist-consent">
-                    <input name="consent" required type="checkbox" value="yes" />
-                    <span>Согласен получить сообщение о первом вечере.</span>
-                  </label>
-                  <label className="waitlist-honeypot" aria-hidden="true">
-                    <span>Сайт</span>
-                    <input
-                      autoComplete="off"
-                      name="website"
-                      tabIndex={-1}
-                      type="text"
-                    />
-                  </label>
-                  {waitlistMessage && (
-                    <p
-                      className="waitlist-error"
-                      role="alert"
-                    >
-                      {waitlistMessage}
-                    </p>
-                  )}
-                  <button
-                    className="button button-dark"
-                    disabled={waitlistStatus === "submitting"}
-                    type="submit"
-                  >
-                    {waitlistStatus === "submitting"
-                      ? "Сохраняем…"
-                      : "Оставить контакт"}
-                  </button>
-                </form>
-              </>
-            )}
-          </section>
-        </div>
-      )}
     </main>
   );
 }

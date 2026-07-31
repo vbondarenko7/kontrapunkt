@@ -7,11 +7,9 @@ export default function NotFound() {
       <div className="not-found-inner">
         <p className="eyebrow light">Ошибка 404</p>
         <h1>Эта страница не прозвучала</h1>
-        <p>
-          Возможно, адрес изменился. Вернитесь к программе джазового вечера.
-        </p>
+        <p>Похоже, такой страницы нет. Вернитесь на главную.</p>
         <a className="button button-primary" href={`${basePath}/`}>
-          Вернуться к началу
+          На главную
         </a>
       </div>
     </main>

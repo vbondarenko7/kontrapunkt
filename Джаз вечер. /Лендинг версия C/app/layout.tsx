@@ -4,9 +4,9 @@ import "./globals.css";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  title: "Разговоры о главном под живой джаз",
+  title: "Разговор по душам и живой джаз — вечер в Москве",
   description:
-    "Камерный вечер в Москве, где разговор становится материалом для живой джазовой импровизации.",
+    "Камерный вечер в Москве, где живой джаз отвечает на разговор гостей.",
   icons: {
     icon: `${basePath}/favicon.svg`,
     shortcut: `${basePath}/favicon.svg`,
