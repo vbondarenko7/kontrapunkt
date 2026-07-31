@@ -654,7 +654,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="final-section">
+      <section
+        className="final-section"
+        style={
+          {
+            "--final-section-image": `url("${assetPath("/final-venue-crop.webp")}")`,
+          } as CSSProperties
+        }
+      >
         <p className="eyebrow light">Чистые пруды · Москва</p>
         <h2>Этот разговор прозвучит только один раз</h2>
         <p>

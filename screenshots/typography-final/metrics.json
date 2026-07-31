@@ -1,0 +1,588 @@
+{
+  "768": {
+    "viewport": "768x900",
+    "page": {
+      "width": 768,
+      "height": 11501
+    },
+    "sections": [
+      {
+        "top": 0,
+        "height": 900
+      },
+      {
+        "top": 900,
+        "height": 700
+      },
+      {
+        "top": 1600,
+        "height": 3058
+      },
+      {
+        "top": 4658,
+        "height": 1530
+      },
+      {
+        "top": 6188,
+        "height": 1865
+      },
+      {
+        "top": 8053,
+        "height": 900
+      },
+      {
+        "top": 8953,
+        "height": 1017
+      },
+      {
+        "top": 9970,
+        "height": 802
+      },
+      {
+        "top": 10772,
+        "height": 631
+      }
+    ]
+  },
+  "900": {
+    "viewport": "900x900",
+    "page": {
+      "width": 900,
+      "height": 11603
+    },
+    "sections": [
+      {
+        "top": 0,
+        "height": 900
+      },
+      {
+        "top": 900,
+        "height": 673
+      },
+      {
+        "top": 1573,
+        "height": 3246
+      },
+      {
+        "top": 4819,
+        "height": 1530
+      },
+      {
+        "top": 6349,
+        "height": 1865
+      },
+      {
+        "top": 8214,
+        "height": 900
+      },
+      {
+        "top": 9114,
+        "height": 1017
+      },
+      {
+        "top": 10131,
+        "height": 802
+      },
+      {
+        "top": 10933,
+        "height": 572
+      }
+    ]
+  },
+  "1280": {
+    "viewport": "1280x900",
+    "page": {
+      "width": 1280,
+      "height": 10147
+    },
+    "sections": [
+      {
+        "top": 0,
+        "height": 900
+      },
+      {
+        "top": 900,
+        "height": 673
+      },
+      {
+        "top": 1573,
+        "height": 2657
+      },
+      {
+        "top": 4230,
+        "height": 1098
+      },
+      {
+        "top": 5328,
+        "height": 1929
+      },
+      {
+        "top": 7257,
+        "height": 900
+      },
+      {
+        "top": 8157,
+        "height": 694
+      },
+      {
+        "top": 8851,
+        "height": 626
+      },
+      {
+        "top": 9477,
+        "height": 572
+      }
+    ]
+  },
+  "desktop": {
+    "viewport": "1440x900",
+    "page": {
+      "width": 1440,
+      "height": 10179
+    },
+    "sections": [
+      {
+        "top": 0,
+        "height": 900
+      },
+      {
+        "top": 900,
+        "height": 673
+      },
+      {
+        "top": 1573,
+        "height": 2657
+      },
+      {
+        "top": 4230,
+        "height": 1098
+      },
+      {
+        "top": 5328,
+        "height": 1961
+      },
+      {
+        "top": 7289,
+        "height": 900
+      },
+      {
+        "top": 8189,
+        "height": 694
+      },
+      {
+        "top": 8883,
+        "height": 626
+      },
+      {
+        "top": 9509,
+        "height": 572
+      }
+    ]
+  },
+  "pageAudit": {
+    "elements": 112,
+    "sizes": [
+      "11px",
+      "13px",
+      "16px",
+      "18px",
+      "20px",
+      "24px",
+      "28px",
+      "33px",
+      "40px",
+      "50px",
+      "60px",
+      "72px",
+      "103.68px"
+    ],
+    "sizeCount": 13,
+    "ratios": [
+      0.98,
+      1,
+      1.2,
+      1.22,
+      1.3,
+      1.5,
+      1.65
+    ],
+    "ratioCount": 7,
+    "comboCount": 23,
+    "singletons": 7,
+    "groups": [
+      {
+        "combo": "Inter, Arial, sans-serif | 11px | 600 | normal | uppercase | 14.3px",
+        "count": 24,
+        "examples": [
+          "span.header-place: Чистые пруды",
+          "p.chapter: / первый вечер",
+          "b.: 01"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 16px | 400 | normal | none | 26.4px",
+        "count": 24,
+        "examples": [
+          "strong.: Moscow Imagine Live Club",
+          "strong.: Разговор и джазовая импровизация",
+          "strong.: [ЗАПОЛНИТЬ: дата и время]"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 13px | 600 | normal | uppercase | 16.9px",
+        "count": 10,
+        "examples": [
+          "span.: РАЗГОВОР",
+          "span.: ДЖАЗ",
+          "a.: Формат"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 18px | 400 | normal | none | 27px",
+        "count": 9,
+        "examples": [
+          "p.hero-copy: Музыканты ловят мысли и настроение зала и сразу переводят их в музыку.",
+          "p.why-lead: После тридцати разговор незаметно сжимается до работы, новостей и планов. Не потому что не о чем — п",
+          "p.: Ведущий задаёт тему. Кто-то делится мыслью, остальные слушают."
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 18px | 500 | normal | none | 27px",
+        "count": 6,
+        "examples": [
+          "summary.: Во сколько начало и сколько длится вечер?",
+          "summary.: Сколько будет музыкальных импровизаций?",
+          "summary.: Можно ли поужинать во время вечера?"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 50px | 500 | normal | none | 49px",
+        "count": 5,
+        "examples": [
+          "h2.: Такие разговоры не случаются сами",
+          "h2.: Здесь не оценивают. Здесь слушают.",
+          "h2.: Один билет на весь вечер"
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 20px | 500 | italic | none | 26px",
+        "count": 4,
+        "examples": [
+          "p.format-marker: Беседа",
+          "p.format-marker: Импровизация",
+          "p.format-marker: Новый круг"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 60px | 500 | normal | none | 58.8px",
+        "count": 4,
+        "examples": [
+          "h3.: Мысль возникает в беседе",
+          "h3.: Музыка, которой раньше не было",
+          "h3.: Музыка возвращает тему залу"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 24px | 500 | normal | none | 23.52px",
+        "count": 3,
+        "examples": [
+          "h3.: Одному здесь не одиноко",
+          "h3.: Готовиться не нужно",
+          "h3.: Молчать — тоже участвовать"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 72px | 400 | normal | none | 72px",
+        "count": 3,
+        "examples": [
+          "span.: 01",
+          "span.: 02",
+          "span.: 03"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 11px | 400 | normal | none | 14.3px",
+        "count": 3,
+        "examples": [
+          "p.host-signature: Вадим Бондаренко · автор формата",
+          "p.: Moscow Imagine Live Club · Чистые пруды",
+          "p.: Камерные вечера разговора и джаза"
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 20px | 900 | italic | uppercase | 26px",
+        "count": 2,
+        "examples": [
+          "b.: ×",
+          "b.: ×"
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 28px | 600 | italic | none | 33.6px",
+        "count": 2,
+        "examples": [
+          "p.why-closing: Уносят отсюда не конспект, а вопрос, который не закрывается на выходе.",
+          "div.theme-final-question theme-sequence: Кого мы проходим, не узнав?"
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 40px | 500 | italic | none | 39.2px",
+        "count": 2,
+        "examples": [
+          "p.hero-script: живые встречи",
+          "span.: который становится"
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 72px | 500 | italic | none | 70.56px",
+        "count": 2,
+        "examples": [
+          "em.: живым джазом",
+          "em.: Они отвечают ей."
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 72px | 500 | normal | none | 70.56px",
+        "count": 2,
+        "examples": [
+          "h2.: Созданные друг для друга проходят мимо",
+          "h2.: Они не сопровождают беседу."
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 28px | 600 | normal | none | 33.6px",
+        "count": 1,
+        "examples": [
+          "span.: Тема первой встречи"
+        ]
+      },
+      {
+        "combo": "\"Cormorant Garamond\", Georgia, serif | 33px | 500 | italic | none | 40.26px",
+        "count": 1,
+        "examples": [
+          "p.: Но люди, созданные друг для друга, Соединяются, увы, так редко"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 103.68px | 500 | normal | none | 101.606px",
+        "count": 1,
+        "examples": [
+          "h2.: Беседа становится музыкой"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 24px | 400 | normal | none | 36px",
+        "count": 1,
+        "examples": [
+          "p.theme-lead: Мы любим не тех, кто похож на наших родителей. Мы любим тех, кто похож на то, что однажды открылось "
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 28px | 400 | normal | none | 36.4px",
+        "count": 1,
+        "examples": [
+          "p.format-closing: Ваше присутствие меняет музыку. Даже если вы промолчите весь вечер."
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 72px | 500 | normal | uppercase | 70.56px",
+        "count": 1,
+        "examples": [
+          "h1.: Разговор по душам,"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 13px | 400 | normal | none | 16.9px",
+        "count": 1,
+        "examples": [
+          "p.limited: Количество мест ограничено камерным форматом."
+        ]
+      }
+    ]
+  },
+  "decorativeWords": [
+    {
+      "text": "Слышат",
+      "size": "180px",
+      "lineHeight": "122.4px"
+    },
+    {
+      "text": "Отвечают",
+      "size": "180px",
+      "lineHeight": "122.4px"
+    }
+  ],
+  "modalAudit": {
+    "elements": 10,
+    "sizes": [
+      "11px",
+      "13px",
+      "16px",
+      "28px",
+      "40px"
+    ],
+    "sizeCount": 5,
+    "ratios": [
+      0.98,
+      1,
+      1.3,
+      1.65
+    ],
+    "ratioCount": 4,
+    "comboCount": 8,
+    "singletons": 6,
+    "groups": [
+      {
+        "combo": "Inter, Arial, sans-serif | 13px | 600 | normal | none | 16.9px",
+        "count": 2,
+        "examples": [
+          "span.: Имя",
+          "span.: Email или Telegram"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 16px | 400 | normal | none | 26.4px",
+        "count": 2,
+        "examples": [
+          "p.: Оставьте контакт — напишем один раз, когда появятся дата и билеты.",
+          "span.: Сайт"
+        ]
+      },
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 40px | 500 | normal | none | 39.2px",
+        "count": 1,
+        "examples": [
+          "h2.: Узнать о первом вечере"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 11px | 400 | normal | none | 14.3px",
+        "count": 1,
+        "examples": [
+          "small.: необязательно"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 11px | 600 | normal | uppercase | 14.3px",
+        "count": 1,
+        "examples": [
+          "p.eyebrow: Предварительный список"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 13px | 400 | normal | none | 16.9px",
+        "count": 1,
+        "examples": [
+          "span.: Согласен получить сообщение о первом вечере."
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 13px | 600 | normal | uppercase | 16.9px",
+        "count": 1,
+        "examples": [
+          "button.button button-dark: Оставить контакт"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 28px | 400 | normal | none | 28px",
+        "count": 1,
+        "examples": [
+          "button.modal-close: ×"
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "page": {
+      "width": 390,
+      "height": 11180
+    },
+    "sections": [
+      {
+        "top": 0,
+        "height": 763
+      },
+      {
+        "top": 763,
+        "height": 908
+      },
+      {
+        "top": 1671,
+        "height": 2530
+      },
+      {
+        "top": 4202,
+        "height": 1654
+      },
+      {
+        "top": 5856,
+        "height": 2039
+      },
+      {
+        "top": 7894,
+        "height": 760
+      },
+      {
+        "top": 8654,
+        "height": 1084
+      },
+      {
+        "top": 9739,
+        "height": 798
+      },
+      {
+        "top": 10536,
+        "height": 519
+      }
+    ]
+  },
+  "notFound": {
+    "elements": 4,
+    "sizes": [
+      "11px",
+      "13px",
+      "18px",
+      "60px"
+    ],
+    "sizeCount": 4,
+    "ratios": [
+      0.98,
+      1.3,
+      1.5
+    ],
+    "ratioCount": 3,
+    "comboCount": 4,
+    "singletons": 4,
+    "groups": [
+      {
+        "combo": "\"Playfair Display\", Georgia, serif | 60px | 500 | normal | none | 58.8px",
+        "count": 1,
+        "examples": [
+          "h1.: Эта страница не прозвучала"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 11px | 600 | normal | uppercase | 14.3px",
+        "count": 1,
+        "examples": [
+          "p.eyebrow light: Ошибка 404"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 13px | 600 | normal | uppercase | 16.9px",
+        "count": 1,
+        "examples": [
+          "a.button button-primary: Вернуться к началу"
+        ]
+      },
+      {
+        "combo": "Inter, Arial, sans-serif | 18px | 400 | normal | none | 27px",
+        "count": 1,
+        "examples": [
+          "p.: Возможно, адрес изменился. Вернитесь к программе джазового вечера."
+        ]
+      }
+    ]
+  }
+}

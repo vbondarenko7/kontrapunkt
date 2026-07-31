@@ -1706,10 +1706,34 @@ h3 {
 }
 
 .final-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: 118px 32px;
   color: var(--ivory);
   text-align: center;
-  background: var(--burgundy);
+  background:
+    linear-gradient(180deg, rgba(39, 5, 10, 0.82), rgba(54, 8, 14, 0.9)),
+    radial-gradient(circle at 50% 42%, rgba(216, 154, 113, 0.12), transparent 34%),
+    var(--final-section-image) center 52% / cover no-repeat,
+    var(--burgundy);
+}
+
+.final-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.final-section::after {
+  position: absolute;
+  z-index: 1;
+  inset: -60%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  content: "";
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .final-section h2 {
