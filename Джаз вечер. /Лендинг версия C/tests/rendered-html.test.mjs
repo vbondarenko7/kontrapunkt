@@ -80,8 +80,9 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Разговор по душам/);
-  assert.match(html, /на который отвечает/);
+  assert.match(html, /Разговор по душам/);
+  assert.match(html, /на который отвечает/);
+  assert.match(html, /Коротко о важном/);
   assert.match(html, /Купить билет/);
   assert.match(html, /disabled=""/);
   assert.doesNotMatch(html, /Предварительный список|Оставить контакт/);

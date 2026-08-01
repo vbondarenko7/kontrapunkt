@@ -28,6 +28,7 @@
   --leading-heading: 0.98;
   --leading-lead: 1.5;
   --leading-body: 1.65;
+  --section-space: 112px;
 }
 
 * {
@@ -544,7 +545,7 @@ h3 {
 }
 
 .section {
-  padding: 112px max(32px, calc((100% - 1160px) / 2));
+  padding: var(--section-space) max(32px, calc((100% - 1160px) / 2));
 }
 
 .section-dark {
@@ -567,7 +568,7 @@ h3 {
 .why-section {
   display: flex;
   min-height: 70vh;
-  padding: 96px 20px;
+  padding: var(--section-space) 20px;
   color: var(--ivory);
   background: var(--black);
 }
@@ -678,7 +679,7 @@ h3 {
   z-index: 2;
   width: min(100% - 40px, 1160px);
   margin: 0 auto;
-  padding-bottom: 80px;
+  padding-bottom: 0;
 }
 
 .format-storyline {
@@ -831,7 +832,7 @@ h3 {
 
 .musicians-section {
   position: relative;
-  padding: 118px 20px 92px;
+  padding: var(--section-space) 20px;
   overflow: clip;
   color: var(--ivory);
   background:
@@ -1245,7 +1246,7 @@ h3 {
 
 .theme-section {
   position: relative;
-  padding: 112px 20px 124px;
+  padding: var(--section-space) 20px;
   overflow: clip;
   color: var(--ink);
   background:
@@ -1687,7 +1688,7 @@ h3 {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 118px 32px;
+  padding: var(--section-space) 32px;
   color: var(--ivory);
   text-align: center;
   background:
@@ -1977,7 +1978,7 @@ footer p:last-child {
 
   #format .format-story {
     width: min(100% - 64px, 1160px);
-    padding-bottom: 90px;
+    padding-bottom: var(--section-space);
   }
 
   #format .format-storyline {
@@ -2135,7 +2136,7 @@ footer p:last-child {
 
   .theme-section {
     height: auto;
-    padding: clamp(96px, 11svh, 132px) 0;
+    padding: var(--section-space) 0;
   }
 
   .theme-sticky {
@@ -2420,6 +2421,10 @@ footer p:last-child {
 }
 
 @media (max-width: 700px) {
+  :root {
+    --section-space: 76px;
+  }
+
   .film-grain,
   .film-grain.layered-grain {
     inset: 0;
@@ -2504,7 +2509,7 @@ footer p:last-child {
   }
 
   .section {
-    padding: 76px 20px;
+    padding: var(--section-space) 20px;
   }
 
   .format-intro h2,
@@ -2546,7 +2551,7 @@ footer p:last-child {
   }
 
   .musicians-section {
-    padding: 82px 20px 90px;
+    padding: var(--section-space) 20px;
   }
 
   .musicians-intro {
@@ -2725,7 +2730,7 @@ footer p:last-child {
   }
 
   .final-section {
-    padding: 84px 20px;
+    padding: var(--section-space) 20px;
   }
 
   .final-section h2 {
