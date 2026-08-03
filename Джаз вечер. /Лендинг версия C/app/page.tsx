@@ -2,9 +2,11 @@
 
 import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
+import { trackTelegramClick } from "./analytics";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
+const telegramUrl = "https://t.me/VadimBond7";
 
 const formatSteps = [
   {
@@ -54,17 +56,17 @@ const scenarios = [
 const faqs = [
   {
     question: "Во сколько начало и сколько длится вечер?",
-    answer: "[ЗАПОЛНИТЬ: время начала и длительность]",
+    answer: "Время начала и длительность объявим вместе с датой.",
   },
   {
     question: "Сколько будет музыкальных импровизаций?",
     answer:
-      "[ЗАПОЛНИТЬ: число циклов]. Между ними продолжается разговор.",
+      "Точное число циклов беседы и импровизации объявим вместе с программой.",
   },
   {
     question: "Можно ли поужинать во время вечера?",
     answer:
-      "[ЗАПОЛНИТЬ: подтвердить у площадки, можно ли заказывать во время программы]. Еда и напитки оплачиваются отдельно.",
+      "Условия площадки и заказа еды опубликуем до открытия продаж.",
   },
   {
     question: "Как устроена посадка?",
@@ -73,16 +75,15 @@ const faqs = [
   },
   {
     question: "Как добраться?",
-    answer: "[ЗАПОЛНИТЬ: адрес и ближайшее метро]",
+    answer: "Точный адрес и маршрут добавим вместе с датой вечера.",
   },
   {
     question: "Будет ли съёмка?",
-    answer:
-      "[ЗАПОЛНИТЬ: решить, будет ли фото и видео и как это устроено]",
+    answer: "О фото- и видеосъёмке предупредим до начала продаж.",
   },
   {
     question: "Можно ли вернуть билет?",
-    answer: "[ЗАПОЛНИТЬ: условия возврата после выбора билетного сервиса]",
+    answer: "Условия возврата будут видны до оплаты после выбора билетного сервиса.",
   },
 ];
 
@@ -180,7 +181,7 @@ export default function Home() {
         </a>
         <nav>
           <a href="#format">Формат</a>
-          <a href="#ticket">Билет</a>
+          <a href="#announcement">Анонс</a>
         </nav>
         <span className="header-place">Чистые пруды</span>
       </header>
@@ -228,7 +229,7 @@ export default function Home() {
           </div>
           <div>
             <span>Когда</span>
-            <strong>[ЗАПОЛНИТЬ: дата и время]</strong>
+            <strong>Дату объявим позже</strong>
           </div>
         </div>
       </section>
@@ -260,7 +261,7 @@ export default function Home() {
             <p className="eyebrow light">Как устроен вечер</p>
             <h2>Разговор сменяется музыкой — и продолжается</h2>
             <p className="format-concept">
-              За вечер этот цикл повторится [ЗАПОЛНИТЬ: число циклов] раз.
+              За вечер этот цикл повторится несколько раз.
             </p>
           </div>
           <div className="format-story">
@@ -399,8 +400,7 @@ export default function Home() {
               <div className="musicians-fact">
                 <span>Состав и опыт</span>
                 <strong>
-                  [ЗАПОЛНИТЬ: имена музыкантов и проверяемые факты об их опыте,
-                  проектах или клубах]
+                  Имена и состав объявим отдельно.
                 </strong>
               </div>
             </div>
@@ -441,13 +441,18 @@ export default function Home() {
           </figure>
 
           <div className="host-profile">
-            <div className="host-photo">[ЗАПОЛНИТЬ: фото ведущего]</div>
+            <div className="host-photo" aria-label="Вадим Бондаренко">ВБ</div>
             <div className="host-copy">
               <p className="eyebrow light">Ведущий</p>
               <p>
                 Я не преподаватель и не философ. Четыре года я веду
                 {" "}
-                <a href="https://t.me/VadimBond7">телеграм-канал</a>, где разбираю важные для меня
+                <a
+                  href={telegramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackTelegramClick("host_profile")}
+                >телеграм-канал</a>, где разбираю важные для меня
                 вопросы. За это время там накопилось больше двухсот заметок. В какой-то момент мне
                 захотелось обсуждать эти вопросы не только в канале, но и вживую — вместе с другими
                 людьми. Так появился этот вечер.
@@ -521,33 +526,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section ticket-section" id="ticket">
+      <section className="section ticket-section" id="announcement">
         <div className="ticket-copy">
-          <p className="eyebrow">Билет на вечер</p>
-          <h2>Вся программа — в одном билете</h2>
-          <p>На первом вечере — не более 60 гостей.</p>
+          <p className="eyebrow">До открытия продаж</p>
+          <h2>Продолжить знакомство в Telegram</h2>
+          <p>В канале Вадим пишет о темах, из которых вырос этот вечер.</p>
         </div>
 
-        <aside className="ticket-card" aria-label="Состав билета">
+        <aside className="ticket-card" aria-label="Анонс первого вечера">
           <div className="ticket-topline">
-            <span>ЦЕНА БИЛЕТА</span>
-            <strong>2 300 ₽</strong>
+            <span>ПЕРВЫЙ ВЕЧЕР</span>
+            <strong>Дата — позже</strong>
           </div>
           <ul>
-            <li>участие в общем разговоре</li>
-            <li>все музыкальные импровизации вечера</li>
+            <li>формат и тема уже описаны на этой странице</li>
+            <li>дата, состав и условия появятся после подтверждения</li>
           </ul>
           <p className="ticket-terms">
-            Посадка свободная. Еда и напитки оплачиваются отдельно.
+            Это не покупка и не бронь. Ссылка откроет Telegram-канал автора формата.
           </p>
-          <button
+          <a
             className="button button-ticket"
-            aria-disabled="true"
-            disabled
-            type="button"
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackTelegramClick("announcement_card")}
           >
-            Купить билет
-          </button>
+            Перейти в Telegram
+          </a>
         </aside>
       </section>
 
@@ -573,19 +579,20 @@ export default function Home() {
           } as CSSProperties
         }
       >
-        <p className="eyebrow light">Чистые пруды · Москва</p>
-        <h2>Этот разговор прозвучит только один раз</h2>
+        <p className="eyebrow light">Разговор × джаз</p>
+        <h2>Узнать автора формата до первого вечера</h2>
         <p>
-          К этой теме можно вернуться. Но именно в таком составе зал больше не соберётся, и эта музыка не прозвучит снова.
+          В Telegram — заметки и вопросы, из которых выросла идея разговора под живой джаз.
         </p>
-        <button
+        <a
           className="button button-primary"
-          aria-disabled="true"
-          disabled
-          type="button"
+          href={telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackTelegramClick("final_section")}
         >
-          Купить билет
-        </button>
+          Перейти в Telegram
+        </a>
       </section>
 
       <footer>
