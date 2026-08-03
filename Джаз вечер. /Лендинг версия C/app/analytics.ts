@@ -4,7 +4,8 @@ declare global {
   }
 }
 
-const rawCounterId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID ?? "";
+const rawCounterId =
+  process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID ?? "111267605";
 const counterId = /^\d+$/.test(rawCounterId)
   ? Number.parseInt(rawCounterId, 10)
   : null;

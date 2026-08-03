@@ -104,10 +104,14 @@ test("Yandex Metrica is prepared with Webvisor and one conversion goal", async (
   );
 
   assert.match(metrika, /mc\.yandex\.ru\/metrika\/tag\.js/);
+  assert.match(metrika, /111267605/);
+  assert.match(metrika, /ssr:true/);
   assert.match(metrika, /clickmap:true/);
   assert.match(metrika, /trackLinks:true/);
   assert.match(metrika, /webvisor:true/);
+  assert.match(metrika, /ecommerce:\"dataLayer\"/);
   assert.match(analytics, /telegram_click/);
+  assert.match(analytics, /111267605/);
 });
 
 test("waitlist endpoint stores a consented contact", async () => {
