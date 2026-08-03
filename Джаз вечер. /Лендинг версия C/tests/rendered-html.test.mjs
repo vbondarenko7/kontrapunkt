@@ -65,7 +65,7 @@ const ctx = {
   passThroughOnException() {},
 };
 
-test("server-renders the prelaunch page with one Telegram conversion", async () => {
+test("server-renders the approved version D copy without the waitlist UI", async () => {
   const worker = await loadWorker();
   const { env } = createEnv();
   const response = await worker.fetch(
@@ -83,11 +83,8 @@ test("server-renders the prelaunch page with one Telegram conversion", async () 
   assert.match(html, /Разговор по душам/);
   assert.match(html, /на который отвечает/);
   assert.match(html, /Коротко о важном/);
-  assert.match(html, /Перейти в Telegram/);
-  assert.match(html, /https:\/\/t\.me\/VadimBond7/);
-  assert.doesNotMatch(html, /\[ЗАПОЛНИТЬ:/);
-  assert.doesNotMatch(html, /2 300/);
-  assert.doesNotMatch(html, /disabled=""/);
+  assert.match(html, /Купить билет/);
+  assert.match(html, /disabled=""/);
   assert.doesNotMatch(html, /Предварительный список|Оставить контакт/);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton/);
 });
