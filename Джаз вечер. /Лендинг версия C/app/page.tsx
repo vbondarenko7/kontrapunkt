@@ -2,9 +2,11 @@
 
 import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
+import { trackTicketClick } from "./analytics";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
+const ticketUrl = "https://payform.ru/qsccfki/";
 
 const formatSteps = [
   {
@@ -540,14 +542,13 @@ export default function Home() {
           <p className="ticket-terms">
             Посадка свободная. Еда и напитки оплачиваются отдельно.
           </p>
-          <button
+          <a
             className="button button-ticket"
-            aria-disabled="true"
-            disabled
-            type="button"
+            href={ticketUrl}
+            onClick={() => trackTicketClick("ticket_card")}
           >
             Купить билет
-          </button>
+          </a>
         </aside>
       </section>
 
@@ -578,14 +579,13 @@ export default function Home() {
         <p>
           К этой теме можно вернуться. Но именно в таком составе зал больше не соберётся, и эта музыка не прозвучит снова.
         </p>
-        <button
+        <a
           className="button button-primary"
-          aria-disabled="true"
-          disabled
-          type="button"
+          href={ticketUrl}
+          onClick={() => trackTicketClick("final_section")}
         >
           Купить билет
-        </button>
+        </a>
       </section>
 
       <footer>

@@ -12,6 +12,7 @@ const counterId = /^\d+$/.test(rawCounterId)
 
 export const METRIKA_GOALS = {
   telegramClick: "telegram_click",
+  ticketClick: "ticket_click",
 } as const;
 
 export function trackTelegramClick(placement: string) {
@@ -20,6 +21,16 @@ export function trackTelegramClick(placement: string) {
   }
 
   window.ym?.(counterId, "reachGoal", METRIKA_GOALS.telegramClick, {
+    placement,
+  });
+}
+
+export function trackTicketClick(placement: string) {
+  if (typeof window === "undefined" || !counterId) {
+    return;
+  }
+
+  window.ym?.(counterId, "reachGoal", METRIKA_GOALS.ticketClick, {
     placement,
   });
 }

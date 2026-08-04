@@ -84,7 +84,8 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.match(html, /на который отвечает/);
   assert.match(html, /Коротко о важном/);
   assert.match(html, /Купить билет/);
-  assert.match(html, /disabled=""/);
+  assert.match(html, /https:\/\/payform\.ru\/qsccfki\//);
+  assert.doesNotMatch(html, /aria-disabled="true"/);
   assert.doesNotMatch(html, /Предварительный список|Оставить контакт/);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton/);
 });
@@ -108,6 +109,7 @@ test("Yandex Metrica is prepared with Webvisor and one conversion goal", async (
   assert.match(metrika, /webvisor:true/);
   assert.match(metrika, /ecommerce:\"dataLayer\"/);
   assert.match(analytics, /telegram_click/);
+  assert.match(analytics, /ticket_click/);
   assert.match(analytics, /111267605/);
 });
 
