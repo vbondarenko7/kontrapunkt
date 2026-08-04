@@ -1,22 +1,20 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="8" fill="#241714"/>
+  <rect width="32" height="32" rx="8" fill="#17130F"/>
   <path
     d="M7.1 21.2C5.8 19.6 5 17.5 5 15.3C5 9.6 9.9 5 16 5C22.1 5 27 9.6 27 15.3C27 21 22.1 25.6 16 25.6C14.3 25.6 12.7 25.2 11.2 24.6L6.3 27L7.1 21.2Z"
-    stroke="#D9A84E"
-    stroke-width="2.5"
-    stroke-linejoin="round"
+    fill="#A32C2C"
   />
   <path
     d="M17 9.2V19.4"
-    stroke="#FFF7E8"
+    stroke="#F2EBDD"
     stroke-width="2.6"
     stroke-linecap="round"
   />
   <path
     d="M17.1 9.2C20.3 9.4 22.2 10.6 22.4 13.2"
-    stroke="#FFF7E8"
+    stroke="#F2EBDD"
     stroke-width="2.6"
     stroke-linecap="round"
   />
-  <ellipse cx="13.8" cy="20.2" rx="3.8" ry="2.9" transform="rotate(-18 13.8 20.2)" fill="#FFF7E8"/>
+  <ellipse cx="13.8" cy="20.2" rx="3.8" ry="2.9" transform="rotate(-18 13.8 20.2)" fill="#F2EBDD"/>
 </svg>
