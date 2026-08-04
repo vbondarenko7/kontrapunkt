@@ -1,0 +1,26 @@
+name: Configure GitHub Pages domain
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - CNAME
+      - .github/workflows/configure-pages-domain.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set custom domain
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method PUT "/repos/${GITHUB_REPOSITORY}/pages" \
+            --input - <<'JSON'
+          {"cname":"jazzgovorit.ru","source":{"branch":"main","path":"/"}}
+          JSON
