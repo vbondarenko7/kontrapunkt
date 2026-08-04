@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
-const basePath = isGitHubPages ? "/kontrapunkt" : "";
+const basePath = "";
 const waitlistApiUrl = isGitHubPages
   ? "https://kontrapunkt-salon.gvclikegods.chatgpt.site/api/waitlist"
   : "";
