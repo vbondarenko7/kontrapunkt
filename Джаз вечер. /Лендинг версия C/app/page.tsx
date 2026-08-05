@@ -260,7 +260,7 @@ export default function Home() {
           <div className="format-ambient" aria-hidden="true" />
           <div className="format-intro">
             <p className="eyebrow light">Как устроен вечер</p>
-            <h2>Разговор сменяется музыкой — и продолжается</h2>
+            <h2>Разговор сменяется музыкой и продолжается</h2>
             <p className="format-concept">
               За вечер этот цикл повторится [ЗАПОЛНИТЬ: число циклов] раз.
             </p>
