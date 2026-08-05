@@ -443,7 +443,15 @@ export default function Home() {
           </figure>
 
           <div className="host-profile">
-            <div className="host-photo">[ЗАПОЛНИТЬ: фото ведущего]</div>
+            <div className="host-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={assetPath("/host-vadim-portrait.webp")}
+                alt="Вадим Бондаренко, ведущий вечера"
+                width="1122"
+                height="1402"
+              />
+            </div>
             <div className="host-copy">
               <p className="eyebrow light">Ведущий</p>
               <p>
