@@ -1,12 +1,19 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { trackTicketClick } from "./analytics";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
-const ticketUrl = "https://payform.ru/qsccfki/";
+const ticketOptions = [
+  { quantity: 1, label: "1 билет", url: "https://payform.ru/qsccfki/" },
+  { quantity: 2, label: "2 билета", url: "https://payform.ru/tbcd9NC/" },
+  { quantity: 3, label: "3 билета", url: "https://payform.ru/5fcd9OZ/" },
+  { quantity: 4, label: "4 билета", url: "https://payform.ru/5fcd9Ph/" },
+  { quantity: 5, label: "5 билетов", url: "https://payform.ru/5fcd9Pk/" },
+  { quantity: 6, label: "6 билетов", url: "https://payform.ru/5fcd9Pl/" },
+];
 
 const formatSteps = [
   {
@@ -91,6 +98,8 @@ const faqs = [
 export default function Home() {
   const musiciansRef = useRef<HTMLElement>(null);
   const themeRef = useRef<HTMLElement>(null);
+  const [ticketQuantity, setTicketQuantity] = useState(1);
+  const selectedTicket = ticketOptions[ticketQuantity - 1];
 
   useEffect(() => {
     const section = musiciansRef.current;
@@ -550,12 +559,35 @@ export default function Home() {
           <p className="ticket-terms">
             Посадка свободная. Еда и напитки оплачиваются отдельно.
           </p>
+          <div className="ticket-order">
+            <label className="ticket-quantity">
+              <span>Количество билетов</span>
+              <select
+                value={ticketQuantity}
+                onChange={(event) =>
+                  setTicketQuantity(Number(event.target.value))
+                }
+              >
+                {ticketOptions.map((option) => (
+                  <option key={option.quantity} value={option.quantity}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p className="ticket-total">
+              <span>Итого</span>
+              <strong>
+                {(selectedTicket.quantity * 2300).toLocaleString("ru-RU")} ₽
+              </strong>
+            </p>
+          </div>
           <a
             className="button button-ticket"
-            href={ticketUrl}
+            href={selectedTicket.url}
             onClick={() => trackTicketClick("ticket_card")}
           >
-            Купить билет
+            Купить {selectedTicket.label}
           </a>
         </aside>
       </section>
@@ -589,10 +621,10 @@ export default function Home() {
         </p>
         <a
           className="button button-primary"
-          href={ticketUrl}
+          href={selectedTicket.url}
           onClick={() => trackTicketClick("final_section")}
         >
-          Купить билет
+          Купить {selectedTicket.label}
         </a>
       </section>
 

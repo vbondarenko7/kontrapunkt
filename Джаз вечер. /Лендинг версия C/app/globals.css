@@ -1629,10 +1629,61 @@ h3 {
 }
 
 .ticket-terms {
-  margin: 0 0 29px;
+  margin: 0 0 22px;
   color: #ad9d8c;
   font-size: var(--type-ui);
   line-height: var(--leading-body);
+}
+
+.ticket-order {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.ticket-quantity,
+.ticket-total {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.ticket-quantity > span,
+.ticket-total > span {
+  color: #d9a5a2;
+  font-size: var(--type-label);
+  font-weight: 600;
+  line-height: var(--leading-label);
+  text-transform: uppercase;
+}
+
+.ticket-quantity select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 13px;
+  border: 1px solid rgba(217, 165, 162, 0.36);
+  border-radius: 4px;
+  color: var(--ivory);
+  background: rgba(17, 8, 6, 0.38);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ticket-quantity select:focus-visible {
+  outline: 2px solid #d9a5a2;
+  outline-offset: 2px;
+}
+
+.ticket-total strong {
+  min-height: 48px;
+  color: var(--ivory);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 48px;
+  white-space: nowrap;
 }
 
 .button-ticket {

@@ -83,11 +83,29 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.match(html, /Разговор по душам/);
   assert.match(html, /на который отвечает/);
   assert.match(html, /Коротко о важном/);
-  assert.match(html, /Купить билет/);
+  assert.match(html, /Количество билетов/);
+  assert.match(html, /Купить (?:<!-- -->)?1 билет/);
   assert.match(html, /https:\/\/payform\.ru\/qsccfki\//);
   assert.doesNotMatch(html, /aria-disabled="true"/);
   assert.doesNotMatch(html, /Предварительный список|Оставить контакт/);
   assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton/);
+});
+
+test("ticket quantities use fixed Prodamus links", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const page = await readFile(new URL("app/page.tsx", templateRoot), "utf8");
+
+  for (const link of [
+    "qsccfki",
+    "tbcd9NC",
+    "5fcd9OZ",
+    "5fcd9Ph",
+    "5fcd9Pk",
+    "5fcd9Pl",
+  ]) {
+    assert.match(page, new RegExp(`https://payform\\.ru/${link}/`));
+  }
+  assert.match(page, /selectedTicket\.quantity \* 2300/);
 });
 
 test("Yandex Metrica is prepared with Webvisor and one conversion goal", async () => {
