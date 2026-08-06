@@ -83,8 +83,12 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.match(html, /Разговор по душам/);
   assert.match(html, /на который отвечает/);
   assert.match(html, /Коротко о важном/);
-  assert.match(html, /Количество билетов/);
-  assert.match(html, /Купить (?:<!-- -->)?1 билет/);
+  assert.equal((html.match(/Количество билетов/g) ?? []).length, 2);
+  assert.equal((html.match(/Купить билет/g) ?? []).length, 2);
+  assert.doesNotMatch(html, /Купить (?:<!-- -->)?1 билет/);
+  assert.match(html, /href="#ticket"/);
+  assert.match(html, /target="_blank"/);
+  assert.match(html, /rel="noopener noreferrer"/);
   assert.match(html, /https:\/\/payform\.ru\/qsccfki\//);
   assert.doesNotMatch(html, /aria-disabled="true"/);
   assert.doesNotMatch(html, /Предварительный список|Оставить контакт/);

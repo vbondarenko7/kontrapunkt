@@ -95,6 +95,33 @@ const faqs = [
   },
 ];
 
+function TicketQuantityPicker({
+  value,
+  onChange,
+}: {
+  value: number;
+  onChange: (quantity: number) => void;
+}) {
+  return (
+    <div className="ticket-quantity">
+      <span>Количество билетов</span>
+      <div className="ticket-quantity-options" role="group" aria-label="Количество билетов">
+        {ticketOptions.map((option) => (
+          <button
+            key={option.quantity}
+            type="button"
+            aria-label={option.label}
+            aria-pressed={value === option.quantity}
+            onClick={() => onChange(option.quantity)}
+          >
+            {option.quantity}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const musiciansRef = useRef<HTMLElement>(null);
   const themeRef = useRef<HTMLElement>(null);
@@ -560,21 +587,10 @@ export default function Home() {
             Посадка свободная. Еда и напитки оплачиваются отдельно.
           </p>
           <div className="ticket-order">
-            <label className="ticket-quantity">
-              <span>Количество билетов</span>
-              <select
-                value={ticketQuantity}
-                onChange={(event) =>
-                  setTicketQuantity(Number(event.target.value))
-                }
-              >
-                {ticketOptions.map((option) => (
-                  <option key={option.quantity} value={option.quantity}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <TicketQuantityPicker
+              value={ticketQuantity}
+              onChange={setTicketQuantity}
+            />
             <p className="ticket-total">
               <span>Итого</span>
               <strong>
@@ -585,9 +601,11 @@ export default function Home() {
           <a
             className="button button-ticket"
             href={selectedTicket.url}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => trackTicketClick("ticket_card")}
           >
-            Купить {selectedTicket.label}
+            Купить билет
           </a>
         </aside>
       </section>
@@ -619,12 +637,8 @@ export default function Home() {
         <p>
           К этой теме можно вернуться. Но именно в таком составе зал больше не соберётся, и эта музыка не прозвучит снова.
         </p>
-        <a
-          className="button button-primary"
-          href={selectedTicket.url}
-          onClick={() => trackTicketClick("final_section")}
-        >
-          Купить {selectedTicket.label}
+        <a className="button button-primary" href="#ticket">
+          Купить билет
         </a>
       </section>
 
