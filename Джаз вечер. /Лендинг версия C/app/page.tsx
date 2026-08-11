@@ -2,10 +2,16 @@
 
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import { trackTicketClick } from "./analytics";
+import {
+  trackTelegramClick,
+  trackTicketClick,
+  trackWhatsAppClick,
+} from "./analytics";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
+const telegramUrl = "https://t.me/vad6272";
+const whatsappUrl = "https://wa.me/79032405040";
 const ticketOptions = [
   { quantity: 1, label: "1 билет", url: "https://payform.ru/qsccfki/" },
   { quantity: 2, label: "2 билета", url: "https://payform.ru/tbcd9NC/" },
@@ -220,7 +226,16 @@ export default function Home() {
           <a href="#format">Формат</a>
           <a href="#ticket">Билет</a>
         </nav>
-        <span className="header-place">Чистые пруды</span>
+        <a
+          className="header-contact"
+          href={telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackTelegramClick("header")}
+          aria-label="Написать в Telegram"
+        >
+          Telegram <span aria-hidden="true">↗</span>
+        </a>
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
@@ -493,7 +508,12 @@ export default function Home() {
               <p>
                 Я не преподаватель и не философ. Четыре года я веду
                 {" "}
-                <a href="https://t.me/VadimBond7">телеграм-канал</a>, где разбираю важные для меня
+                <a
+                  href="https://t.me/VadimBond7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackTelegramClick("host_channel")}
+                >телеграм-канал</a>, где разбираю важные для меня
                 вопросы. За это время там накопилось больше двухсот заметок. В какой-то момент мне
                 захотелось обсуждать эти вопросы не только в канале, но и вживую — вместе с другими
                 людьми. Так появился этот вечер.
@@ -624,6 +644,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section contact-section" aria-labelledby="contact-title">
+        <div className="contact-copy">
+          <p className="eyebrow light">Остался вопрос?</p>
+          <h2 id="contact-title">Напишите мне</h2>
+          <p>
+            Я сам отвечу о вечере, билетах и всём, что важно знать до встречи.
+          </p>
+        </div>
+        <div className="contact-actions">
+          <a
+            className="button button-primary"
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackTelegramClick("after_faq")}
+          >
+            Написать в Telegram <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            className="button button-contact-secondary"
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("after_faq")}
+          >
+            Написать в WhatsApp <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
       <section
         className="final-section"
         style={
@@ -647,7 +697,24 @@ export default function Home() {
           <span>РАЗГОВОР</span><b>×</b><span>ДЖАЗ</span>
         </a>
         <p>Moscow Imagine Live Club · Чистые пруды</p>
-        <p>Камерные вечера разговора и джаза</p>
+        <nav className="footer-contacts" aria-label="Связаться с организатором">
+          <a
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackTelegramClick("footer")}
+          >
+            Telegram
+          </a>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("footer")}
+          >
+            WhatsApp
+          </a>
+        </nav>
       </footer>
     </main>
   );

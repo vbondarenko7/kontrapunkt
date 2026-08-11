@@ -143,13 +143,30 @@ h3 {
   border-color: var(--red);
 }
 
-.header-place {
+.header-contact {
   justify-self: end;
   color: var(--mute-dark);
   font-size: var(--type-label);
   font-weight: 600;
   line-height: var(--leading-label);
   text-transform: uppercase;
+}
+
+.header-contact span {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--red);
+  transition: transform 180ms ease;
+}
+
+.header-contact:hover,
+.header-contact:focus-visible {
+  color: var(--ivory);
+}
+
+.header-contact:hover span,
+.header-contact:focus-visible span {
+  transform: translate(2px, -2px);
 }
 
 .hero {
@@ -1775,6 +1792,54 @@ h3 {
   color: var(--mute-dark);
 }
 
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 72px;
+  align-items: end;
+  padding-top: 0;
+  color: var(--ivory);
+  background: var(--black);
+}
+
+.contact-copy {
+  max-width: 650px;
+  padding-top: var(--section-space);
+  border-top: 1px solid var(--rule-dark);
+}
+
+.contact-copy h2 {
+  margin-bottom: 22px;
+  font-size: var(--type-section-title);
+}
+
+.contact-copy > p:last-child {
+  max-width: 590px;
+  margin-bottom: 0;
+  color: var(--mute-dark);
+  font-size: var(--type-lead);
+  line-height: var(--leading-lead);
+  text-wrap: pretty;
+}
+
+.contact-actions {
+  display: grid;
+  gap: 14px;
+  min-width: 310px;
+}
+
+.button-contact-secondary {
+  border: 1px solid rgba(242, 235, 221, 0.34);
+  color: var(--ivory);
+  background: transparent;
+}
+
+.button-contact-secondary:hover,
+.button-contact-secondary:focus-visible {
+  border-color: var(--ivory);
+  background: rgba(242, 235, 221, 0.06);
+}
+
 .final-section {
   position: relative;
   isolation: isolate;
@@ -1892,6 +1957,24 @@ footer p {
 
 footer p:last-child {
   justify-self: end;
+}
+
+.footer-contacts {
+  display: flex;
+  gap: 22px;
+  justify-self: end;
+}
+
+.footer-contacts a {
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  color: var(--ivory);
+  text-transform: uppercase;
+}
+
+.footer-contacts a:hover,
+.footer-contacts a:focus-visible {
+  border-color: var(--red);
 }
 
 .footer-brand {
@@ -2441,7 +2524,7 @@ footer p:last-child {
     display: none;
   }
 
-  .header-place {
+  .header-contact {
     grid-column: 2;
   }
 
@@ -2472,9 +2555,15 @@ footer p:last-child {
   .format-intro,
   .musicians-intro,
   .ticket-section,
-  .faq-section {
+  .faq-section,
+  .contact-section {
     grid-template-columns: 1fr;
     gap: 46px;
+  }
+
+  .contact-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
   }
 
   .format-intro {
@@ -2505,7 +2594,7 @@ footer p:last-child {
     padding-bottom: 23px;
   }
 
-  footer p:last-child {
+  .footer-contacts {
     grid-column: 1 / -1;
     justify-self: start;
   }
@@ -2828,8 +2917,12 @@ footer p:last-child {
     grid-template-columns: 1fr;
   }
 
-  footer p:last-child {
+  .footer-contacts {
     grid-column: auto;
+  }
+
+  .contact-actions {
+    grid-template-columns: 1fr;
   }
 
 }
@@ -2839,6 +2932,7 @@ footer p:last-child {
   .format-intro h2,
   .ticket-copy h2,
   .faq-heading h2,
+  .contact-copy h2,
   .theme-copy h2,
   .layered-copy h2,
   .final-section h2 {

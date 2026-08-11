@@ -131,8 +131,25 @@ test("Yandex Metrica is prepared with Webvisor and one conversion goal", async (
   assert.match(metrika, /webvisor:true/);
   assert.match(metrika, /ecommerce:\"dataLayer\"/);
   assert.match(analytics, /telegram_click/);
+  assert.match(analytics, /whatsapp_click/);
   assert.match(analytics, /ticket_click/);
   assert.match(analytics, /111267605/);
+});
+
+test("publishes direct Telegram and WhatsApp contact links", async () => {
+  const worker = await loadWorker();
+  const { env } = createEnv();
+  const response = await worker.fetch(
+    new Request("http://localhost/", {
+      headers: { accept: "text/html" },
+    }),
+    env,
+    ctx,
+  );
+
+  const html = await response.text();
+  assert.equal((html.match(/https:\/\/t\.me\/vad6272/g) ?? []).length, 3);
+  assert.equal((html.match(/https:\/\/wa\.me\/79032405040/g) ?? []).length, 2);
 });
 
 test("waitlist endpoint stores a consented contact", async () => {
