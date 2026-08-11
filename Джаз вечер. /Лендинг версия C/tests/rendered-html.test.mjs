@@ -148,8 +148,8 @@ test("publishes direct Telegram and WhatsApp contact links", async () => {
   );
 
   const html = await response.text();
-  assert.equal((html.match(/https:\/\/t\.me\/VadimBond7/g) ?? []).length, 4);
-  assert.doesNotMatch(html, /https:\/\/t\.me\/vad6272/);
+  assert.equal((html.match(/https:\/\/t\.me\/vad6272/g) ?? []).length, 3);
+  assert.equal((html.match(/https:\/\/t\.me\/VadimBond7/g) ?? []).length, 1);
   assert.equal((html.match(/https:\/\/wa\.me\/79032405040/g) ?? []).length, 2);
 });
 
