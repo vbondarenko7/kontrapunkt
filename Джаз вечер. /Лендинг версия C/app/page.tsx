@@ -69,7 +69,8 @@ const scenarios = [
 const faqs = [
   {
     question: "Во сколько начало и сколько длится вечер?",
-    answer: "[ЗАПОЛНИТЬ: время начала и длительность]",
+    answer:
+      "Начало в 17:30. Точную продолжительность вечера сообщим дополнительно.",
   },
   {
     question: "Сколько будет музыкальных импровизаций?",
@@ -88,7 +89,8 @@ const faqs = [
   },
   {
     question: "Как добраться?",
-    answer: "[ЗАПОЛНИТЬ: адрес и ближайшее метро]",
+    answer:
+      "Moscow Imagine Live Club: улица Покровка, 16/16, вход с Хохловской площади. Ближайшие станции метро — «Чистые пруды», «Тургеневская» и «Сретенский бульвар».",
   },
   {
     question: "Будет ли съёмка?",
@@ -281,7 +283,7 @@ export default function Home() {
           </div>
           <div>
             <span>Когда</span>
-            <strong>[ЗАПОЛНИТЬ: дата и время]</strong>
+            <strong>Суббота, 19 сентября · 17:30</strong>
           </div>
         </div>
       </section>
@@ -682,7 +684,7 @@ export default function Home() {
           } as CSSProperties
         }
       >
-        <p className="eyebrow light">Чистые пруды · Москва</p>
+        <p className="eyebrow light">19 сентября · 17:30 · Москва</p>
         <h2>Этот разговор прозвучит только один раз</h2>
         <p>
           К этой теме можно вернуться. Но именно в таком составе зал больше не соберётся, и эта музыка не прозвучит снова.
@@ -696,7 +698,7 @@ export default function Home() {
         <a className="brand footer-brand" href="#top">
           <span>РАЗГОВОР</span><b>×</b><span>ДЖАЗ</span>
         </a>
-        <p>Moscow Imagine Live Club · Чистые пруды</p>
+        <p>Moscow Imagine Live Club · Покровка, 16/16</p>
         <nav className="footer-contacts" aria-label="Связаться с организатором">
           <a
             href={telegramUrl}
