@@ -10,7 +10,7 @@ import {
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
-const telegramUrl = "https://t.me/vad6272";
+const telegramUrl = "https://t.me/VadimBond7";
 const whatsappUrl = "https://wa.me/79032405040";
 const ticketOptions = [
   { quantity: 1, label: "1 билет", url: "https://payform.ru/qsccfki/" },
