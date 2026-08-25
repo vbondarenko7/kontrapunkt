@@ -86,8 +86,9 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.match(html, /Суббота, 19 сентября · 17:30/);
   assert.match(html, /Покровка, 16\/16/);
   assert.match(html, /вход с Хохловской площади/);
-  assert.doesNotMatch(html, /\[ЗАПОЛНИТЬ: дата и время\]/);
-  assert.doesNotMatch(html, /\[ЗАПОЛНИТЬ: адрес и ближайшее метро\]/);
+  assert.match(html, /За вечер этот цикл повторяется\./);
+  assert.doesNotMatch(html, /\[ЗАПОЛНИТЬ(?::[^\]]*)?\]/i);
+  assert.doesNotMatch(html, /сообщим дополнительно/i);
   assert.equal((html.match(/Количество билетов/g) ?? []).length, 2);
   assert.equal((html.match(/Купить билет/g) ?? []).length, 2);
   assert.doesNotMatch(html, /Купить (?:<!-- -->)?1 билет/);
