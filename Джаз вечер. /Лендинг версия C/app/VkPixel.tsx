@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-const rawPixelId = process.env.NEXT_PUBLIC_VK_PIXEL_ID ?? "";
+const rawPixelId = process.env.NEXT_PUBLIC_VK_PIXEL_ID ?? "3790555";
 const pixelId = /^\d+$/.test(rawPixelId) ? rawPixelId : null;
 
 export default function VkPixel() {

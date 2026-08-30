@@ -11,7 +11,7 @@ const counterId = /^\d+$/.test(rawCounterId)
   ? Number.parseInt(rawCounterId, 10)
   : null;
 
-const rawVkPixelId = process.env.NEXT_PUBLIC_VK_PIXEL_ID ?? "";
+const rawVkPixelId = process.env.NEXT_PUBLIC_VK_PIXEL_ID ?? "3790555";
 const vkPixelId = /^\d+$/.test(rawVkPixelId) ? rawVkPixelId : null;
 
 function trackVkGoal(goal: string) {
