@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import YandexMetrika from "./YandexMetrika";
+import VkPixel from "./VkPixel";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body>
         {children}
         <YandexMetrika />
+        <VkPixel />
       </body>
     </html>
   );

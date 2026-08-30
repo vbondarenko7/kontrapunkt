@@ -1,6 +1,7 @@
 declare global {
   interface Window {
     ym?: (...args: unknown[]) => void;
+    _tmr?: Record<string, unknown>[];
   }
 }
 
@@ -9,6 +10,17 @@ const rawCounterId =
 const counterId = /^\d+$/.test(rawCounterId)
   ? Number.parseInt(rawCounterId, 10)
   : null;
+
+const rawVkPixelId = process.env.NEXT_PUBLIC_VK_PIXEL_ID ?? "";
+const vkPixelId = /^\d+$/.test(rawVkPixelId) ? rawVkPixelId : null;
+
+function trackVkGoal(goal: string) {
+  if (typeof window === "undefined" || !vkPixelId) {
+    return;
+  }
+
+  (window._tmr ||= []).push({ type: "reachGoal", id: vkPixelId, goal });
+}
 
 export const METRIKA_GOALS = {
   telegramClick: "telegram_click",
@@ -24,6 +36,7 @@ export function trackTelegramClick(placement: string) {
   window.ym?.(counterId, "reachGoal", METRIKA_GOALS.telegramClick, {
     placement,
   });
+  trackVkGoal(METRIKA_GOALS.telegramClick);
 }
 
 export function trackWhatsAppClick(placement: string) {
@@ -34,6 +47,7 @@ export function trackWhatsAppClick(placement: string) {
   window.ym?.(counterId, "reachGoal", METRIKA_GOALS.whatsappClick, {
     placement,
   });
+  trackVkGoal(METRIKA_GOALS.whatsappClick);
 }
 
 export function trackTicketClick(placement: string) {
@@ -44,4 +58,5 @@ export function trackTicketClick(placement: string) {
   window.ym?.(counterId, "reachGoal", METRIKA_GOALS.ticketClick, {
     placement,
   });
+  trackVkGoal(METRIKA_GOALS.ticketClick);
 }
