@@ -3023,3 +3023,156 @@ footer p:last-child {
     transform: none !important;
   }
 }
+
+/* Авторская видеодорожка. Ролик — второе предложение рядом с главной кнопкой,
+   поэтому вместо второй кнопки стоит живой кадр: он и приглашает, и сразу
+   показывает, что внутри. Открывается только по клику. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 38px;
+  align-items: center;
+}
+
+.author-video-link {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 180ms ease;
+}
+
+.author-video-link:hover {
+  transform: translateY(-2px);
+}
+
+.author-video-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 108px;
+  height: 62px;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 0 1px rgba(242, 235, 221, 0.2),
+    0 10px 24px rgba(0, 0, 0, 0.42);
+  overflow: hidden;
+}
+
+/* Кадр и миниатюра одного формата, поэтому подрезать нечего:
+   лицо приближается масштабом от точки, где оно стоит в кадре. */
+.author-video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.85);
+  transform-origin: 49% 28%;
+}
+
+/* Диск с треугольником стоит в углу, а не по центру: по центру он закрывает
+   лицо, ради которого миниатюру и ставили. Красным становится под курсором,
+   чтобы не спорить с главной кнопкой. */
+.author-video-thumb i {
+  position: absolute;
+  bottom: 7px;
+  left: 7px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(242, 235, 221, 0.92);
+  transition: background 180ms ease;
+}
+
+.author-video-thumb i::after {
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--black);
+  content: "";
+  transform: translate(-50%, -50%);
+  transition: border-left-color 180ms ease;
+}
+
+.author-video-link:hover .author-video-thumb i {
+  background: var(--red);
+}
+
+.author-video-link:hover .author-video-thumb i::after {
+  border-left-color: var(--ivory);
+}
+
+.author-video-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.author-video-text b {
+  color: var(--ivory);
+  font-size: var(--type-ui);
+  font-weight: 600;
+  line-height: var(--leading-label);
+  text-transform: uppercase;
+}
+
+.author-video-text em {
+  color: var(--mute-dark);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.author-video-dialog {
+  width: min(100% - 40px, 920px);
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: var(--black);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+}
+
+.author-video-dialog::backdrop {
+  background: rgba(10, 8, 6, 0.88);
+}
+
+.author-video-dialog video {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.author-video-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(23, 19, 15, 0.62);
+  color: var(--ivory);
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.author-video-close:hover {
+  background: rgba(23, 19, 15, 0.85);
+}
+
+@media (max-width: 980px) {
+  .hero-actions {
+    gap: 22px;
+  }
+
+  .author-video-thumb {
+    width: 92px;
+    height: 54px;
+  }
+}

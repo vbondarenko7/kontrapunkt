@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
+  trackAuthorVideoOpen,
   trackTelegramClick,
   trackTicketClick,
   trackWhatsAppClick,
@@ -82,6 +83,75 @@ const faqs = [
       "Moscow Imagine Live Club: улица Покровка, 16/16, вход с Хохловской площади. Ближайшие станции метро — «Чистые пруды», «Тургеневская» и «Сретенский бульвар».",
   },
 ];
+
+function AuthorVideo({ placement }: { placement: string }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const close = () => {
+    videoRef.current?.pause();
+    dialogRef.current?.close();
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        className="author-video-link"
+        aria-label="Послушать замысел: видео от автора, две минуты"
+        onClick={() => {
+          dialogRef.current?.showModal();
+          videoRef.current?.play().catch(() => {});
+          trackAuthorVideoOpen(placement);
+        }}
+      >
+        <span className="author-video-thumb" aria-hidden="true">
+          <img src={assetPath("/video/intro-01.jpg")} alt="" />
+          <i />
+        </span>
+        <span className="author-video-text">
+          <b>Послушать замысел</b>
+          <em>две минуты от автора</em>
+        </span>
+      </button>
+      <dialog
+        className="author-video-dialog"
+        ref={dialogRef}
+        onClose={() => videoRef.current?.pause()}
+        onMouseDown={(event) => {
+          if (event.target === dialogRef.current) {
+            close();
+          }
+        }}
+      >
+        <video
+          ref={videoRef}
+          controls
+          playsInline
+          preload="none"
+          poster={assetPath("/video/intro-01.jpg")}
+        >
+          <source src={assetPath("/video/intro-01.mp4")} type="video/mp4" />
+          <track
+            kind="subtitles"
+            srcLang="ru"
+            label="Русские субтитры"
+            src={assetPath("/video/intro-01.ru.vtt")}
+            default
+          />
+        </video>
+        <button
+          type="button"
+          className="author-video-close"
+          onClick={close}
+          aria-label="Закрыть видео"
+        >
+          ×
+        </button>
+      </dialog>
+    </>
+  );
+}
 
 function TicketQuantityPicker({
   value,
@@ -248,9 +318,12 @@ export default function Home() {
           <p className="hero-copy">
             Музыканты слушают разговор и импровизируют по его ходу.
           </p>
-          <a className="button button-primary" href="#format">
-            Узнать подробнее <span aria-hidden="true">↓</span>
-          </a>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#format">
+              Узнать подробнее <span aria-hidden="true">↓</span>
+            </a>
+            <AuthorVideo placement="hero" />
+          </div>
         </div>
         <div className="hero-facts" aria-label="Ключевые факты">
           <div>
