@@ -3128,8 +3128,11 @@ footer p:last-child {
   line-height: 1.2;
 }
 
+/* margin: auto обязателен: сброс Tailwind обнуляет поля у всего подряд и
+   забирает у <dialog> штатное центрирование, окно уезжает в левый угол. */
 .author-video-dialog {
   width: min(100% - 40px, 920px);
+  margin: auto;
   padding: 0;
   border: 0;
   border-radius: 10px;
