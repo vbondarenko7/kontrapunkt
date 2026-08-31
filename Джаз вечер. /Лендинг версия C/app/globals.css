@@ -3068,8 +3068,8 @@ footer p:last-child {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.85);
-  transform-origin: 49% 28%;
+  transform: scale(2.2);
+  transform-origin: 49% 30%;
 }
 
 /* Диск с треугольником стоит в углу, а не по центру: по центру он закрывает
