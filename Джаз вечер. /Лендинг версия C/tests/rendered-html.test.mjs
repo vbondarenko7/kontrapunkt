@@ -91,6 +91,9 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.doesNotMatch(html, /сообщим дополнительно/i);
   assert.equal((html.match(/Количество билетов/g) ?? []).length, 2);
   assert.equal((html.match(/Купить билет/g) ?? []).length, 2);
+  assert.match(html, /Если решение не сегодня/);
+  assert.match(html, /цена для подписчиков — 2 250 ₽ вместо 2 500 ₽/);
+  assert.match(html, /https:\/\/t\.me\/azzgovorit/);
   assert.doesNotMatch(html, /Купить (?:<!-- -->)?1 билет/);
   assert.match(html, /href="#ticket"/);
   assert.match(html, /target="_blank"/);
@@ -116,6 +119,10 @@ test("ticket quantities use fixed Prodamus links", async () => {
     assert.match(page, new RegExp(`https://payform\\.ru/${link}/`));
   }
   assert.match(page, /selectedTicket\.quantity \* 2500/);
+  assert.match(page, /const ticketChannelUrl = "https:\/\/t\.me\/azzgovorit"/);
+  assert.match(page, /Если решение не сегодня/);
+  assert.equal((page.match(/Купить билет/g) ?? []).length, 2);
+  assert.match(page, /trackTelegramClick\("ticket_channel"\)/);
 });
 
 test("Yandex Metrica is prepared with Webvisor and one conversion goal", async () => {

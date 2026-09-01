@@ -1735,6 +1735,51 @@ h3 {
   width: 100%;
 }
 
+.ticket-channel-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 72px;
+  align-items: center;
+  padding: 44px max(32px, calc((100% - 1160px) / 2));
+  border-top: 1px solid rgba(92, 64, 34, 0.16);
+  border-bottom: 1px solid rgba(92, 64, 34, 0.2);
+  color: var(--ink);
+  background: #e9dfce;
+}
+
+.ticket-channel-copy {
+  max-width: 760px;
+}
+
+.ticket-channel-copy h2 {
+  margin: 0 0 12px;
+  font-size: var(--type-accent);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.ticket-channel-copy p {
+  max-width: 740px;
+  margin: 0;
+  color: var(--mute-light);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+.button-ticket-channel {
+  min-width: 190px;
+  border: 1px solid rgba(34, 26, 20, 0.34);
+  color: var(--ink);
+  background: transparent;
+}
+
+.button-ticket-channel:hover,
+.button-ticket-channel:focus-visible {
+  border-color: var(--brown);
+  background: rgba(92, 64, 34, 0.07);
+}
+
 .faq-section {
   position: relative;
   display: grid;
@@ -2555,10 +2600,19 @@ footer p:last-child {
   .format-intro,
   .musicians-intro,
   .ticket-section,
+  .ticket-channel-section,
   .faq-section,
   .contact-section {
     grid-template-columns: 1fr;
     gap: 46px;
+  }
+
+  .ticket-channel-section {
+    gap: 26px;
+  }
+
+  .button-ticket-channel {
+    justify-self: start;
   }
 
   .contact-actions {
@@ -2690,6 +2744,15 @@ footer p:last-child {
 
   .section {
     padding: var(--section-space) 20px;
+  }
+
+  .ticket-channel-section {
+    padding: 40px 20px;
+  }
+
+  .button-ticket-channel {
+    justify-self: stretch;
+    width: 100%;
   }
 
   .format-intro h2,
