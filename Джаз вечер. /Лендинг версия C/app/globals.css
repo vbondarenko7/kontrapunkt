@@ -1642,8 +1642,11 @@ h3 {
   flex-wrap: wrap;
   gap: 5px 10px;
   align-items: baseline;
-  margin: -4px 0 0;
-  color: #d5c6b5;
+  margin: -2px -37px 0;
+  padding: 12px 37px 12px 34px;
+  border-left: 3px solid #f7b9ae;
+  background: rgba(247, 185, 174, 0.09);
+  color: var(--ivory);
   font-size: var(--type-ui);
   line-height: var(--leading-body);
   text-wrap: pretty;
@@ -1651,13 +1654,15 @@ h3 {
 
 .ticket-subscriber-offer strong,
 .ticket-subscriber-offer a {
-  color: #efc0b8;
+  color: #f7b9ae;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .ticket-subscriber-offer a {
   text-decoration: underline;
-  text-decoration-color: rgba(239, 192, 184, 0.45);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
 }
 
@@ -2925,6 +2930,13 @@ footer p:last-child {
 
   .ticket-card {
     padding: 27px 21px;
+  }
+
+  .ticket-subscriber-offer {
+    margin-right: -21px;
+    margin-left: -21px;
+    padding-right: 21px;
+    padding-left: 18px;
   }
 
   .ticket-topline > strong {
