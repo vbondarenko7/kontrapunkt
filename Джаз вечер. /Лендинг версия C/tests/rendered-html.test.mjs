@@ -91,9 +91,10 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.doesNotMatch(html, /сообщим дополнительно/i);
   assert.equal((html.match(/Количество билетов/g) ?? []).length, 2);
   assert.equal((html.match(/Купить билет/g) ?? []).length, 2);
-  assert.match(html, /Если решение не сегодня/);
-  assert.match(html, /цена для подписчиков — 2 250 ₽ вместо 2 500 ₽/);
-  assert.match(html, /https:\/\/t\.me\/azzgovorit/);
+  assert.match(html, /Для подписчиков Telegram —/);
+  assert.match(html, /2 250 ₽/);
+  assert.match(html, /Получить промокод/);
+  assert.match(html, /https:\/\/t\.me\/jazzgovorit/);
   assert.doesNotMatch(html, /Купить (?:<!-- -->)?1 билет/);
   assert.match(html, /href="#ticket"/);
   assert.match(html, /target="_blank"/);
@@ -119,8 +120,9 @@ test("ticket quantities use fixed Prodamus links", async () => {
     assert.match(page, new RegExp(`https://payform\\.ru/${link}/`));
   }
   assert.match(page, /selectedTicket\.quantity \* 2500/);
-  assert.match(page, /const ticketChannelUrl = "https:\/\/t\.me\/azzgovorit"/);
-  assert.match(page, /Если решение не сегодня/);
+  assert.match(page, /const ticketChannelUrl = "https:\/\/t\.me\/jazzgovorit"/);
+  assert.match(page, /Для подписчиков Telegram —/);
+  assert.match(page, /Получить промокод/);
   assert.equal((page.match(/Купить билет/g) ?? []).length, 2);
   assert.match(page, /trackTelegramClick\("ticket_channel"\)/);
 });

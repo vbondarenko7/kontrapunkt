@@ -12,7 +12,7 @@ import {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
 const telegramUrl = "https://t.me/vad6272";
-const ticketChannelUrl = "https://t.me/azzgovorit";
+const ticketChannelUrl = "https://t.me/jazzgovorit";
 const whatsappUrl = "https://wa.me/79032405040";
 const ticketOptions = [
   { quantity: 1, label: "1 билет", url: "https://payform.ru/qsccfki/" },
@@ -647,6 +647,19 @@ export default function Home() {
           <div className="ticket-topline">
             <span>ЦЕНА БИЛЕТА</span>
             <strong>2 500 ₽</strong>
+            <p className="ticket-subscriber-offer">
+              <span>
+                Для подписчиков Telegram — <strong>2 250 ₽</strong>
+              </span>
+              <a
+                href={ticketChannelUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackTelegramClick("ticket_channel")}
+              >
+                Получить промокод <span aria-hidden="true">↗</span>
+              </a>
+            </p>
           </div>
           <ul>
             <li>участие в общем разговоре</li>
@@ -677,30 +690,6 @@ export default function Home() {
             Купить билет
           </a>
         </aside>
-      </section>
-
-      <section
-        className="ticket-channel-section"
-        aria-labelledby="ticket-channel-title"
-      >
-        <div className="ticket-channel-copy">
-          <h2 id="ticket-channel-title">Если решение не сегодня</h2>
-          <p>
-            До 19 сентября я пишу в канале вечера: как выбиралась тема, что
-            отвечают музыканты, что уже пошло не так. Там же, в закреплённом
-            сообщении, цена для подписчиков — 2 250 ₽ вместо 2 500 ₽. Она
-            действует до дня вечера.
-          </p>
-        </div>
-        <a
-          className="button button-ticket-channel"
-          href={ticketChannelUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackTelegramClick("ticket_channel")}
-        >
-          Открыть канал <span aria-hidden="true">↗</span>
-        </a>
       </section>
 
       <section className="section faq-section">
