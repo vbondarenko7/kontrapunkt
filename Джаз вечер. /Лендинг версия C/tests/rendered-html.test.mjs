@@ -115,7 +115,7 @@ test("ticket quantities use fixed Prodamus links", async () => {
   ]) {
     assert.match(page, new RegExp(`https://payform\\.ru/${link}/`));
   }
-  assert.match(page, /selectedTicket\.quantity \* 2300/);
+  assert.match(page, /selectedTicket\.quantity \* 2500/);
 });
 
 test("Yandex Metrica is prepared with Webvisor and one conversion goal", async () => {

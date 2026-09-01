@@ -645,7 +645,7 @@ export default function Home() {
         <aside className="ticket-card" aria-label="Состав билета">
           <div className="ticket-topline">
             <span>ЦЕНА БИЛЕТА</span>
-            <strong>2 300 ₽</strong>
+            <strong>2 500 ₽</strong>
           </div>
           <ul>
             <li>участие в общем разговоре</li>
@@ -662,7 +662,7 @@ export default function Home() {
             <p className="ticket-total">
               <span>Итого</span>
               <strong>
-                {(selectedTicket.quantity * 2300).toLocaleString("ru-RU")} ₽
+                {(selectedTicket.quantity * 2500).toLocaleString("ru-RU")} ₽
               </strong>
             </p>
           </div>
