@@ -1622,7 +1622,7 @@ h3 {
   border-bottom: 1px solid rgba(217, 165, 162, 0.28);
 }
 
-.ticket-topline span {
+.ticket-topline > span {
   color: #d9a5a2;
   font-size: var(--type-label);
   font-weight: 600;
