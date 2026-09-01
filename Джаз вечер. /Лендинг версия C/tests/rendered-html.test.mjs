@@ -91,10 +91,9 @@ test("server-renders the approved version D copy without the waitlist UI", async
   assert.doesNotMatch(html, /сообщим дополнительно/i);
   assert.equal((html.match(/Количество билетов/g) ?? []).length, 2);
   assert.equal((html.match(/Купить билет/g) ?? []).length, 2);
-  assert.match(html, /Для подписчиков Telegram —/);
+  assert.match(html, /Подписчикам телеграм-канала —/);
   assert.match(html, /2 250 ₽/);
   assert.match(html, /Получить промокод/);
-  assert.match(html, /https:\/\/t\.me\/jazzgovorit/);
   assert.doesNotMatch(html, /Купить (?:<!-- -->)?1 билет/);
   assert.match(html, /href="#ticket"/);
   assert.match(html, /target="_blank"/);
@@ -120,8 +119,8 @@ test("ticket quantities use fixed Prodamus links", async () => {
     assert.match(page, new RegExp(`https://payform\\.ru/${link}/`));
   }
   assert.match(page, /selectedTicket\.quantity \* 2500/);
-  assert.match(page, /const ticketChannelUrl = "https:\/\/t\.me\/jazzgovorit"/);
-  assert.match(page, /Для подписчиков Telegram —/);
+  assert.match(page, /const ticketChannelUrl = "https:\/\/t\.me\/VadimBond7"/);
+  assert.match(page, /Подписчикам телеграм-канала —/);
   assert.match(page, /Получить промокод/);
   assert.equal((page.match(/Купить билет/g) ?? []).length, 2);
   assert.match(page, /trackTelegramClick\("ticket_channel"\)/);
@@ -164,7 +163,7 @@ test("publishes direct Telegram and WhatsApp contact links", async () => {
 
   const html = await response.text();
   assert.equal((html.match(/https:\/\/t\.me\/vad6272/g) ?? []).length, 3);
-  assert.equal((html.match(/https:\/\/t\.me\/VadimBond7/g) ?? []).length, 1);
+  assert.equal((html.match(/https:\/\/t\.me\/VadimBond7/g) ?? []).length, 2);
   assert.equal((html.match(/https:\/\/wa\.me\/79032405040/g) ?? []).length, 2);
 });
 
