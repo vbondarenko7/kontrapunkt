@@ -27,6 +27,7 @@ export const METRIKA_GOALS = {
   whatsappClick: "whatsapp_click",
   ticketClick: "ticket_click",
   authorVideoOpen: "author_video_open",
+  purchase: "purchase",
 } as const;
 
 export function trackTelegramClick(placement: string) {
@@ -71,4 +72,16 @@ export function trackAuthorVideoOpen(placement: string) {
     placement,
   });
   trackVkGoal(METRIKA_GOALS.authorVideoOpen);
+}
+
+export function trackPurchase() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  if (counterId) {
+    window.ym?.(counterId, "reachGoal", METRIKA_GOALS.purchase);
+  }
+
+  trackVkGoal(METRIKA_GOALS.purchase);
 }
